@@ -164,7 +164,7 @@
         </div>
       </div>
 
-      <!-- Video 3 -->
+      Video 3
       <div class="video-card">
         <div class="video-wrapper">
           <iframe 
@@ -332,9 +332,17 @@
   transform: translateX(5px);
 }
 
+/* Responsive for YouTube */
+@media (max-width: 768px) {
+  .videos-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
 
-
-
+  .youtube-section {
+    padding: 80px 20px;
+  }
+}
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
