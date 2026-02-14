@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>shriya.dev - Study Notes &amp; Tech Blog on shriya.dev</title>
-    <link>http://localhost:1313/</link>
+    <link>https://shriyamohanty.github.io/</link>
     <description>Recent content in shriya.dev - Study Notes &amp; Tech Blog on shriya.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://shriyamohanty.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>understanding shells &amp; commands: because i was lost too</title>
-      <link>http://localhost:1313/blog/first_post/</link>
+      <link>https://shriyamohanty.github.io/blog/first_post/</link>
       <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/first_post/</guid>
+      <guid>https://shriyamohanty.github.io/blog/first_post/</guid>
       <description></description>
     </item>
     <item>
       <title>All Notes by Semester</title>
-      <link>http://localhost:1313/notes/</link>
+      <link>https://shriyamohanty.github.io/notes/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/notes/</guid>
+      <guid>https://shriyamohanty.github.io/notes/</guid>
       <description>&lt;p&gt;Browse my complete collection of study notes, organized by semester. Each subject includes comprehensive notes with examples, explanations, and practice problems.&lt;/p&gt;</description>
     </item>
   </channel>

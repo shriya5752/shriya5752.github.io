@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.155.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.155.1">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>shriya.dev</title>
@@ -987,7 +987,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   let scrambleInterval;
   let scrambleTime = 0;
-  const scrambleDuration = 1000;
+  const scrambleDuration = 2000;
   
   nameElement.classList.add('typing');
   
@@ -1000,7 +1000,7 @@ document.addEventListener("DOMContentLoaded", () => {
       clearInterval(scrambleInterval);
       typewriterEffect();
     }
-  }, 100);
+  }, 400);
   
   function typewriterEffect() {
     nameElement.textContent = '';
@@ -1014,7 +1014,7 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(typeInterval);
         setTimeout(() => {
           nameElement.classList.remove('typing');
-        }, 500);
+        }, 1500);
       }
     }, 150);
   }

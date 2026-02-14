@@ -25,6 +25,10 @@
     {{ end }}
   </div>
   
-  {{ template "_internal/pagination.html" . }}
+  {{ if .Paginator }}
+{{ if gt .Paginator.TotalPages 1 }}
+{{ template "_internal/pagination.html" . }}
+{{ end }}
+{{ end }}
 </div>
 {{ end }}

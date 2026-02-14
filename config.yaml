@@ -3,7 +3,7 @@ title: "shriya.dev"
 #theme: "PaperMod"
 
 disableKinds:
-  - JSON
+  - json  # Changed from JSON to json (lowercase)
 
 languageCode: "en-us"
 defaultContentLanguage: "en"
@@ -94,16 +94,14 @@ menu:
       url: "/"
       weight: 1
     
-    # Change this from "/posts/" to your notes page URL
     - identifier: notes
       name: 📚 Notes
-      url: "/notes/"  # Change this
+      url: "/notes/"
       weight: 2
     
-    # Make sure blog points to the right place
     - identifier: blog
       name: 📁 Blog
-      url: "/blog/"  # This should be correct if you have blog section
+      url: "/blog/"
       weight: 3
     
     - identifier: search
@@ -122,11 +120,8 @@ taxonomies:
   tag: tags
   format: formats  # For pdf, notion, hugo
 
-# Outputs
+# Outputs - removed JSON since we're disabling it above
 outputs:
   home:
     - HTML
     - RSS
-    - JSON
-
-    
