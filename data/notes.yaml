@@ -20,7 +20,6 @@ semesters:
         url: "/semesters/sem3/#discrete-mathematics"
         drive_url: "https://drive.google.com/drive/folders/1GJkwH6qVfBzNujcZKiIL-atVWQr0JjRG?usp=drive_link"
         icon: "🔗"
- 
 
   - name: "Semester 3"
     year: "2025"
@@ -55,9 +54,10 @@ semesters:
     subjects: 4
     icon: "📚"
     color: "#51cf66"
+    drive_link: ""
     subjects_list:
       - name: "Linear Algebra"
-        url: "/semesters/sem4/#Linear Algebra"
+        url: "/semesters/sem4/#Linear-Algebra"
         drive_url: "https://drive.google.com/your-link"
         icon: "🔗"
       - name: "Computer Networks"
@@ -65,12 +65,10 @@ semesters:
         drive_url: "https://drive.google.com/your-link"
         icon: "🔗"
       - name: "Operating Systems"
-        url: "/semesters/sem4/#Operating Systems"
+        url: "/semesters/sem4/#Operating-Systems"
         drive_url: "https://drive.google.com/your-link"
         icon: "🔗"
       - name: "Logic and Design of Algorithm"
-        url: "/semesters/sem4/#Logic and Design of Algorithm"
+        url: "/semesters/sem4/#Logic-and-Design-of-Algorithm"
         drive_url: "https://drive.google.com/your-link"
         icon: "🔗"
-
- 
