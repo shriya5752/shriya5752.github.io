@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Formats on shriya.dev</title>
-    <link>http://localhost:54775/formats/</link>
+    <link>https://shriya-mohanty.github.io/formats/</link>
     <description>Recent content in Formats on shriya.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <atom:link href="http://localhost:54775/formats/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://shriya-mohanty.github.io/formats/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
