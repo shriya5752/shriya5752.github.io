@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Semesters on shriya.dev</title>
+    <link>http://localhost:1313/semesters/</link>
+    <description>Recent content in Semesters on shriya.dev</description>
+    <generator>Hugo -- 0.155.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 31 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/semesters/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Semester 2 Notes</title>
+      <link>http://localhost:1313/semesters/sem2/</link>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/semesters/sem2/</guid>
+      <description>&lt;h1 id=&#34;-semester-2-notes&#34;&gt;📚 Semester 2 Notes&lt;/h1&gt;
+&lt;p&gt;All my notes from Semester 2 in one place.&lt;/p&gt;
+&lt;h2 id=&#34;subjects&#34;&gt;Subjects:&lt;/h2&gt;
+&lt;h3 id=&#34;1-data-structures&#34;&gt;1. Data Structures&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/ds-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-digital-electronics&#34;&gt;2. Digital Electronics&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/de-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-discrete-mathematics&#34;&gt;3. Discrete Mathematics&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/dm-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;4-oop-with-java&#34;&gt;4. OOP with Java&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/java-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;5-engineering-mathematics&#34;&gt;5. Engineering Mathematics&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/math-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Semester 3 Notes</title>
+      <link>http://localhost:1313/semesters/sem3/</link>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/semesters/sem3/</guid>
+      <description>&lt;h1 id=&#34;-semester-3-notes&#34;&gt;📚 Semester 3 Notes&lt;/h1&gt;
+&lt;p&gt;All my notes from Semester 3 in one place.&lt;/p&gt;
+&lt;h2 id=&#34;subjects&#34;&gt;Subjects:&lt;/h2&gt;
+&lt;h3 id=&#34;1-data-structures&#34;&gt;1. Data Structures&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/ds-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-digital-electronics&#34;&gt;2. Digital Electronics&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/de-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;3-discrete-mathematics&#34;&gt;3. Discrete Mathematics&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/dm-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;4-oop-with-java&#34;&gt;4. OOP with Java&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/java-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;5-engineering-mathematics&#34;&gt;5. Engineering Mathematics&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&#34;https://drive.google.com/math-notes-link&#34;&gt;📓 View Notes on Google Drive&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

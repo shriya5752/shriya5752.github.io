@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>React on shriya.dev</title>
+    <link>http://localhost:56082/categories/react/</link>
+    <description>Recent content in React on shriya.dev</description>
+    <generator>Hugo -- 0.155.1</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 31 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:56082/categories/react/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Complete Guide</title>
+      <link>http://localhost:56082/notes/react/</link>
+      <pubDate>Sat, 31 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:56082/notes/react/</guid>
+      <description>Complete React.js learning notes with examples</description>
+    </item>
+  </channel>
+</rss>
