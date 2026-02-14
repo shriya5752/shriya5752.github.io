@@ -8,6 +8,22 @@
 
   <!-- Semesters -->
   <section class="semesters">
+
+
+    <section class="semesters">
+  
+  <!-- DEBUG INFO -->
+  <div style="background: yellow; padding: 20px; margin: 20px; border: 2px solid red;">
+    <h3>🔍 Debug Info:</h3>
+    <p><strong>Data file exists:</strong> {{ if .Site.Data.notes }}YES{{ else }}NO{{ end }}</p>
+    <p><strong>Semesters array exists:</strong> {{ if .Site.Data.notes.semesters }}YES{{ else }}NO{{ end }}</p>
+    <p><strong>Number of semesters:</strong> {{ len .Site.Data.notes.semesters }}</p>
+    <hr>
+    <p><strong>Raw data:</strong></p>
+    <pre>{{ .Site.Data.notes }}</pre>
+  </div>
+  
+  {{ range $index, $semester := .Site.Data.notes.semesters }}
     {{ range $index, $semester := .Site.Data.notes.semesters }}
     <div class="semester">
       <!-- Semester Header -->
