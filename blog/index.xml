@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tech blog. on shriya.dev</title>
-    <link>https://shriya-mohanty.github.io/blog/</link>
+    <link>https://shriya5752.github.io/shriya-mohanty.github.io/blog/</link>
     <description>Recent content in tech blog. on shriya.dev</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 15 Jan 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://shriya-mohanty.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://shriya5752.github.io/shriya-mohanty.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>understanding shells &amp; commands: because i was lost too</title>
-      <link>https://shriya-mohanty.github.io/blog/first_post/</link>
+      <link>https://shriya5752.github.io/shriya-mohanty.github.io/blog/first_post/</link>
       <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>https://shriya-mohanty.github.io/blog/first_post/</guid>
+      <guid>https://shriya5752.github.io/shriya-mohanty.github.io/blog/first_post/</guid>
       <description></description>
     </item>
   </channel>
