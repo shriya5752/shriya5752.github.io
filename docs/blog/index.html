@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tech blog. | shriya.dev</title>
+    <meta name="description" content="">
+    
+    <style>
+         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="blog-container">
+  <header class="blog-header">
+    <h1 class="blog-title">tech blog.</h1>
+    <p class="blog-subtitle">thoughts, tutorials, and experiences from my development journey</p>
+  </header>
+
+  
+  
+  <div class="posts-grid">
+    
+    <article class="post-card">
+      
+      <div class="post-image" style="background-image: url('/images/shell.jpg');"></div>
+      
+      
+      <div class="post-content">
+        <div class="post-meta">
+          <time class="post-date">Jan 15</time>
+          
+          <span class="post-emoji">🎯</span>
+          
+        </div>
+        
+        <h2 class="post-title">understanding shells &amp; commands: because i was lost too</h2>
+        
+        
+        <p class="post-excerpt">A beginner&#39;s guide to the terminal</p>
+        
+        
+        <div class="post-footer">
+          
+          <a href="https://www.notion.so/Understanding-Shells-Commands-Because-I-Was-Lost-Too-2f42da7f7c25805383b2e2068ea1ca0b?source=copy_link" class="read-more notion-link" target="_blank" rel="noopener">
+            Read on Notion →
+          </a>
+          
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+ 
+body {
+  background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.blog-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.blog-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 600;
+  color: #8B4513;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.blog-subtitle {
+  font-size: 1.1rem;
+  color: #999;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.post-card {
+  background: #f5f5f0;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.post-image {
+  width: 100%;
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.post-image.default-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.post-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.post-date {
+  background: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.post-emoji {
+  font-size: 1.5rem;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  min-height: 3.9rem;
+}
+
+.post-excerpt {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.post-footer {
+  margin-top: auto;
+}
+
+.read-more {
+  display: inline-block;
+  color: #8B4513;
+  font-weight: 500;
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+
+.read-more:hover {
+  gap: 0.75rem;
+}
+
+.read-more.notion-link {
+  color: #2c2c2c;
+  background: rgba(139, 69, 19, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.read-more.notion-link:hover {
+  background: rgba(139, 69, 19, 0.2);
+}
+
+.no-posts {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.no-posts-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.no-posts h2 {
+  font-size: 2rem;
+  color: #8B4513;
+  margin-bottom: 0.5rem;
+}
+
+.no-posts p {
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .blog-title {
+    font-size: 2.5rem;
+  }
+  
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+</body>
+</html>

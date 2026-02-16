@@ -1,4 +1,6 @@
 baseURL: "https://shriya5752.github.io/"
+publishDir: "docs"
+
 
 title: "shriya.dev"
 #theme: "PaperMod"

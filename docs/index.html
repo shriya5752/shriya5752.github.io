@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="generator" content="Hugo 0.155.1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shriya.dev</title>
+    <meta name="description" content="A collection of semester-wise study notes and technical blog posts documenting my learning journey in computer science">
+    
+    <style>
+         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+
+<div class="hero-section">
+  
+  <div class="social-bar">
+    <a href="https://www.linkedin.com/in/shriya-moh/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.762 2.239 5 5 5h14c2.762 0 5-2.238 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+      </svg>
+    </a>
+    
+    <a href="https://medium.com/@shriyamoh1362" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Medium">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+      </svg>
+    </a>
+    
+    <a href="https://github.com/shriya5752" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+      </svg>
+    </a>
+
+	<a href="https://youtube.com/@shriya_moh?si=a8xs9wpqxqeKGfBo" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="YouTube">
+  <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+  </svg>
+</a>
+
+
+    
+    <a href="mailto:shriyamoh1362@gmail.com" class="social-link" aria-label="Email">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+      </svg>
+    </a>
+  </div>
+  
+  
+  <div class="canvas-3d">
+    <div class="brain-container">
+      <div class="brain-3d">
+        <div class="brain-hemisphere left"></div>
+        <div class="brain-hemisphere right"></div>
+        <div class="glow-effect"></div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="floating-quote">
+    <div class="quote-icon">"</div>
+    <span class="quote-text">Learning never exhausts the mind.</span>
+    <span class="quote-author">Leonardo da Vinci</span>
+  </div>
+
+  
+  <div class="hero-content">
+    <h1 class="hero-title">
+      Hello, I'm <span class="gradient-text" id="typewriter-name">Shriya</span>
+    </h1>
+    <p class="hero-subtitle">
+      Welcome to my digital space where I share my technical journey,
+      learnings.
+    </p>
+
+    
+    <div class="nav-buttons">
+      <a href="/notes/" class="nav-button primary">
+        <span class="button-icon">📚</span>
+        <span class="button-text">Browse Notes</span>
+        <span class="button-arrow">→</span>
+      </a>
+      <a href="/blog/" class="nav-button secondary">
+        <span class="button-icon">✍️</span>
+        <span class="button-text">Read the Blog</span>
+        <span class="button-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="scroll-indicator">
+      <span>Scroll to learn more</span>
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="about-section">
+  <div class="about-container">
+    <h2 class="section-title">about me.</h2>
+    
+    <div class="about-content">
+      <div class="about-text">
+        <p class="intro-text">
+          hi, i'm shriya 👋<br><br>
+          I like taking things apart — ideas, systems, problems — and figuring out what makes them tick. I like to build stuff, explore new concepts, and turn complex things into something people can actually understand.
+        </p>
+        <p class="intro-text">
+          i'm drawn to the intersection of technology and creativity. lately, i've been sharing my notes and writing about the tech fields that spark me — one idea at a time.
+
+If you’re working on something interesting, I’d love to hear about it.
+        </p>
+      </div>
+
+
+
+
+	  
+      
+      <div class="about-visual">
+        <div class="photo-collage">
+          <div class="photo-item photo-1">
+            <img src="/images/img4.jpg" alt="Photo 4" class="collage-photo">
+          </div>
+          <div class="photo-item photo-3">
+            <img src="/images/img3.jpg" alt="Photo 3" class="collage-photo">
+          </div>
+          <div class="photo-item photo-4">
+            <img src="/images/img1.jpg" alt="Photo 1" class="collage-photo">
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #F5F1E8;
+  font-family: 'Inter', sans-serif;
+  color: #3D3D3D;
+  overflow-x: hidden;
+}
+
+ 
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+ 
+.social-bar {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+  animation: slideInRight 1s ease;
+}
+
+.social-link {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  color: #704214;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(112, 66, 20, 0.15);
+  border: 1px solid rgba(112, 66, 20, 0.1);
+  text-decoration: none;
+}
+
+.social-link:hover {
+  background: linear-gradient(135deg, #704214, #A0826D);
+  color: white;
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(112, 66, 20, 0.3);
+}
+
+.social-link svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover svg {
+  transform: scale(1.1);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.canvas-3d {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeInBrain 2s ease forwards;
+}
+
+@keyframes fadeInBrain {
+  to { opacity: 1; }
+}
+
+.brain-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-20px); }
+}
+
+.brain-3d {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  transform-style: preserve-3d;
+  animation: rotate3d 20s linear infinite;
+}
+
+@keyframes rotate3d {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+.brain-hemisphere {
+  width: 200px;
+  height: 300px;
+  background: linear-gradient(135deg, rgba(112, 66, 20, 0.08), rgba(160, 130, 109, 0.12));
+  border-radius: 50%;
+  position: absolute;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(112, 66, 20, 0.1);
+}
+
+.brain-hemisphere.left { 
+  left: -120px;
+  animation: pulseLeft 4s ease-in-out infinite;
+}
+
+.brain-hemisphere.right { 
+  right: -120px;
+  animation: pulseRight 4s ease-in-out infinite 2s;
+}
+
+@keyframes pulseLeft {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes pulseRight {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.glow-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(112, 66, 20, 0.15), transparent);
+  border-radius: 50%;
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.floating-quote {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 280px;
+  animation: fadeInFloat 1.5s ease;
+  opacity: 0.85;
+  transition: all 0.3s ease;
+}
+
+.floating-quote:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+@keyframes fadeInFloat {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 0.85; transform: translateY(0); }
+}
+
+.quote-icon {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  line-height: 0.5;
+  color: rgba(112, 66, 20, 0.12);
+  margin-bottom: -5px;
+}
+
+.quote-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: #704214;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.quote-author {
+  color: #8B7F73;
+  font-size: 0.9rem;
+  text-align: right;
+  font-weight: 500;
+  margin-top: 2px;
+  text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+}
+
+.hero-content {
+  text-align: center;
+  z-index: 2;
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color:#8B4513;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #704214, #A0826D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+  display: inline-block;
+  position: relative;
+}
+
+.gradient-text.typing::after {
+  content: '|';
+  position: absolute;
+  right: -10px;
+  animation: blink 0.7s infinite;
+  -webkit-text-fill-color: #704214;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes shimmer {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+.hero-subtitle {
+  color: #8B7F73;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+ 
+.nav-buttons {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 36px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.nav-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.nav-button:hover::before {
+  left: 100%;
+}
+
+.nav-button.primary {
+  background: linear-gradient(135deg, #A0826D, #C9A77C);
+  color: #5D2E2E;
+  border: 2px solid transparent;
+}
+
+.nav-button.primary:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(160, 130, 109, 0.5);
+}
+
+.nav-button.secondary {
+  background: white;
+  color: #704214;
+  border: 2px solid #704214;
+}
+
+.nav-button.secondary:hover {
+  background: #704214;
+  color: white;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(112, 66, 20, 0.4);
+}
+
+.button-icon {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-button:hover .button-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.button-text {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.button-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-button:hover .button-arrow {
+  transform: translateX(5px);
+}
+
+ 
+.nav-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.nav-button:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+  color: #8B7F73;
+  font-size: 0.9rem;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.mouse {
+  width: 26px;
+  height: 40px;
+  border: 2px solid #704214;
+  border-radius: 15px;
+  position: relative;
+}
+
+.wheel {
+  width: 4px;
+  height: 8px;
+  background: #704214;
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll 1.5s ease-in-out infinite;
+}
+
+@keyframes scroll {
+  0% { top: 8px; opacity: 1; }
+  100% { top: 24px; opacity: 0; }
+}
+
+ 
+.about-section {
+  min-height: auto;
+  padding: 80px 20px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.about-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  color: #704214;
+  margin-bottom: 60px;
+  margin-left: 40px;
+  text-align: left;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.section-title.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 45% 55%;
+  gap: 60px;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.about-text {
+  text-align: left;
+  padding-right: 40px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.about-text.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #704214;
+  margin-bottom: 20px;
+}
+
+.philosophy-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #704214;
+}
+
+.about-visual {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ 
+ 
+.photo-collage {
+  position: relative;
+  width: 520px;      
+  height: 450px;     
+  margin-left: 10px;  
+  margin-top: -20px;  
+}
+
+ 
+.photo-item {
+  position: absolute;
+  background: white;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 12px 35px rgba(112, 66, 20, 0.18);
+  border: 3px solid rgba(112, 66, 20, 0.12);
+  transition: all 0.3s ease;
+}
+
+ 
+.photo-item:hover {
+  transform: scale(1.06);
+  box-shadow: 0 18px 45px rgba(112, 66, 20, 0.25);
+  z-index: 20;
+}
+
+ 
+.collage-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+ 
+
+.photo-1 {  
+  width: 240px;
+  height: 310px;
+  top: 40px;
+  left: 0px;
+  transform: rotate(-6deg);
+  z-index: 4;
+}
+
+.photo-2 {  
+  width: 240px;
+  height: 280px;
+  top: 20px;
+  right: 20px;
+  transform: rotate(4deg);
+  z-index: 5;
+}
+
+.photo-3 {  
+  width: 260px;
+  height: 200px;
+  bottom: 10px;
+  left: 120px;    
+  transform: rotate(-4deg);
+  z-index: 3;
+}
+
+
+
+.photo-4 {
+  width: 240px;
+  height: 260px;
+  top: 50px;
+  right: 40px;
+  z-index: 2;
+  animation-delay: 0.6s;
+}
+
+.photo-4.animate-in {
+  transform: rotate(-4deg);
+}
+
+@keyframes photoFadeIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.8) translateY(20px);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1) translateY(0);
+  }
+}
+
+.decorative-element {
+  position: absolute;
+  font-size: 2.5rem;
+  animation: float 3s ease-in-out infinite;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.decorative-element.animate-in {
+  opacity: 1;
+}
+
+.lightbulb {
+  top: 20px;
+  left: 60px;
+  animation-delay: 0.5s;
+}
+
+.flower {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-delay: 1s;
+}
+
+.laptop {
+  top: 180px;
+  left: 20px;
+  animation-delay: 1.5s;
+}
+
+.star {
+  top: 60px;
+  right: 80px;
+  animation-delay: 2s;
+}
+
+.music {
+  bottom: 80px;
+  left: 160px;
+  animation-delay: 2.5s;
+}
+
+.cherry {
+  bottom: 100px;
+  right: 60px;
+  animation-delay: 3s;
+}
+
+ 
+@media (max-width: 1024px) {
+  .floating-quote {
+    right: 5%;
+    max-width: 250px;
+  }
+  
+  .quote-text {
+    font-size: 0.95rem;
+  }
+  
+  .quote-icon {
+    font-size: 4rem;
+  }
+  
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    margin-left: 20px;
+  }
+
+  .about-text {
+    padding-right: 0;
+  }
+  
+  .photo-collage {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .floating-quote {
+    top: 8%;
+    right: 5%;
+    max-width: 200px;
+  }
+  
+  .quote-icon {
+    font-size: 3rem;
+  }
+  
+  .quote-text {
+    font-size: 0.85rem;
+  }
+  
+  .quote-author {
+    font-size: 0.8rem;
+  }
+  
+  .social-bar {
+    position: fixed;
+    bottom: 20px;
+    top: auto;
+    right: 50%;
+    transform: translateX(50%);
+    gap: 12px;
+  }
+  
+  .social-link {
+    width: 42px;
+    height: 42px;
+  }
+
+  .nav-buttons {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .nav-button {
+    width: 100%;
+    max-width: 350px;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 3rem;
+    margin-left: 0;
+  }
+  
+  .photo-collage {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+ 
+@media (max-width: 480px) {
+  .floating-quote {
+    display: none;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    text-align: center;
+  }
+  
+  .about-content {
+    padding: 0 15px;
+  }
+  
+   
+  .photo-collage {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+   
+  .photo-item {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 8px;
+    transform: none !important;
+    animation: none !important;
+  }
+  
+   
+  .photo-1,
+  .photo-3,
+  .photo-4 {
+    position: relative !important;
+  }
+  
+   
+  .photo-4 {
+    grid-column: 1 / -1;
+  }
+  
+  .photo-item:hover {
+    transform: scale(1.02) !important;
+  }
+  
+  .collage-photo {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 0.8;
+    object-fit: cover;
+  }
+  
+   
+  .photo-1 .collage-photo {
+    aspect-ratio: 0.9;
+  }
+  
+  .photo-3 .collage-photo {
+    aspect-ratio: 0.95;
+  }
+  
+  .photo-4 .collage-photo {
+    aspect-ratio: 1.5;
+  }
+  
+   
+  .decorative-element {
+    display: none;
+  }
+  
+  .nav-button {
+    padding: 16px 28px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .button-icon {
+    font-size: 1.1rem;
+  }
+  
+  .about-text {
+    text-align: center;
+    padding-right: 0;
+  }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  
+  const nameElement = document.getElementById("typewriter-name");
+  const finalText = "Shriya";
+  const letters = finalText.split('');
+  
+  function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+  
+  let scrambleInterval;
+  let scrambleTime = 0;
+  const scrambleDuration = 1000;
+  
+  nameElement.classList.add('typing');
+  
+  scrambleInterval = setInterval(() => {
+    const scrambled = shuffleArray(letters);
+    nameElement.textContent = scrambled.join('');
+    scrambleTime += 100;
+    
+    if (scrambleTime >= scrambleDuration) {
+      clearInterval(scrambleInterval);
+      typewriterEffect();
+    }
+  }, 200);
+  
+  function typewriterEffect() {
+    nameElement.textContent = '';
+    let currentIndex = 0;
+    
+    const typeInterval = setInterval(() => {
+      if (currentIndex < finalText.length) {
+        nameElement.textContent += finalText[currentIndex];
+        currentIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setTimeout(() => {
+          nameElement.classList.remove('typing');
+        }, 1000);
+      }
+    }, 150);
+  }
+
+  
+  const heroSection = document.querySelector(".hero-section");
+  const brainContainer = document.querySelector(".brain-container");
+
+  if (heroSection && brainContainer) {
+    heroSection.addEventListener("mousemove", (e) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+
+      const xPos = (clientX / innerWidth - 0.5) * 30;
+      const yPos = (clientY / innerHeight - 0.5) * 30;
+
+      brainContainer.style.transform = `translate(calc(-50% + ${xPos}px), calc(-50% + ${yPos}px))`;
+    });
+  }
+
+  
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        
+        
+        if (entry.target.classList.contains('about-section')) {
+          const sectionTitle = entry.target.querySelector('.section-title');
+          const aboutText = entry.target.querySelector('.about-text');
+          const photoItems = entry.target.querySelectorAll('.photo-item');
+          const decorativeElements = entry.target.querySelectorAll('.decorative-element');
+          
+          if (sectionTitle) sectionTitle.classList.add('animate-in');
+          if (aboutText) aboutText.classList.add('animate-in');
+          
+          photoItems.forEach((photo, index) => {
+            setTimeout(() => {
+              photo.classList.add('animate-in');
+            }, index * 200);
+          });
+          
+          decorativeElements.forEach((element, index) => {
+            setTimeout(() => {
+              element.classList.add('animate-in');
+            }, 800 + (index * 100));
+          });
+        }
+      }
+    });
+  }, observerOptions);
+
+  const aboutSection = document.querySelector(".about-section");
+  
+  if (aboutSection) {
+    aboutSection.style.opacity = "0";
+    aboutSection.style.transform = "translateY(50px)";
+    aboutSection.style.transition = "all 0.8s ease";
+    observer.observe(aboutSection);
+  }
+});
+</script>
+
+
+</body>
+</html>
