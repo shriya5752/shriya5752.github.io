@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notes on shriya.dev</title>
+    <link>http://localhost:1313/notes/</link>
+    <description>Recent content in Notes on shriya.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1313/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>All Notes by Semester</title>
+      <link>http://localhost:1313/notes/notes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/notes/notes/</guid>
+      <description>&lt;p&gt;Browse my complete collection of study notes, organized by semester. Each subject includes comprehensive notes with examples, explanations, and practice problems.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

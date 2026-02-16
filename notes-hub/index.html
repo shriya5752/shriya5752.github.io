@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>📚 All Notes by Semester | shriya.dev</title>
+<meta name="keywords" content="">
+<meta name="description" content="My Complete Notes Collection
+Organized by semester and subject.
+📅 By Semester:
+Semester 3 - CS Core Subjects
+
+Data Structures
+Digital Electronics
+Discrete Mathematics
+OOP with Java
+Engineering Mathematics
+
+Semester 4 - Advanced CS
+
+Algorithms
+Computer Networks
+Database Systems
+Theory of Computation
+
+Semester 5 - Systems
+
+Operating Systems
+Software Engineering
+Web Technologies
+Machine Learning
+
+
+🔍 Quick Search:
+Looking for a specific topic? Use the search bar above!">
+<meta name="author" content="">
+<link rel="canonical" href="http://localhost:1313/notes-hub/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a29c24210eb31d9ce56f669c66a35c9c51b17376b7764e336a49af7dec914cf0.css" integrity="sha256-opwkIQ6zHZzlb2acZqNcnFGxc3a3dk4zakmvfeyRTPA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:1313/notes-hub/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="shriya.dev (Alt + H)">shriya.dev</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/" title="Home">
+                    <span>Home</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/posts/" title="📚 Notes">
+                    <span>📚 Notes</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/blog/" title="📁 Blog">
+                    <span>📁 Blog</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="🔍 Search">
+                    <span>🔍 Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/about/" title="👋 About">
+                    <span>👋 About</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+<div class="notes-container">
+  <h1>📚 All Notes by Semester</h1>
+  <p class="subtitle">All my notes organized by semester</p>
+  
+  <div class="semester-grid">
+    
+    
+    <div class="semester-card">
+      <div class="semester-header">
+        <h2>📚 Semester 3</h2>
+        <span class="badge">5 Subjects</span>
+      </div>
+      
+      <div class="subject-list">
+        <a href="/semesters/sem3/#data-structures" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Data Structures</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem3/#digital-electronics" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Digital Electronics</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem3/#discrete-mathematics" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Discrete Mathematics</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem3/#oop-java" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">OOP with Java</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem3/#engineering-math" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Engineering Mathematics</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+      </div>
+      
+      <a href="/semesters/sem3/" class="view-all">View All Semester 3 Notes →</a>
+    </div>
+    
+    
+    <div class="semester-card">
+      <div class="semester-header">
+        <h2>📚 Semester 4</h2>
+        <span class="badge">4 Subjects</span>
+      </div>
+      
+      <div class="subject-list">
+        <a href="/semesters/sem4/#algorithms" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Algorithms</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem4/#computer-networks" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Computer Networks</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem4/#database-systems" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Database Systems</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem4/#theory-of-computation" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Theory of Computation</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+      </div>
+      
+      <a href="/semesters/sem4/" class="view-all">View All Semester 4 Notes →</a>
+    </div>
+    
+    
+    <div class="semester-card">
+      <div class="semester-header">
+        <h2>📚 Semester 5</h2>
+        <span class="badge">4 Subjects</span>
+      </div>
+      
+      <div class="subject-list">
+        <a href="/semesters/sem5/#operating-systems" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Operating Systems</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem5/#software-engineering" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Software Engineering</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem5/#web-technologies" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Web Technologies</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+        
+        <a href="/semesters/sem5/#machine-learning" class="subject-item">
+          <span class="subject-icon">🔗</span>
+          <span class="subject-name">Machine Learning</span>
+          <span class="subject-link">Drive →</span>
+        </a>
+      </div>
+      
+      <a href="/semesters/sem5/" class="view-all">View All Semester 5 Notes →</a>
+    </div>
+    
+  </div>
+</div>
+
+<style>
+.notes-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+.subtitle {
+  color: #666;
+  margin-bottom: 3rem;
+}
+.semester-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+}
+.semester-card {
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: white;
+  transition: all 0.3s ease;
+}
+.semester-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.semester-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.semester-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.badge {
+  background: #0070f3;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.subject-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+}
+.subject-item:hover {
+  background: #f8f9fa;
+}
+.subject-icon {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+.subject-name {
+  flex: 1;
+  font-weight: 500;
+}
+.subject-link {
+  color: #0070f3;
+  font-size: 0.9rem;
+}
+.view-all {
+  display: block;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+  text-align: center;
+  color: #0070f3;
+  text-decoration: none;
+  font-weight: 500;
+}
+.view-all:hover {
+  text-decoration: underline;
+}
+</style>
+
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:1313/">shriya.dev</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
