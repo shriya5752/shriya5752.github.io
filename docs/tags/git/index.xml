@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on shriya.dev</title>
+    <link>http://localhost:1313/tags/git/</link>
+    <description>Recent content in Git on shriya.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>how i finally understood git</title>
+      <link>http://localhost:1313/blog/second_post/</link>
+      <pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/second_post/</guid>
+      <description>&lt;p&gt;// your intro paragraph — no heading needed here&#xA;i spent three weeks being absolutely terrified of git.&#xA;here&amp;rsquo;s what actually helped me understand it.&lt;/p&gt;&#xA;&lt;p&gt;// drop your cover graphic&#xA;&lt;img src=&#34;http://localhost:1313/images/blog/git-cover.png&#34; alt=&#34;git diagram&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-even-is-a-commit&#34;&gt;what even is a commit?&lt;/h2&gt;&#xA;&lt;p&gt;think of commits as &lt;strong&gt;save points&lt;/strong&gt; in a video game.&#xA;each one captures the exact state of your project.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-commands-i-use-daily&#34;&gt;the commands i use daily&lt;/h2&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git add .&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git commit -m &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;your message here&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git push origin main&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;&#xA;&lt;p&gt;pro tip: write commit messages like you&amp;rsquo;re texting&#xA;your future self. &amp;ldquo;fix bug&amp;rdquo; is useless. &amp;ldquo;fix login&#xA;button crash on mobile&amp;rdquo; is great.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

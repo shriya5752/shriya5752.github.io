@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>understanding shells &amp; commands: because i was lost too | shriya.dev</title>
@@ -23,24 +23,282 @@
 </head>
 <body>
     
-<article class="blog-post">
-  <header>
-    <h1>understanding shells &amp; commands: because i was lost too</h1>
-    <div class="post-meta">
-      <time datetime="2024-01-15">
-        January 15, 2024
-      </time>
+<div class="single-wrap">
+
+  <a href="/blog" class="back-link">← back to blog</a>
+
+  <article class="single-article">
+
+    
+    
+    <div class="single-cover" style="background-image: url('/images/shell.jpg');"></div>
+    
+
+    
+    <header class="single-header">
+      <div class="single-meta">
+        <time>January 15, 2024</time>
+        <span>🎯</span>
+        
+      </div>
+      <h1 class="single-title">understanding shells &amp; commands: because i was lost too</h1>
       
+      <p class="single-desc">A beginner&#39;s guide to the terminal</p>
+      
+    </header>
+
+    
+    <div class="single-content">
       
     </div>
-  </header>
-  
-  <div class="content">
-    
-  </div>
-  
-  
-</article>
+
+  </article>
+
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+  background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+ 
+.back-link {
+  display: inline-block;
+  margin: 2.5rem 0 0 2rem;
+  color: #8B4513;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.back-link:hover { opacity: 1; }
+
+ 
+.single-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+
+ 
+.single-article {
+  margin-top: 2rem;
+}
+
+ 
+.single-cover {
+  width: 100%;
+  height: 480px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 2.5rem;
+}
+
+ 
+.single-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+}
+
+.single-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.single-tag {
+  color: #8B4513;
+  font-style: italic;
+}
+
+.single-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #2c2c2c;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-bottom: -0.02em;
+}
+
+.single-desc {
+  font-size: 1.05rem;
+  color: #888;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+ 
+ 
+ 
+.single-content {
+  font-size: 1.25rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+}
+
+.single-content p {
+  margin-bottom: 1.5rem;
+}
+
+ 
+.single-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #8B4513;
+  margin: 3rem 0 1rem;
+  line-height: 1.2;
+}
+
+.single-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.single-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  margin: 2rem 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+ 
+.single-content blockquote {
+  border-left: 3px solid #8B4513;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #666;
+  background: rgba(139, 69, 19, 0.04);
+  border-radius: 0 10px 10px 0;
+  line-height: 1.7;
+}
+
+.single-content blockquote p {
+  margin: 0;
+}
+
+ 
+.single-content code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.88em;
+  background: rgba(0,0,0,0.07);
+  padding: 2px 7px;
+  border-radius: 5px;
+  color: #8B4513;
+}
+
+ 
+.single-content pre {
+  background: #1e1a14;
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.single-content pre code {
+  background: transparent;
+  color: #e8e0d0;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  padding: 0;
+  border-radius: 0;
+}
+
+ 
+.single-content img {
+  width: 100%;
+  border-radius: 14px;
+  margin: 2rem 0;
+  display: block;
+}
+
+ 
+.single-content ul,
+.single-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.single-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.single-content ul li::marker {
+  color: #8B4513;
+}
+
+ 
+.single-content hr {
+  border: none;
+  border-top: 1px solid rgba(139, 69, 19, 0.2);
+  margin: 3rem 0;
+}
+
+ 
+.single-content a {
+  color: #8B4513;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+.single-content a:hover { opacity: 0.7; }
+
+ 
+.single-content strong {
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+ 
+@media (max-width: 640px) {
+  .single-wrap { padding: 0 1.25rem 4rem; }
+  .back-link { margin: 1.5rem 0 0 1.25rem; }
+  .single-cover { height: 220px; }
+  .single-content { font-size: 1rem; }
+}
+
+
+ 
+.notion-btn {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1.2rem;
+  border: 1.5px solid #2c2c2c;
+  color: #2c2c2c;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.notion-btn:hover {
+  background: #2c2c2c;
+  color: white;
+}
+</style>
+
 
 </body>
 </html>

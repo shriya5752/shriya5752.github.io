@@ -95,7 +95,7 @@
     <div class="about-content">
       <div class="about-text">
         <p class="intro-text">
-          hi, i'm shriya 👋<br><br>
+          
           I like taking things apart — ideas, systems, problems — and figuring out what makes them tick. I like to build stuff, explore new concepts, and turn complex things into something people can actually understand.
         </p>
         <p class="intro-text">
@@ -148,7 +148,7 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero-section {
-  min-height: 100vh;
+  min-height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -442,9 +442,15 @@ body {
 }
 
 .nav-button.primary {
-  background: linear-gradient(135deg, #A0826D, #C9A77C);
-  color: #5D2E2E;
-  border: 2px solid transparent;
+  background: #704214;
+  color: white;
+  border: 2px solid #704214;
+}
+
+.nav-button.primary:hover {
+  background: #5d3510;
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(112, 66, 20, 0.5);
 }
 
 .nav-button.primary:hover {
@@ -556,7 +562,7 @@ body {
 /* ===== ABOUT SECTION ===== */
 .about-section {
   min-height: auto;
-  padding: 80px 20px 100px;
+  padding: 40px 20px 80px;
   display: flex;
   align-items: center;
   justify-content: center;

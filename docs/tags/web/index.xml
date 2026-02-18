@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on shriya.dev</title>
+    <link>http://localhost:1313/tags/web/</link>
+    <description>Recent content in Web on shriya.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>how i built my portfolio</title>
+      <link>http://localhost:1313/blog/second_post/</link>
+      <pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/second_post/</guid>
+      <description>&lt;p&gt;your actual blog content starts here!&lt;/p&gt;&#xA;&lt;h2 id=&#34;section-heading&#34;&gt;section heading&lt;/h2&gt;&#xA;&lt;p&gt;write whatever you want, normal text, code blocks, images etc.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/blog/my-graphic.png&#34; alt=&#34;my cool graphic&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;more text here&amp;hellip;&#xA;&lt;code&gt;code block&lt;/code&gt;&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;&#xD;&#xA;**The front matter (the `---` section at top) controls:**&#xD;&#xA;- `title` → what shows as the card title on your blog list&#xD;&#xA;- `description` → the subtitle under the card (like &amp;#34;A beginner&amp;#39;s guide to the terminal&amp;#34;)&#xD;&#xA;- `image` → the big thumbnail image on the card (like your terminal screenshot)&#xD;&#xA;- `draft: false` → makes it live, `true` hides it&#xD;&#xA;&#xD;&#xA;**For images:**&#xD;&#xA;Drop them in `/images/` folder and reference like above.&#xD;&#xA;&#xD;&#xA;Can you open your existing `first_post.md` and share what&amp;#39;s inside it? That way I can match the exact format your custom layout expects and give you a perfect template.&#xA;&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Engineering on shriya.dev</title>
+    <link>http://localhost:1313/tags/engineering/</link>
+    <description>Recent content in Engineering on shriya.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 17 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>how google docs lets 100 people type at once (without everything exploding)</title>
+      <link>http://localhost:1313/blog/second_post/</link>
+      <pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/second_post/</guid>
+      <description>&lt;p&gt;somewhere in google&amp;rsquo;s infrastructure, right now, thousands of people are typing into the same documents simultaneously. cursors flying, edits overlapping, nobody waiting for anyone else. and somehow — through what looks like pure coordination magic, everyone ends up with the same document.&lt;/p&gt;&#xA;&lt;p&gt;it&amp;rsquo;s one of those things that feels obvious until you try to explain how it works. then it gets interesting fast.&lt;/p&gt;&#xA;&lt;p&gt;i started pulling on this thread after a perfectly ordinary tuesday afternoon where a friend and i typed over each other in a shared doc and nothing broke. that shouldn&amp;rsquo;t be as hard as it is. here&amp;rsquo;s why it is, and how google solved it.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
