@@ -1,26 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>tech blog. on shriya.dev</title>
-    <link>http://localhost:1313/blog/</link>
-    <description>Recent content in tech blog. on shriya.dev</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 17 Feb 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>how google docs lets 100 people type at once (without everything exploding)</title>
-      <link>http://localhost:1313/blog/second_post/</link>
-      <pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/second_post/</guid>
-      <description>&lt;p&gt;somewhere in google&amp;rsquo;s infrastructure, right now, thousands of people are typing into the same documents simultaneously. cursors flying, edits overlapping, nobody waiting for anyone else. and somehow — through what looks like pure coordination magic, everyone ends up with the same document.&lt;/p&gt;&#xA;&lt;p&gt;it&amp;rsquo;s one of those things that feels obvious until you try to explain how it works. then it gets interesting fast.&lt;/p&gt;&#xA;&lt;p&gt;i started pulling on this thread after a perfectly ordinary tuesday afternoon where a friend and i typed over each other in a shared doc and nothing broke. that shouldn&amp;rsquo;t be as hard as it is. here&amp;rsquo;s why it is, and how google solved it.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>understanding shells &amp; commands: because i was lost too (part1)</title>
-      <link>http://localhost:1313/blog/first_post1/</link>
-      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/blog/first_post1/</guid>
-      <description>&lt;a href=&#34;https://www.notion.so/Understanding-Shells-Commands-Because-I-Was-Lost-Too-2f42da7f7c25805383b2e2068ea1ca0b&#34; target=&#34;_blank&#34; class=&#34;notion-btn&#34;&gt;&#xD;&#xA;  read on notion ↗&#xD;&#xA;&lt;/a&gt;&#xD;&#xA;&lt;p&gt;look, i&amp;rsquo;ll be honest — i spent way too long just copying and running commands without actually understanding what was happening. everyone around me seemed to know what they were doing in the terminal, and i just&amp;hellip; didn&amp;rsquo;t. i&amp;rsquo;d paste commands, pray they worked, and move on.&lt;/p&gt;&#xA;&lt;p&gt;the problem? nobody actually explains what a shell &lt;em&gt;is&lt;/em&gt; before throwing you into it. we all start learning python or java or whatever, and suddenly professors are like &amp;ldquo;yeah just cd into this directory and run this&amp;rdquo; and you&amp;rsquo;re sitting there like&amp;hellip; what&amp;rsquo;s cd? what&amp;rsquo;s a directory? why does this black window exist?&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tech blog. on shriya.dev</title><link>https://shriya5752.github.io/blog/</link><description>Recent content in tech blog. on shriya.dev</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 17 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://shriya5752.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>how google docs lets 100 people type at once (without everything exploding)</title><link>https://shriya5752.github.io/blog/second_post/</link><pubDate>Tue, 17 Feb 2026 00:00:00 +0000</pubDate><guid>https://shriya5752.github.io/blog/second_post/</guid><description>&lt;p&gt;somewhere in google&amp;rsquo;s infrastructure, right now, thousands of people are typing into the same documents simultaneously. cursors flying, edits overlapping, nobody waiting for anyone else. and somehow — through what looks like pure coordination magic, everyone ends up with the same document.&lt;/p&gt;
+&lt;p&gt;it&amp;rsquo;s one of those things that feels obvious until you try to explain how it works. then it gets interesting fast.&lt;/p&gt;
+&lt;p&gt;i started pulling on this thread after a perfectly ordinary tuesday afternoon where a friend and i typed over each other in a shared doc and nothing broke. that shouldn&amp;rsquo;t be as hard as it is. here&amp;rsquo;s why it is, and how google solved it.&lt;/p&gt;</description></item><item><title>understanding shells &amp; commands: because i was lost too (part1)</title><link>https://shriya5752.github.io/blog/first_post1/</link><pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate><guid>https://shriya5752.github.io/blog/first_post1/</guid><description>&lt;a href="https://www.notion.so/Understanding-Shells-Commands-Because-I-Was-Lost-Too-2f42da7f7c25805383b2e2068ea1ca0b" target="_blank" class="notion-btn"&gt;
+ read on notion ↗
+&lt;/a&gt;
+&lt;p&gt;look, i&amp;rsquo;ll be honest — i spent way too long just copying and running commands without actually understanding what was happening. everyone around me seemed to know what they were doing in the terminal, and i just&amp;hellip; didn&amp;rsquo;t. i&amp;rsquo;d paste commands, pray they worked, and move on.&lt;/p&gt;
+&lt;p&gt;the problem? nobody actually explains what a shell &lt;em&gt;is&lt;/em&gt; before throwing you into it. we all start learning python or java or whatever, and suddenly professors are like &amp;ldquo;yeah just cd into this directory and run this&amp;rdquo; and you&amp;rsquo;re sitting there like&amp;hellip; what&amp;rsquo;s cd? what&amp;rsquo;s a directory? why does this black window exist?&lt;/p&gt;</description></item></channel></rss>
