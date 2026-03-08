@@ -1,13 +1,426 @@
-<!doctype html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>tech blog. | shriya.dev</title><meta name=description content><style>*{margin:0;padding:0;box-sizing:border-box}body{background:linear-gradient(135deg,#F5F1E8,#E8E2D5);min-height:100vh;font-family:inter,sans-serif}</style></head><body><canvas id=constellation-canvas></canvas><div class=scroll-progress-bar></div><div class=blog-container><header class=blog-header><h1 class=blog-title>readme.md</h1><p class=blog-subtitle>asking 'but why?' and actually finding out</p></header><div class=posts-grid><article class=post-card><div class=post-image style=background-image:url(/images/blog/gdocs.png)></div><div class=post-content><div class=post-meta><time class=post-date>Feb 17</time>
-<span class=post-emoji>📝</span></div><h2 class=post-title>how google docs lets 100 people type at once (without everything exploding)</h2><p class=post-excerpt>the surprisingly elegant engineering behind real-time collaboration</p><div class=post-footer><a href=https://shriya5752.github.io/blog/second_post/ class=read-more>Read more →</a></div></div></article><article class=post-card><div class=post-image style=background-image:url(/images/shell.jpg)></div><div class=post-content><div class=post-meta><time class=post-date>Feb 5</time>
-<span class=post-emoji>🖥️</span></div><h2 class=post-title>understanding shells & commands: because i was lost too (part1)</h2><p class=post-excerpt>a beginner's guide to the terminal — starting from the actual beginning</p><div class=post-footer><a href=https://shriya5752.github.io/blog/first_post1/ class=read-more>Read more →</a></div></div></article></div></div><style>@import 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap';#constellation-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}.scroll-progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,#8B4513,#C9A961);z-index:9999;transition:width .1s ease;border-radius:0 2px 2px 0}body{background:linear-gradient(135deg,#F5F1E8,#E8E2D5);min-height:100vh;font-family:inter,sans-serif}.blog-container{max-width:1400px;margin:0 auto;padding:4rem 2rem;position:relative;z-index:1}.blog-header{text-align:center;margin-bottom:4rem}.blog-title{font-family:playfair display,serif;font-size:4rem;font-weight:600;color:#8b4513;margin-bottom:1rem;letter-spacing:-.02em}.blog-subtitle{font-size:1.1rem;color:#999;font-style:italic;font-family:inter,sans-serif}.posts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:2rem;margin-top:3rem}.post-card{background:#f5f5f0;border-radius:20px;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;cursor:pointer;display:flex;flex-direction:column;position:relative;z-index:1}.post-card:hover{transform:translateY(-8px);box-shadow:0 12px 40px rgba(0,0,0,.1)}.post-image{width:100%;height:280px;background-size:cover;background-position:50%;position:relative}.post-image.default-bg{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}.post-content{padding:2rem;display:flex;flex-direction:column;flex-grow:1}.post-meta{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem}.post-date{background:#fff;padding:.4rem 1rem;border-radius:20px;font-size:.9rem;font-weight:500;color:#666}.post-emoji{font-size:1.5rem}.post-title{font-size:1.5rem;font-weight:600;color:#2c2c2c;margin-bottom:1rem;line-height:1.3;min-height:3.9rem}.post-excerpt{color:#666;line-height:1.6;margin-bottom:1.5rem;flex-grow:1}.post-footer{margin-top:auto}.read-more{display:inline-block;color:#8b4513;font-weight:500;text-decoration:none;transition:gap .3s ease}.read-more:hover{gap:.75rem}.read-more.notion-link{color:#2c2c2c;background:rgba(139,69,19,.1);padding:.6rem 1.2rem;border-radius:8px;transition:background .3s ease}.read-more.notion-link:hover{background:rgba(139,69,19,.2)}.no-posts{text-align:center;padding:4rem 2rem;position:relative;z-index:1}.no-posts-icon{font-size:4rem;display:block;margin-bottom:1rem}.no-posts h2{font-size:2rem;color:#8b4513;margin-bottom:.5rem}.no-posts p{color:#999}@media(max-width:768px){.blog-title{font-size:2.5rem}.posts-grid{grid-template-columns:1fr}}</style><script>const progressBar=document.querySelector(".scroll-progress-bar");window.addEventListener("scroll",()=>{const e=window.scrollY,t=document.documentElement.scrollHeight-window.innerHeight;progressBar.style.width=e/t*100+"%"});const canvas=document.getElementById("constellation-canvas"),ctx=canvas.getContext("2d");let mouseX=window.innerWidth/2,mouseY=window.innerHeight/2,dots=[];const DOT_COUNT=55,MAX_DIST=140,MOUSE_DIST=180;function resizeCanvas(){canvas.width=window.innerWidth,canvas.height=window.innerHeight}resizeCanvas(),window.addEventListener("resize",()=>{resizeCanvas(),initDots()});function initDots(){dots=[];for(let e=0;e<DOT_COUNT;e++)dots.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1})}initDots(),document.addEventListener("mousemove",e=>{mouseX=e.clientX,mouseY=e.clientY});function draw(){ctx.clearRect(0,0,canvas.width,canvas.height),dots.forEach(e=>{e.x+=e.vx,e.y+=e.vy,(e.x<0||e.x>canvas.width)&&(e.vx*=-1),(e.y<0||e.y>canvas.height)&&(e.vy*=-1),ctx.beginPath(),ctx.arc(e.x,e.y,e.r,0,Math.PI*2),ctx.fillStyle="rgba(139, 69, 19, 0.3)",ctx.fill()});for(let e=0;e<dots.length;e++){for(let t=e+1;t<dots.length;t++){const n=dots[e].x-dots[t].x,s=dots[e].y-dots[t].y,o=(n*n+s*s)**.5;o<MAX_DIST&&(ctx.beginPath(),ctx.moveTo(dots[e].x,dots[e].y),ctx.lineTo(dots[t].x,dots[t].y),ctx.strokeStyle=`rgba(139, 69, 19, ${.12*(1-o/MAX_DIST)})`,ctx.lineWidth=.7,ctx.stroke())}const t=dots[e].x-mouseX,n=dots[e].y-mouseY,s=(t*t+n*n)**.5;s<MOUSE_DIST&&(ctx.beginPath(),ctx.moveTo(dots[e].x,dots[e].y),ctx.lineTo(mouseX,mouseY),ctx.strokeStyle=`rgba(139, 69, 19, ${.35*(1-s/MOUSE_DIST)})`,ctx.lineWidth=1,ctx.stroke())}requestAnimationFrame(draw)}draw();const TRAIL_LENGTH=12,trailDots=[];for(let e=0;e<TRAIL_LENGTH;e++){const t=document.createElement("div");t.style.cssText=`
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tech blog. | shriya.dev</title>
+    <meta name="description" content="">
+    
+    <style>
+         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+<canvas id="constellation-canvas"></canvas>
+<div class="scroll-progress-bar"></div>
+
+<div class="blog-container">
+  <header class="blog-header">
+    <h1 class="blog-title">readme.md</h1>
+    <p class="blog-subtitle">asking 'but why?' and actually finding out</p>
+  </header>
+
+  
+  
+  <div class="posts-grid">
+    
+    <article class="post-card">
+      
+      <div class="post-image" style="background-image: url('/images/blog/gdocs.png');"></div>
+      
+      
+      <div class="post-content">
+        <div class="post-meta">
+          <time class="post-date">Feb 17</time>
+          
+          <span class="post-emoji">📝</span>
+          
+        </div>
+        
+        <h2 class="post-title">how google docs lets 100 people type at once (without everything exploding)</h2>
+        
+        
+        <p class="post-excerpt">the surprisingly elegant engineering behind real-time collaboration</p>
+        
+        
+        <div class="post-footer">
+          
+          <a href="http://localhost:1313/blog/second_post/" class="read-more">
+            Read more →
+          </a>
+          
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card">
+      
+      <div class="post-image" style="background-image: url('/images/shell.jpg');"></div>
+      
+      
+      <div class="post-content">
+        <div class="post-meta">
+          <time class="post-date">Feb 5</time>
+          
+          <span class="post-emoji">🖥️</span>
+          
+        </div>
+        
+        <h2 class="post-title">understanding shells &amp; commands: because i was lost too (part1)</h2>
+        
+        
+        <p class="post-excerpt">a beginner&#39;s guide to the terminal — starting from the actual beginning</p>
+        
+        
+        <div class="post-footer">
+          
+          <a href="http://localhost:1313/blog/first_post1/" class="read-more">
+            Read more →
+          </a>
+          
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+ 
+#constellation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+ 
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #8B4513, #C9A961);
+  z-index: 9999;
+  transition: width 0.1s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+body {
+  background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.blog-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.blog-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 600;
+  color: #8B4513;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.blog-subtitle {
+  font-size: 1.1rem;
+  color: #999;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.post-card {
+  background: #f5f5f0;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.post-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.post-image {
+  width: 100%;
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.post-image.default-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.post-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.post-date {
+  background: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.post-emoji {
+  font-size: 1.5rem;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  min-height: 3.9rem;
+}
+
+.post-excerpt {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.post-footer {
+  margin-top: auto;
+}
+
+.read-more {
+  display: inline-block;
+  color: #8B4513;
+  font-weight: 500;
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+
+.read-more:hover {
+  gap: 0.75rem;
+}
+
+.read-more.notion-link {
+  color: #2c2c2c;
+  background: rgba(139, 69, 19, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.read-more.notion-link:hover {
+  background: rgba(139, 69, 19, 0.2);
+}
+
+.no-posts {
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.no-posts-icon {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.no-posts h2 {
+  font-size: 2rem;
+  color: #8B4513;
+  margin-bottom: 0.5rem;
+}
+
+.no-posts p {
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .blog-title {
+    font-size: 2.5rem;
+  }
+  
+  .posts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<script>
+
+const progressBar = document.querySelector('.scroll-progress-bar');
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (scrollTop / docHeight) * 100 + '%';
+});
+
+
+const canvas = document.getElementById('constellation-canvas');
+const ctx = canvas.getContext('2d');
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let dots = [];
+const DOT_COUNT = 55;
+const MAX_DIST = 140;
+const MOUSE_DIST = 180;
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', () => { resizeCanvas(); initDots(); });
+
+function initDots() {
+  dots = [];
+  for (let i = 0; i < DOT_COUNT; i++) {
+    dots.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.4,
+      vy: (Math.random() - 0.5) * 0.4,
+      r: Math.random() * 2 + 1
+    });
+  }
+}
+initDots();
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  dots.forEach(dot => {
+    dot.x += dot.vx;
+    dot.y += dot.vy;
+    if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
+    if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(dot.x, dot.y, dot.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(139, 69, 19, 0.3)';
+    ctx.fill();
+  });
+
+  for (let i = 0; i < dots.length; i++) {
+    for (let j = i + 1; j < dots.length; j++) {
+      const dx = dots[i].x - dots[j].x;
+      const dy = dots[i].y - dots[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MAX_DIST) {
+        ctx.beginPath();
+        ctx.moveTo(dots[i].x, dots[i].y);
+        ctx.lineTo(dots[j].x, dots[j].y);
+        ctx.strokeStyle = `rgba(139, 69, 19, ${0.12 * (1 - dist / MAX_DIST)})`;
+        ctx.lineWidth = 0.7;
+        ctx.stroke();
+      }
+    }
+
+    const mdx = dots[i].x - mouseX;
+    const mdy = dots[i].y - mouseY;
+    const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+    if (mDist < MOUSE_DIST) {
+      ctx.beginPath();
+      ctx.moveTo(dots[i].x, dots[i].y);
+      ctx.lineTo(mouseX, mouseY);
+      ctx.strokeStyle = `rgba(139, 69, 19, ${0.35 * (1 - mDist / MOUSE_DIST)})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  requestAnimationFrame(draw);
+}
+draw();
+
+
+const TRAIL_LENGTH = 12;
+const trailDots = [];
+for (let i = 0; i < TRAIL_LENGTH; i++) {
+  const dot = document.createElement('div');
+  dot.style.cssText = `
     position: fixed;
     border-radius: 50%;
     pointer-events: none;
     z-index: 9997;
     transform: translate(-50%, -50%);
-    background: rgba(139, 69, 19, ${.6-e*.05});
-    width: ${8-e*.5}px;
-    height: ${8-e*.5}px;
-    transition: left ${.05+e*.03}s ease, top ${.05+e*.03}s ease;
-  `,document.body.appendChild(t),trailDots.push(t)}document.addEventListener("mousemove",e=>{trailDots.forEach(t=>{t.style.left=e.clientX+"px",t.style.top=e.clientY+"px"})})</script></body></html>
+    background: rgba(139, 69, 19, ${0.6 - i * 0.05});
+    width: ${8 - i * 0.5}px;
+    height: ${8 - i * 0.5}px;
+    transition: left ${0.05 + i * 0.03}s ease, top ${0.05 + i * 0.03}s ease;
+  `;
+  document.body.appendChild(dot);
+  trailDots.push(dot);
+}
+
+document.addEventListener('mousemove', (e) => {
+  trailDots.forEach(dot => {
+    dot.style.left = e.clientX + 'px';
+    dot.style.top = e.clientY + 'px';
+  });
+});
+</script>
+
+
+</body>
+</html>

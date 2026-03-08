@@ -1,30 +1,152 @@
 semesters:
   - name: "Semester 2"
+    slug: sem2
     year: "2025"
     subjects: 3
-    icon: "🎓"
+    icon: "📁"
     color: "#0070f3"
     drive_link: "https://drive.google.com/drive/folders/1UKklGJ5DJ8PYgjz-kbI08-GOJehhMXZ3?usp=sharing"
+    tips: |
+      ## the honest take
+      sem 2 is a lot. juggling academics with side quests and still adjusting can be tricky, but here's what helped
+
+      ## mathematics - 2 (actually fun, i promise)
+      okay hear me out — this is genuinely one of the better math semesters if you give it a chance. probability distributions, laplace transforms, fourier series, integral calculus — it sounds like a lot but everything connects.
+
+      - ISA 1 is very doable, don't get overconfident
+      - ISA 2 and ESA will **humble you** fast if you haven't been practicing
+      - 5 problems a day beats a 10 hour cram every time
+      - fourier and laplace are **very pattern-based** once it clicks
+      - the integration unit is more intuitive than it looks
+
+      ⭐ **3Blue1Brown** for visual intuition
+
+      ## engineering chemistry (easy to score, easy to mess up)
+      there's a **lot of content** but it's very scoring if you're strategic.
+
+      - don't study all "construction and working" topics together — they blur into each other
+      - do one topic per day, **flashcards** work really well here
+      - electrochemistry, polymers and batteries are high weightage 
+      - **notes** are everything in chem, keep them solid from the start
+      - a few focused days before the exam is enough if your prep is consistent
+      - don't leave it for the last week — it's more content than it looks
+
+      ⭐ **Khan Academy** and **Professor Dave**
+
+      ## electronic principles & devices (make the formula sheet early)
+      covers diodes, transistors, biasing, and all the core circuit stuff.
+
+      - ISAs are straightforward — easy marks, don't drop them
+      - ESA needs real **grinding**, all 4 chapters, no shortcuts
+      - make a formula sheet from week 1
+      - understand the theory before jumping to circuits or nothing will make sense
+      - i had a panic attack during ESA prep — start early, spread the load
+
+      ⭐ **Neso Academy** covers this really well end to end.
+
+      ## engineering mechanics (watch out for the short answers)
+       
+      - ISAs are fairly manageable
+      - ESA is where people slip — usually not on the big numericals
+      - the **short conceptual questions** are the trickiest ones
+      - being able to solve doesn't mean you can explain — exam tests both
+      - draw free body diagrams for every single problem, no exceptions
+
+      ⭐ you don't have to solve every question,solve the main question of one pattern and refer the solutions for the rest and understand how it's been done
+      ## C programming (actually understand it)
+      pointers, arrays, recursion, file handling, structures.
+
+      - the exam is genuinely tricky — surface knowledge won't save you
+      - **MCQs** will catch you out if you only memorised syntax
+      - **actually understand** how pointers work, don't just memorise - this will help you a great deal in sem3
+      - write actual code — reading and watching is not enough
+      - structures + pointers together is where most people lose marks
+
+      ⭐ **Jenny's Lectures CS IT** — follow her playlist in order, it's the best resource for this syllabus.
+
+      ## general sem 2 advice
+      -
+      sem 2 is fairly decent. keep up with academics — the first two sems are genuinely the easiest window to build a strong CGPA, don't waste it. outside of that, do something on the side — clubs, events, a project, whatever interests you. you don't have to do everything, but do something that isn't just studying.
+      - keep a running formula sheet for maths and EPD from week 1
+      - chem and mech reward consistency over cramming
+      - for C: **write code**, don't just read it
+      - **sleep before exams.** seriously.
     subjects_list:
       - name: "Mathematics-2"
-        url: "/semesters/sem3/#data-structures"
+        url: "/semesters/sem2/#mathematics"
         drive_url: "https://drive.google.com/drive/folders/1jybv0LZEzhWORCxT1k93oSabBiZKhriH?usp=drive_link"
         icon: "🔗"
       - name: "Engineering Chemistry"
-        url: "/semesters/sem3/#digital-electronics"
+        url: "/semesters/sem2/#chemistry"
         drive_url: "https://drive.google.com/drive/folders/1qRJH28eS8z_uzYNPCGLy0rmXabVdPk6R?usp=drive_link"
         icon: "🔗"
-      - name: "Electronic principles and Devices"
-        url: "/semesters/sem3/#discrete-mathematics"
+      - name: "Electronic Principles and Devices"
+        url: "/semesters/sem2/#epd"
         drive_url: "https://drive.google.com/drive/folders/1GJkwH6qVfBzNujcZKiIL-atVWQr0JjRG?usp=drive_link"
         icon: "🔗"
 
   - name: "Semester 3"
+    slug: sem3
     year: "2025"
     subjects: 5
-    icon: "🎓"
+    icon: "📁"
     color: "#0070f3"
     drive_link: "https://drive.google.com/drive/folders/1UKklGJ5DJ8PYgjz-kbI08-GOJehhMXZ3?usp=sharing"
+    tips: |
+      ## the honest take
+      sem 3 is actually fun. the subjects get more interesting and you start feeling like you're actually studying computer science. the key through all of it is concept clarity over memorisation and practice. always practice.
+
+      ## data structures and algorithms
+      heavily depends on your professor honestly. but regardless of who you get —
+
+      - don't just learn the theory, implement everything yourself
+      - be clear with the **absolute basics**, loop constructs, structures, pointers, how they work
+      - arrays, linked lists, trees, graphs — code each one from scratch at least once
+      - if your prof isn't great, self-study is your best friend — don't fall behind waiting for class to make sense
+
+      ⭐ **Abdul Bari** and **Jenny's Lectures CS IT** is the gold standard for this subject.
+
+      ## digital design and computer organisation (the annoying one)
+      there's a LOT here — K-maps, combinational circuits, flip flops, counters, memory, control units. it's not hard, just dense.
+
+      - K-maps and sequential circuits need practice, not just reading
+      - flip flops and counters — **draw the diagrams** yourself every time cus it's confusing 
+      - the computer organisation half (ALU, control unit, addressing modes) is more conceptual — actually understand what each unit does
+      - don't leave the last two units for exam week, they're heavier than they look
+      - past papers are very helpful here, the pattern is consistent
+
+      ⭐ Neso Academy for digital logic, NPTEL for computer organisation.
+
+      ## mathematics for computer science engineers (genuinely easy)
+      this one is very manageable — probably the least stressful subject this sem.
+
+      - stay on top of it from the start and it won't stress you out at all
+      - practice problems **regularly**, don't cram
+      - concepts are interesting if you actually engage with them
+
+      ## automata formal logic and language
+      abstract but rewarding once it clicks.
+
+      - concept **clarity is everything** here — if you're memorising without understanding you will struggle
+      - finite automata, pushdown automata, turing machines — understand the logic behind each transition
+      - regular expressions and grammars need practice, not just theory
+      - past year questions are very pattern-based, use them for solving new questions
+
+      ⭐ **Sudhakar Atchala** - he teaches well and **Neso Academy** also has a solid playlist.
+
+      ## web technologies (easy, just get your hands dirty)
+      this subject will feel like a lot especially if you're not familiar with web dev
+
+      - don't just read about HTML, CSS, JS — open a code editor and build something
+      - refer your notes but **spend more time actually writing code**
+      - the more you **experiment**, the better you get — theory alone won't help here
+      - small projects go a long way for understanding and for your portfolio
+
+      ## general sem 3 advice
+      - concept clarity over cramming — this sem especially rewards understanding
+      - practice is non-negotiable for DSA, DDCO and WT
+      - sem 3 is fun, let yourself enjoy it
+      - join something — a club, a hackathon, a project team. early sems are the time
     subjects_list:
       - name: "Data Structures and Algorithms"
         url: "/semesters/sem3/#data-structures"
@@ -34,26 +156,31 @@ semesters:
         url: "/semesters/sem3/#digital-electronics"
         drive_url: "https://drive.google.com/drive/folders/1GqbkPqxRXtr_AOPB-n7nZqDMu0_hm4AK?usp=sharing"
         icon: "🔗"
-      - name: "Mathematics for computer science Engineers"
+      - name: "Mathematics for Computer Science Engineers"
         url: "/semesters/sem3/#discrete-mathematics"
         drive_url: "https://drive.google.com/drive/folders/1McTmyvkTRvOiZEetOxMmTL2iO2mLhkKh?usp=sharing"
         icon: "🔗"
       - name: "Automata Formal Logic and Language"
-        url: "/semesters/sem3/#oop-java"
+        url: "/semesters/sem3/#automata"
         drive_url: "https://drive.google.com/drive/folders/1rsIRcPouEgo1IsoNezU239ZACxhPuMv5?usp=sharing"
         icon: "🔗"
       - name: "Web Technologies"
-        url: "/semesters/sem3/#engineering-math"
+        url: "/semesters/sem3/#web"
         drive_url: "https://drive.google.com/drive/folders/1uMEnFK4A6iHfhvUM9N-xZQxdHEtzyGDS?usp=sharing"
         icon: "🔗"
+
   - name: "Semester 4"
+    slug: sem4
     year: "2026"
     subjects: 0
     icon: "🚧"
     color: "#51cf66"
     drive_link: ""
+    tips: |
+      ## sem 3 tips coming soon
+      - will add tips once done with the semester!
     subjects_list:
-    - name: "Work in Progress..."
-      url: "#"
-      drive_url: "#"
-      icon: "🚧"
+      - name: "Work in Progress..."
+        url: "#"
+        drive_url: "#"
+        icon: "🚧"
