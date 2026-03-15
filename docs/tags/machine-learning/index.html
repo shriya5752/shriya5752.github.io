@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning | shriya.dev</title>
+    <meta name="description" content="">
+    
+    <style>
+         
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="blog-list">
+  <h1>Machine Learning</h1>
+  
+  
+  
+  <div class="posts">
+    
+    <article class="post-summary">
+      <h2><a href="http://localhost:1313/blog/third_post/">machine learning: the big picture (before you learn anything else)</a></h2>
+      <div class="post-meta">
+        <time datetime="2026-03-13">
+          March 13, 2026
+        </time>
+      </div>
+      
+      <div class="summary">
+        <p>this is post zero of my ml journey. before i dive into any single algorithm, i wanted to build the full map first — so every future topic has somewhere to land.</p>
+<p>here&rsquo;s everything i wish someone had shown me on day one.</p>
+<hr>
+<style>
+ 
+.mlov-wrap {
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  margin: 40px 0;
+}
+
+ 
+.mlov-hero {
+  background: #1a1408;
+  color: #f5f0e8;
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 2px;
+}
+.mlov-hero-quote {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  flex: 1;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+.mlov-stat {
+  text-align: center;
+  padding: 0 28px;
+  border-left: 1px solid rgba(255,255,255,0.12);
+  flex-shrink: 0;
+}
+.mlov-stat-num {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: 900;
+  display: block;
+  line-height: 1;
+}
+.mlov-stat-lbl {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  opacity: 0.45;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+}
+
+ 
+.mlov-section-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 40px 0 22px;
+}
+.mlov-rule-line { flex: 1; height: 1px; background: #1a1408; }
+.mlov-rule-text {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #7a6f5a;
+  white-space: nowrap;
+}
+
+ 
+.mlov-vs-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.mlov-vs-item {
+  padding: 14px 18px;
+  border: 1px solid #c8bfaa;
+  border-left: 3px solid #c8bfaa;
+  background: #fff8ee;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.mlov-vs-item.hl { border-left-color: #c0392b; background: rgba(192,57,43,0.04); }
+.mlov-vs-item strong { display: block; font-size: 12px; margin-bottom: 3px; font-weight: 700; }
+.mlov-vs-item span { color: #7a6f5a; font-size: 12px; }
+
+ 
+.mlov-needs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.mlov-need {
+  padding: 14px 18px;
+  border-left: 3px solid #1a3a5c;
+  background: #fff8ee;
+  border: 1px solid #c8bfaa;
+  border-left: 3px solid #1a3a5c;
+  font-size: 13px;
+}
+.mlov-need strong { font-weight: 700; display: block; margin-bottom: 3px; }
+.mlov-need span { color: #7a6f5a; font-size: 12px; }
+
+ 
+.mlov-paradigm-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: #1a1408;
+  border: 1px solid #1a1408;
+}
+.mlov-paradigm-card {
+  background: #fff8ee;
+  padding: 24px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.mlov-paradigm-card:hover { background: #ffeaa0; }
+.mlov-paradigm-card.active { background: #1a1408; color: #f5f0e8; }
+.mlov-pnum {
+  font-family: Georgia, serif;
+  font-size: 2.8rem;
+  font-weight: 900;
+  opacity: 0.08;
+  position: absolute;
+  top: 6px; right: 10px;
+  line-height: 1;
+}
+.mlov-picon { font-size: 1.6rem; margin-bottom: 10px; }
+.mlov-paradigm-card h3 {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  margin-top: 0;
+  border: none;
+  padding: 0;
+}
+.mlov-paradigm-card p { font-size: 12.5px; opacity: 0.7; line-height: 1.55; margin: 0; }
+
+.mlov-paradigm-detail {
+  background: #1a1408;
+  color: #f5f0e8;
+  padding: 24px 28px;
+  display: none;
+}
+.mlov-paradigm-detail.active {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.mlov-paradigm-detail h4 {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.45;
+  margin-bottom: 8px;
+  margin-top: 0;
+  border: none;
+  padding: 0;
+  font-family: 'IBM Plex Mono', monospace;
+}
+.mlov-paradigm-detail p { font-size: 12.5px; opacity: 0.82; line-height: 1.6; margin: 0 0 10px; }
+.mlov-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+.mlov-chip {
+  font-size: 10px;
+  padding: 2px 9px;
+  border: 1px solid rgba(255,255,255,0.18);
+  letter-spacing: 0.04em;
+  color: #f5f0e8;
+}
+
+ 
+.mlov-map {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 8px;
+}
+.mlov-map-col h3 {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  margin-top: 0;
+  border-bottom: 2px solid currentColor;
+}
+.mlov-map-col.classical h3 { color: #1a3a5c; border-color: #1a3a5c; }
+.mlov-map-col.deep h3     { color: #c0392b; border-color: #c0392b; }
+.mlov-map-col.modern h3   { color: #3d1a5c; border-color: #3d1a5c; }
+.mlov-map-topic {
+  padding: 8px 12px;
+  margin-bottom: 4px;
+  border: 1px solid #c8bfaa;
+  background: #fff8ee;
+  font-size: 12.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.12s;
+}
+.mlov-map-topic:hover { transform: translateX(4px); }
+.mlov-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.classical .mlov-dot { background: #1a3a5c; }
+.deep .mlov-dot      { background: #c0392b; }
+.modern .mlov-dot    { background: #3d1a5c; }
+.mlov-map-note { font-size: 10px; color: #7a6f5a; margin-left: auto; font-family: monospace; }
+
+ 
+.mlov-pipeline {
+  display: flex;
+  border: 1px solid #1a1408;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.mlov-pipe {
+  flex: 1;
+  padding: 20px 14px;
+  border-right: 1px solid #1a1408;
+  background: #fff8ee;
+  position: relative;
+  transition: background 0.15s;
+}
+.mlov-pipe:last-child { border-right: none; }
+.mlov-pipe:hover { background: #ffeaa0; }
+.mlov-pipe-num {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #c8bfaa;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.mlov-pipe h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; margin-bottom: 6px; margin-top: 0; border: none; padding: 0; }
+.mlov-pipe p { font-size: 11px; color: #7a6f5a; line-height: 1.55; margin: 0; }
+
+ 
+.mlov-concepts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #c8bfaa;
+  border: 1px solid #c8bfaa;
+}
+.mlov-concept {
+  background: #f5f0e8;
+  padding: 20px 18px;
+  transition: background 0.15s;
+}
+.mlov-concept:hover { background: #fff8ee; }
+.mlov-concept .ctag {
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7a6f5a;
+  margin-bottom: 6px;
+}
+.mlov-concept h4 {
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  margin-top: 0;
+  border: none;
+  padding: 0;
+}
+.mlov-concept p { font-size: 12px; color: #7a6f5a; line-height: 1.6; margin: 0; }
+
+ 
+.mlov-timeline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+.mlov-timeline { position: relative; padding-left: 28px; }
+.mlov-timeline::before {
+  content: ''; position: absolute;
+  left: 7px; top: 0; bottom: 0;
+  width: 1px; background: #c8bfaa;
+}
+.mlov-tl { position: relative; padding-bottom: 22px; }
+.mlov-tl::before {
+  content: ''; position: absolute;
+  left: -24px; top: 6px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #1a1408;
+  border: 2px solid #f5f0e8;
+  box-shadow: 0 0 0 1px #1a1408;
+}
+.mlov-tl-year { font-size: 10px; color: #c0392b; letter-spacing: 0.1em; font-weight: 600; margin-bottom: 3px; }
+.mlov-tl h4 { font-size: 13px; font-weight: 700; margin-bottom: 3px; margin-top: 0; border: none; padding: 0; }
+.mlov-tl p { font-size: 12px; color: #7a6f5a; line-height: 1.55; margin: 0; }
+
+ 
+.mlov-mental { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.mlov-mental-card {
+  border: 1px solid #c8bfaa;
+  padding: 20px;
+  background: #fff8ee;
+}
+.mlov-mental-card .mletter {
+  font-size: 1.8rem; line-height: 1; margin-bottom: 10px;
+}
+.mlov-mental-card h4 {
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  margin-top: 0;
+  border: none;
+  padding: 0;
+}
+.mlov-mental-card p { font-size: 12.5px; color: #7a6f5a; line-height: 1.6; margin: 0; }
+
+ 
+@media (max-width: 700px) {
+  .mlov-paradigm-detail.active { grid-template-columns: 1fr; }
+  .mlov-map, .mlov-timeline-grid, .mlov-mental { grid-template-columns: 1fr; }
+  .mlov-pipeline { flex-direction: column; }
+  .mlov-concepts { grid-template-columns: 1fr 1fr; }
+  .mlov-hero { flex-direction: column; text-align: center; }
+  .mlov-stat { border-left: none; border-top: 1px solid rgba(255,255,255,0.12); padding: 12px 0 0; }
+}
+</style>
+
+<div class="mlov-wrap">
+
+  
+  <div class="mlov-hero">
+    <div class="mlov-stat">
+      <span class="mlov-stat-num">3</span>
+      <span class="mlov-stat-lbl">Core Paradigms</span>
+    </div>
+    <div class="mlov-hero-quote">
+      "Teaching machines to learn from experience, rather than programming every rule by hand — that is the essence of the entire field."
+    </div>
+    <div class="mlov-stat">
+      <span class="mlov-stat-num">~70yr</span>
+      <span class="mlov-stat-lbl">History of ML</span>
+    </div>
+    <div class="mlov-stat">
+      <span class="mlov-stat-num">∞</span>
+      <span class="mlov-stat-lbl">Applications</span>
+    </div>
+  </div>
+
+  
+  <div class="mlov-section-rule">
+    <div class="mlov-rule-line"></div>
+    <div class="mlov-rule-text">§ 1 — Traditional Programming vs ML</div>
+    <div class="mlov-rule-line"></div>
+  </div>
+
+  <div class="mlov-vs-grid">
+    <div class="mlov-vs-item">
+      <strong>Traditional Programming</strong>
+      Data + Rules → Output
+      <span>You write the if/else. Computer executes.</span>
+    </div>
+    <div class="mlov-vs-item hl">
+      <strong>Machine Learning</strong>
+      Data + Output → Rules
+      <span>You show examples. Computer finds the rules.</span>
+    </div>
+    <div class="mlov-vs-item">
+      <strong>Deep Learning</strong>
+      Raw Data + Output → Complex Rules
+      <span>Learns layered representations automatically.</span>
+    </div>
+  </div>
+
+  <div class="mlov-section-rule">
+    <div class="mlov-rule-line"></div>
+    <div class="mlov-rule-text">The Three Things ML Needs</div>
+    <div class="mlov-rule-line"></div>
+  </div>
+
+  <div class="mlov-needs">
+    <div class="mlov-need">
+      <strong>📊 Data</strong>
+      <span>Examples of inputs and (usually) outputs. The raw material of learning.</span>
+    </div>
+    <div class="mlov-need">
+      <strong>🧮 A Model</strong>
+      <span>A mathematical function that maps inputs to outputs — its parameters are learned.</span>
+    </div>
+    <div class="mlov-need">
+      <strong>📉 A Loss Function</strong>
+      <span>A way to measure how wrong the model is — so it knows which direction to improve.</span>
+    </div>
+  </div>
+
+  
+  <div class="mlov-section-rule">
+    <div class="mlov-rule-line"></div>
+    <div class="mlov-rule-text">§ 2 — The Four Learning Paradigms (click to expand)</div>
+    <div class="mlov-rule-line"></div>
+  </div>
+
+  <div class="mlov-paradigm-grid" id="mlov-pgrid">
+    <div class="mlov-paradigm-card" data-idx="0">
+      <div class="mlov-pnum">1</div>
+      <div class="mlov-picon">🎓</div>
+      <h3>Supervised Learning</h3>
+      <p>Learn from labelled examples. You tell the machine the right answer.</p>
+        
+        <a href="http://localhost:1313/blog/third_post/" class="read-more">Read more →</a>
+        
+      </div>
+      
+    </article>
+    
+  </div>
+  
+  
+
+
+</div>
+
+    
+</body>
+</html>
