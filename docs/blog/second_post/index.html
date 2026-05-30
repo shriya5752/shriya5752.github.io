@@ -7,7 +7,6 @@
     <meta name="description" content="the surprisingly elegant engineering behind real-time collaboration">
     
     <style>
-         
         * {
             margin: 0;
             padding: 0;
@@ -29,95 +28,133 @@
 
   <article class="single-article">
 
-    
-    
     <div class="single-cover" style="background-image: url('/images/blog/gdocs.png');"></div>
-    
 
-    
     <header class="single-header">
       <div class="single-meta">
         <time>February 17, 2026</time>
         <span>📝</span>
-        
-          <span class="single-tag">#tech</span>
-        
-          <span class="single-tag">#distributed systems</span>
-        
-          <span class="single-tag">#engineering</span>
-        
+        <span class="single-tag">#tech</span>
+        <span class="single-tag">#distributed systems</span>
+        <span class="single-tag">#engineering</span>
       </div>
       <h1 class="single-title">how google docs lets 100 people type at once (without everything exploding)</h1>
-      
       <p class="single-desc">the surprisingly elegant engineering behind real-time collaboration</p>
-      
     </header>
 
-    
     <div class="single-content">
-      <p>somewhere in google&rsquo;s infrastructure, right now, thousands of people are typing into the same documents simultaneously. cursors flying, edits overlapping, nobody waiting for anyone else. and somehow — through what looks like pure coordination magic, everyone ends up with the same document.</p>
-<p>it&rsquo;s one of those things that feels obvious until you try to explain how it works. then it gets interesting fast.</p>
-<p>i started pulling on this thread after a perfectly ordinary tuesday afternoon where a friend and i typed over each other in a shared doc and nothing broke. that shouldn&rsquo;t be as hard as it is. here&rsquo;s why it is, and how google solved it.</p>
-<hr>
-<h2 id="first-lets-appreciate-why-this-is-hard">first, let&rsquo;s appreciate why this is hard</h2>
-<p>the obvious fix is to <strong>lock the document</strong> — one person edits, everyone else waits. works fine when edits are infrequent. in a live doc with twenty people typing simultaneously, it&rsquo;s unusable. collaboration, but make it a hostage situation.</p>
-<p>option two: <strong>last write wins</strong>. everyone types freely, but on conflict, whoever committed most recently overwrites everything else. this is the default in plenty of sync tools today — and it&rsquo;s not just annoying, it&rsquo;s a data loss bug dressed up as a feature.</p>
-<p>option three: broadcast the full document to the server on every keystroke. technically consistent, completely impractical. every period you type, a 40-page thesis hits the wire.</p>
-<p>each of these fails for the same reason: they treat the document as a monolithic blob instead of what it actually is — a sequence of independent, composable changes. that reframing is the insight that makes everything else possible.</p>
-<hr>
-<h2 id="the-real-thing-operational-transformation">the real thing: operational transformation</h2>
-<p>the foundational idea is called <strong>Operational Transformation</strong>, first described by ellis and gibbs in 1989 in a paper on a collaborative editor called GROVE. google didn&rsquo;t invent it — they just built the infrastructure to run it at planetary scale. classic google, really.</p>
-<p>instead of treating a document as a file you open, edit, and save, OT treats it as a <strong>live sequence of discrete operations</strong>. every change is a precise, structured action: <em>insert &ldquo;hello&rdquo; at position 5</em>, <em>delete characters 10–15</em>, <em>bold range 22–34</em>.</p>
-<p>when you press a key, google docs wraps that keystroke in an operation, applies it locally so your screen feels instant, and fires it to their servers. your collaborator&rsquo;s machine does the same thing simultaneously. now two operations arrive at the server with no knowledge of each other.</p>
-<p>here&rsquo;s the problem: if user A inserts a word at position 10 and user B deletes a character at position 8, applying A&rsquo;s operation first shifts all the positions B was targeting. apply them naively and the document goes rogue — different users see different text.</p>
-<p>the server maintains a <strong>Transformation Function</strong> that adjusts one operation relative to the other. A&rsquo;s insert at position 10 becomes position 9 after accounting for B&rsquo;s delete. the math ensures every client converges to the same final state regardless of arrival order — a property called <strong>Convergence</strong>.</p>
-<blockquote>
-<p>implementing this correctly across all possible operation pairs and network conditions is notoriously hard. researchers spent two decades patching edge cases. turns out making every combination of human typing decisions play nice is, who knew, complicated.</p>
-</blockquote>
-<hr>
-<h2 id="youll-hear-about-crdts-heres-the-real-story">you&rsquo;ll hear about CRDTs. here&rsquo;s the real story.</h2>
-<p>five minutes into this rabbit hole and you&rsquo;ll hit <strong>CRDTs</strong> — conflict-free replicated data types, from distributed systems research at INRIA in the late 2000s. operations are designed to be <strong>Commutative and Associative</strong> — apply them in any order, on any device, no server needed, they always converge. pure peer-to-peer.</p>
-<p>sounds like a strict upgrade. so why does google still run OT?</p>
-<p>CRDTs are digital hoarders. every deletion is still sitting in the data structure, marked as a tombstone, just in case a late operation needs to reconcile against it. over months of heavy editing that metadata compounds into something opaque and difficult to compact without breaking the guarantees. you wanted a document. you got a document plus the ghosts of every edit ever made.</p>
-<p>OT is more compact, handles character-level precision that prose demands, and has been in google&rsquo;s production long enough that its edge cases are well-patched.</p>
-<p>CRDTs shine elsewhere. <strong>Figma</strong> uses a CRDT-inspired approach for canvas objects — rectangles, frames, components — because design objects have discrete, independent properties. move a rectangle and change its color simultaneously? different properties, no conflict, both changes survive. that simplicity works great for design. it&rsquo;d be a disaster for prose, where inserting a word at position 5 invalidates every positional reference downstream.</p>
-<blockquote>
-<p>the right algorithm is determined by the shape of your data.</p>
-</blockquote>
-<p>but there&rsquo;s something worth sitting with here. CRDTs don&rsquo;t need a central server. OT does. a world where google docs ran on CRDTs would be a world where your document could theoretically sync peer-to-peer — without google&rsquo;s infrastructure ever touching it. infrastructure choices at this scale are never purely technical. they&rsquo;re decisions about who sits at the center of the system.</p>
-<hr>
-<h2 id="version-history-is-basically-a-freebie">version history is basically a freebie</h2>
-<p>hit <em>file → version history</em> and there&rsquo;s a complete, timestamped record of every edit ever made — who typed what, going back to the first keystroke. equal parts useful and mildly unsettling.</p>
-<p>this isn&rsquo;t a separate archival system. it&rsquo;s a direct structural consequence of OT.</p>
-<p>the pattern is called <strong>Event Sourcing</strong> — instead of storing current state, you store the sequence of events that produced it. the document is just a projection: a replay of every operation from the beginning. less &ldquo;saved file,&rdquo; more &ldquo;very detailed confession.&rdquo;</p>
-<p>under OT, every operation is already being logged to a server-side journal to sequence concurrent edits. google keeps that journal. version history is just a clean, human-readable window into it — grouped by user, bucketed by time. the infrastructure was already there.</p>
-<hr>
-<h2 id="those-colored-cursors-are-a-completely-different-system">those colored cursors are a completely different system</h2>
-<p>those floating cursors with your collaborators&rsquo; names have nothing to do with document sync. they&rsquo;re a separate mechanism entirely — which, given how much the sync system is already doing, seems fair.</p>
-<p>it&rsquo;s called <strong>Presence</strong>, and it runs over <strong>WebSockets</strong> — a protocol that keeps a persistent, full-duplex connection open between your browser and google&rsquo;s servers. unlike a standard HTTP request, which opens, exchanges data, and closes, a websocket stays open indefinitely. think less &ldquo;exchanging letters,&rdquo; more &ldquo;leaving a call on all day.&rdquo;</p>
-<p>every cursor move fires a compact position event: &ldquo;user X is at paragraph Y, offset Z.&rdquo; the presence server fans it out to every other client instantly. text selections work the same way — broadcast start and end positions, render the highlight.</p>
-<p>presence is deliberately decoupled from OT sync for one reason: <strong>different performance requirements</strong>. OT needs to be <em>correct</em>. presence needs to be <em>now</em>. running them on separate channels means neither can slow the other down.</p>
-<hr>
-<h2 id="offline-the-system-was-designed-for-this">offline? the system was designed for this</h2>
-<p>google docs keeps accepting edits when you lose wi-fi. nothing freezes, no error, no drama. it&rsquo;s giving &ldquo;everything is fine&rdquo; energy while your router throws a fit in the other room.</p>
-<p>the OT client simply switches to local mode. operations queue in your browser&rsquo;s storage instead of going to the server. your screen stays current because state is updated optimistically.</p>
-<p>when connectivity returns, the sync engine flushes the queue. the server reconciles your offline operations against whatever others did in the meantime, pushes the result back, and the document converges. your edits are preserved — the queue held everything.</p>
-<blockquote>
-<p>this pattern is called <strong>Optimistic Replication</strong> — the same principle behind how notion, linear, and figma handle spotty connections. the bet: conflicts are rare enough that assuming a clean merge and correcting exceptions beats blocking all edits on server confirmation. optimism, it turns out, is a valid distributed systems strategy.</p>
-</blockquote>
-<hr>
-<h2 id="whats-actually-going-on">what&rsquo;s actually going on</h2>
-<p>four well-understood ideas, composed carefully and run at scale:</p>
-<ul>
-<li><strong>operational transformation</strong> — concurrent edits, same final document, every time</li>
-<li><strong>event sourcing</strong> — turns the OT log into complete rewindable history as a side effect</li>
-<li><strong>websockets</strong> — keep cursor presence instant, fully separate from sync</li>
-<li><strong>optimistic replication</strong> — makes the whole thing seamless across any network condition</li>
-</ul>
-<p>none of these are new. what google built wasn&rsquo;t a novel algorithm — it was infrastructure capable of running them reliably at billions of operations per day, without most users noticing the machinery underneath. the best engineering usually works that way.</p>
-<p>next time you and a collaborator land on the same sentence and both your edits survive know that a server quietly ran a transformation function, adjusted two conflicting operations into compatible ones, and distributed the result in under a hundred milliseconds.</p>
-<p>not magic. just really good engineering. which is more impressive anyway.</p>
+      <p>somewhere in google's infrastructure, right now, thousands of people are typing into the same documents simultaneously. cursors flying, edits overlapping, nobody waiting for anyone else. and somehow, through what looks like pure coordination magic, everyone ends up with the same document.</p>
 
+      <p>it's one of those things that feels obvious until you try to explain how it works. then it gets interesting fast.</p>
+
+      <p>i started pulling on this thread after a perfectly ordinary tuesday afternoon where a friend and i typed over each other in a shared doc and nothing broke. that shouldn't be as hard as it is. here's why it is, and how google solved it.</p>
+
+      <hr>
+
+      <h2 id="first-lets-appreciate-why-this-is-hard">first, let's appreciate why this is hard</h2>
+
+      <p>the obvious fix is to <strong>lock the document</strong>. one person edits, everyone else waits. works fine when edits are infrequent. in a live doc with twenty people typing simultaneously, it's unusable. collaboration, but make it a hostage situation.</p>
+
+      <p>option two: <strong>last write wins</strong>. everyone types freely, but on conflict, whoever committed most recently overwrites everything else. this is the default in plenty of sync tools today and it's not just annoying, it's a data loss bug dressed up as a feature.</p>
+
+      <p>option three: broadcast the full document to the server on every keystroke. technically consistent, completely impractical. every period you type, a 40-page thesis hits the wire.</p>
+
+      <p>each of these fails for the same reason. they treat the document as a monolithic blob instead of what it actually is: a sequence of independent, composable changes. that reframing is the insight that makes everything else possible.</p>
+
+      <hr>
+
+      <h2 id="the-real-thing-operational-transformation">the real thing: operational transformation</h2>
+
+      <p>the foundational idea is called <strong>Operational Transformation</strong>, first described by ellis and gibbs in 1989 in a paper on a collaborative editor called GROVE. google didn't invent it. they just built the infrastructure to run it at planetary scale. classic google, really.</p>
+
+      <p>instead of treating a document as a file you open, edit, and save, OT treats it as a <strong>live sequence of discrete operations</strong>. every change is a precise, structured action: <em>insert "hello" at position 5</em>, <em>delete characters 10–15</em>, <em>bold range 22–34</em>.</p>
+
+      <p>when you press a key, google docs wraps that keystroke in an operation, applies it locally so your screen feels instant, and fires it to their servers. your collaborator's machine does the same thing simultaneously. now two operations arrive at the server with no knowledge of each other.</p>
+
+      <p>here's the problem: if user A inserts a word at position 10 and user B deletes a character at position 8, applying A's operation first shifts all the positions B was targeting. apply them naively and the document goes rogue. different users see different text.</p>
+
+      <p>the server maintains a <strong>Transformation Function</strong> that adjusts one operation relative to the other. A's insert at position 10 becomes position 9 after accounting for B's delete. the math ensures every client converges to the same final state regardless of arrival order, a property called <strong>Convergence</strong>.</p>
+
+      <blockquote>
+        <p>implementing this correctly across all possible operation pairs and network conditions is notoriously hard. researchers spent two decades patching edge cases. turns out making every combination of human typing decisions play nice is, who knew, complicated.</p>
+      </blockquote>
+
+      <hr>
+
+      <h2 id="youll-hear-about-crdts-heres-the-real-story">you'll hear about CRDTs. here's the real story.</h2>
+
+      <p>five minutes into this rabbit hole and you'll hit <strong>CRDTs</strong>, conflict-free replicated data types, from distributed systems research at INRIA in the late 2000s. operations are designed to be <strong>Commutative and Associative</strong>. apply them in any order, on any device, no server needed, they always converge. pure peer-to-peer.</p>
+
+      <p>sounds like a strict upgrade. so why does google still run OT?</p>
+
+      <p>CRDTs are digital hoarders. every deletion is still sitting in the data structure, marked as a tombstone, just in case a late operation needs to reconcile against it. over months of heavy editing that metadata compounds into something opaque and difficult to compact without breaking the guarantees. you wanted a document. you got a document plus the ghosts of every edit ever made.</p>
+
+      <p>OT is more compact, handles character-level precision that prose demands, and has been in google's production long enough that its edge cases are well-patched.</p>
+
+      <p>CRDTs shine elsewhere. <strong>Figma</strong> uses a CRDT-inspired approach for canvas objects, rectangles, frames, components, because design objects have discrete, independent properties. move a rectangle and change its color simultaneously? different properties, no conflict, both changes survive. that simplicity works great for design. it'd be a disaster for prose, where inserting a word at position 5 invalidates every positional reference downstream.</p>
+
+      <blockquote>
+        <p>the right algorithm is determined by the shape of your data.</p>
+      </blockquote>
+
+      <p>but there's something worth sitting with here. CRDTs don't need a central server. OT does. a world where google docs ran on CRDTs would be a world where your document could theoretically sync peer-to-peer, without google's infrastructure ever touching it. infrastructure choices at this scale are never purely technical. they're decisions about who sits at the center of the system.</p>
+
+      <hr>
+
+      <h2 id="version-history-is-basically-a-freebie">version history is basically a freebie</h2>
+
+      <p>hit <em>file → version history</em> and there's a complete, timestamped record of every edit ever made. who typed what, going back to the first keystroke. equal parts useful and mildly unsettling.</p>
+
+      <p>this isn't a separate archival system. it's a direct structural consequence of OT.</p>
+
+      <p>the pattern is called <strong>Event Sourcing</strong>. instead of storing current state, you store the sequence of events that produced it. the document is just a projection: a replay of every operation from the beginning. less "saved file," more "very detailed confession."</p>
+
+      <p>under OT, every operation is already being logged to a server-side journal to sequence concurrent edits. google keeps that journal. version history is just a clean, human-readable window into it, grouped by user, bucketed by time. the infrastructure was already there.</p>
+
+      <hr>
+
+      <h2 id="those-colored-cursors-are-a-completely-different-system">those colored cursors are a completely different system</h2>
+
+      <p>those floating cursors with your collaborators' names have nothing to do with document sync. they're a separate mechanism entirely, which, given how much the sync system is already doing, seems fair.</p>
+
+      <p>it's called <strong>Presence</strong>, and it runs over <strong>WebSockets</strong>. a protocol that keeps a persistent, full-duplex connection open between your browser and google's servers. unlike a standard HTTP request, which opens, exchanges data, and closes, a websocket stays open indefinitely. think less "exchanging letters," more "leaving a call on all day."</p>
+
+      <p>every cursor move fires a compact position event: "user X is at paragraph Y, offset Z." the presence server fans it out to every other client instantly. text selections work the same way: broadcast start and end positions, render the highlight.</p>
+
+      <p>presence is deliberately decoupled from OT sync for one reason: <strong>different performance requirements</strong>. OT needs to be <em>correct</em>. presence needs to be <em>now</em>. running them on separate channels means neither can slow the other down.</p>
+
+      <hr>
+
+      <h2 id="offline-the-system-was-designed-for-this">offline? the system was designed for this</h2>
+
+      <p>google docs keeps accepting edits when you lose wi-fi. nothing freezes, no error, no drama. it's giving "everything is fine" energy while your router throws a fit in the other room.</p>
+
+      <p>the OT client simply switches to local mode. operations queue in your browser's storage instead of going to the server. your screen stays current because state is updated optimistically.</p>
+
+      <p>when connectivity returns, the sync engine flushes the queue. the server reconciles your offline operations against whatever others did in the meantime, pushes the result back, and the document converges. your edits are preserved. the queue held everything.</p>
+
+      <blockquote>
+        <p>this pattern is called <strong>Optimistic Replication</strong>, the same principle behind how notion, linear, and figma handle spotty connections. the bet: conflicts are rare enough that assuming a clean merge and correcting exceptions beats blocking all edits on server confirmation. optimism, it turns out, is a valid distributed systems strategy.</p>
+      </blockquote>
+
+      <hr>
+
+      <h2 id="whats-actually-going-on">what's actually going on</h2>
+
+      <p>four well-understood ideas, composed carefully and run at scale:</p>
+
+      <ul>
+        <li><strong>operational transformation</strong>:concurrent edits, same final document, every time</li>
+        <li><strong>event sourcing</strong>:turns the OT log into complete rewindable history as a side effect</li>
+        <li><strong>websockets</strong>:keep cursor presence instant, fully separate from sync</li>
+        <li><strong>optimistic replication</strong>:makes the whole thing seamless across any network condition</li>
+      </ul>
+
+      <p>none of these are new. what google built wasn't a novel algorithm. it was infrastructure capable of running them reliably at billions of operations per day, without most users noticing the machinery underneath. the best engineering usually works that way.</p>
+
+      <p>next time you and a collaborator land on the same sentence and both your edits survive, know that a server quietly ran a transformation function, adjusted two conflicting operations into compatible ones, and distributed the result in under a hundred milliseconds.</p>
+
+      <p>not magic. just really good engineering. which is more impressive anyway.</p>
     </div>
 
   </article>
@@ -133,7 +170,6 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
- 
 .back-link {
   display: inline-block;
   margin: 2.5rem 0 0 2rem;
@@ -146,19 +182,16 @@ body {
 }
 .back-link:hover { opacity: 1; }
 
- 
 .single-wrap {
   max-width: 920px;
   margin: 0 auto;
   padding: 0 2rem 6rem;
 }
 
- 
 .single-article {
   margin-top: 2rem;
 }
 
- 
 .single-cover {
   width: 100%;
   height: 480px;
@@ -168,7 +201,6 @@ body {
   margin-bottom: 2.5rem;
 }
 
- 
 .single-header {
   margin-bottom: 3rem;
   padding-bottom: 2rem;
@@ -196,7 +228,6 @@ body {
   color: #2c2c2c;
   line-height: 1.15;
   margin-bottom: 1rem;
-  letter-bottom: -0.02em;
 }
 
 .single-desc {
@@ -206,9 +237,6 @@ body {
   line-height: 1.6;
 }
 
- 
- 
- 
 .single-content {
   font-size: 1.25rem;
   line-height: 1.85;
@@ -219,7 +247,6 @@ body {
   margin-bottom: 1.5rem;
 }
 
- 
 .single-content h2 {
   font-family: 'Playfair Display', serif;
   font-size: 1.7rem;
@@ -246,7 +273,6 @@ body {
   letter-spacing: 0.05em;
 }
 
- 
 .single-content blockquote {
   border-left: 3px solid #8B4513;
   padding: 1rem 1.5rem;
@@ -262,7 +288,6 @@ body {
   margin: 0;
 }
 
- 
 .single-content code {
   font-family: 'Courier New', monospace;
   font-size: 0.88em;
@@ -272,7 +297,6 @@ body {
   color: #8B4513;
 }
 
- 
 .single-content pre {
   background: #1e1a14;
   border-radius: 14px;
@@ -291,7 +315,6 @@ body {
   border-radius: 0;
 }
 
- 
 .single-content img {
   width: 100%;
   border-radius: 14px;
@@ -299,7 +322,6 @@ body {
   display: block;
 }
 
- 
 .single-content ul,
 .single-content ol {
   padding-left: 1.5rem;
@@ -315,14 +337,12 @@ body {
   color: #8B4513;
 }
 
- 
 .single-content hr {
   border: none;
   border-top: 1px solid rgba(139, 69, 19, 0.2);
   margin: 3rem 0;
 }
 
- 
 .single-content a {
   color: #8B4513;
   text-decoration: underline;
@@ -331,13 +351,11 @@ body {
 }
 .single-content a:hover { opacity: 0.7; }
 
- 
 .single-content strong {
   font-weight: 600;
   color: #2c2c2c;
 }
 
- 
 @media (max-width: 640px) {
   .single-wrap { padding: 0 1.25rem 4rem; }
   .back-link { margin: 1.5rem 0 0 1.25rem; }
@@ -345,8 +363,6 @@ body {
   .single-content { font-size: 1rem; }
 }
 
-
- 
 .notion-btn {
   display: inline-block;
   margin-bottom: 2rem;
@@ -367,7 +383,5 @@ body {
 }
 </style>
 
-
-    
 </body>
 </html>

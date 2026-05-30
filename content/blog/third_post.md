@@ -2,13 +2,13 @@
 title: "machine learning: the big picture (before you learn anything else)"
 date: 2026-03-13
 description: "a complete visual map of the ml landscape — paradigms, algorithms, history, and the mental models that make everything click"
-cover_image: "/images/blog/ml-overview.png"
+cover_image: "/images/blog/mll.png"
 emoji: "🧠"
 tags: ["machine learning", "ai", "beginners"]
 draft: false
 ---
 
-this is post zero of my ml journey. before i dive into any single algorithm, i wanted to build the full map first — so every future topic has somewhere to land.
+Machine learning has always fascinated me. But honestly? The field is so huge that I often felt intimidated, not knowing where to even start. So I made a map.
 
 here's everything i wish someone had shown me on day one.
 
@@ -32,9 +32,7 @@ everything above, distilled:
 
 ---
 
-## where i'm going from here
-
-now that the map exists, here's the order i'm following:
+## if you're starting off with ML, here's the order that can help you learn 
 
 1. **linear + logistic regression** — learn loss functions, gradient descent, overfitting from first principles
 2. **classical ml algorithms** — k-NN, naive bayes, decision trees, SVMs
@@ -43,8 +41,6 @@ now that the map exists, here's the order i'm following:
 5. **transformers** — attention, the architecture that runs the world right now
 6. **LLMs** — BERT, GPT, fine-tuning, RLHF, the modern stack
 
-every future post is one step through that list. this post is the map. everything else is the territory.
 
 ---
 
-*next: linear regression from scratch — loss functions, gradient descent, and why a straight line is more interesting than it sounds.*
