@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=59848&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>understanding shells &amp; commands: because i was lost too (part1) | shriya.dev</title>
@@ -62,7 +62,7 @@
 </a>
 <p>look, i&rsquo;ll be honest — i spent way too long just copying and running commands without actually understanding what was happening. everyone around me seemed to know what they were doing in the terminal, and i just&hellip; didn&rsquo;t. i&rsquo;d paste commands, pray they worked, and move on.</p>
 <p>the problem? nobody actually explains what a shell <em>is</em> before throwing you into it. we all start learning python or java or whatever, and suddenly professors are like &ldquo;yeah just cd into this directory and run this&rdquo; and you&rsquo;re sitting there like&hellip; what&rsquo;s cd? what&rsquo;s a directory? why does this black window exist?</p>
-<p>so i decided to actually figure this out. and guess what? once you understand the basics — like actually understand them — everything clicks. you stop feeling like you&rsquo;re blindly typing magic words and start feeling like you know what you&rsquo;re doing.</p>
+<p>so i decided to actually figure this out. and guess what? once you understand the basics , like actually understand them , everything clicks. you stop feeling like you&rsquo;re blindly typing magic words and start feeling like you know what you&rsquo;re doing.</p>
 <p>this is basically what i wish someone had shown me on day one. we&rsquo;re starting from the actual beginning: what is a shell, what&rsquo;s the difference between a terminal and a command prompt, and why should you care. no assuming you already know stuff. no complicated jargon without explanation.</p>
 <p><strong>if you&rsquo;ve ever felt lost in the terminal, this is for you. let&rsquo;s fix that gap together.</strong></p>
 <hr>
@@ -98,7 +98,7 @@
 <h2 id="running-linux-on-windows">running linux on windows</h2>
 <p>open <strong>powershell as administrator</strong> and run:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wsl --install
-</span></span></code></pre></div><p>it&rsquo;ll install WSL and ubuntu in one go. it&rsquo;ll ask you to set a password — and while typing it, you won&rsquo;t be able to see it. that&rsquo;s normal, just keep typing.</p>
+</span></span></code></pre></div><p>it&rsquo;ll install WSL and ubuntu in one go. it&rsquo;ll ask you to set a password and while typing it, you won&rsquo;t be able to see it. that&rsquo;s normal, just keep typing.</p>
 <p><img src="/images/blog/wsl-install.png" alt="WSL install running in PowerShell"></p>
 <p>once setup finishes, search <strong>ubuntu</strong> in the start menu and open it. run this to confirm linux is running:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uname -a
@@ -106,7 +106,7 @@
 <p><img src="/images/blog/uname-output.png" alt="uname -a output confirming Linux is running"></p>
 <hr>
 <h2 id="okay-so-now-youre-in-now-what">okay so now you&rsquo;re in. now what?</h2>
-<p>you&rsquo;ll see a prompt that looks something like <code>username@computername:~$</code> — this is just telling you who you are, what machine you&rsquo;re on, and where you are in the file system.</p>
+<p>you&rsquo;ll see a prompt that looks something like <code>username@computername:~$</code> this is just telling you who you are, what machine you&rsquo;re on, and where you are in the file system.</p>
 <p>the most common shell is called <strong>bash</strong> (which stands for &ldquo;bourne again shell&rdquo; — don&rsquo;t ask, it&rsquo;s a unix history thing). when you opened ubuntu, you&rsquo;re already using bash. that prompt you see? bash waiting for you to tell it what to do.</p>
 <p>let&rsquo;s try some simple commands just to get comfortable.</p>
 <hr>
@@ -119,7 +119,7 @@
 </span></span></code></pre></div><p>prints your username. simple — but it&rsquo;s showing you that when you type a command, the computer runs a program and gives you output.</p>
 <hr>
 <h3 id="man--your-best-friend"><code>man</code> — your best friend</h3>
-<p>this is probably <strong>the most important command</strong> you need to know. <code>man</code> stands for &ldquo;manual&rdquo; — help documentation for every command.</p>
+<p>this is probably <strong>the most important command</strong> you need to know. <code>man</code> stands for &ldquo;manual&rdquo;, help documentation for every command.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>man date
 </span></span></code></pre></div><p>a page pops up explaining everything about <code>date</code>. use arrow keys to scroll, press <code>q</code> to quit.</p>
 <p><img src="/images/blog/man-date.png" alt="the man date manual page"></p>
@@ -129,7 +129,7 @@
 <p>some commands also support <code>--help</code> for a quicker summary:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>date --help
 </span></span></code></pre></div><hr>
-<h3 id="echo--make-the-computer-repeat-stuff"><code>echo</code> — make the computer repeat stuff</h3>
+<h3 id="echo-make-the-computer-repeat-stuff"><code>echo</code> make the computer repeat stuff</h3>
 <p>stupidly simple — it just prints whatever you tell it to.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo hello
 </span></span></code></pre></div><p>it prints <code>hello</code>. that&rsquo;s literally all it does. but here&rsquo;s where it gets interesting:</p>
@@ -142,7 +142,7 @@
 <hr>
 <h2 id="where-am-i-navigation-basics">where am i? (navigation basics)</h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pwd
-</span></span></code></pre></div><p>&ldquo;print working directory&rdquo; — tells you your current location. you&rsquo;ll probably see something like <code>/home/yourusername</code>.</p>
+</span></span></code></pre></div><p>&ldquo;print working directory&rdquo; - tells you your current location. you&rsquo;ll probably see something like <code>/home/yourusername</code>.</p>
 <p>want to see what&rsquo;s in this directory?</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ls
 </span></span></code></pre></div><p>lists all files and folders. now let&rsquo;s move around:</p>
@@ -175,10 +175,10 @@
 </ul>
 <hr>
 <h2 id="how-does-the-shell-even-find-these-commands">how does the shell even find these commands?</h2>
-<p>you&rsquo;ve been typing <code>echo</code> and <code>ls</code> — but where do these programs actually live?</p>
+<p>you&rsquo;ve been typing <code>echo</code> and <code>ls</code>,  but where do these programs actually live?</p>
 <p>the shell has a cheat sheet called <strong><code>$PATH</code></strong>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo $PATH
-</span></span></code></pre></div><p>you&rsquo;ll see something like <code>/usr/local/bin:/usr/bin:/bin</code> — directories separated by colons. when you type a command, the shell hunts through these folders in order until it finds a program with that name.</p>
+</span></span></code></pre></div><p>you&rsquo;ll see something like <code>/usr/local/bin:/usr/bin:/bin</code>, directories separated by colons. when you type a command, the shell hunts through these folders in order until it finds a program with that name.</p>
 <p><img src="/images/blog/path-cat.png" alt="echo $PATH, which ls, and cat file demo"></p>
 <p>want to see exactly where a command lives?</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>which ls
@@ -243,17 +243,8 @@
 <li><strong>the real magic</strong> — piping and redirection</li>
 <li><strong>useful tools</strong> — <code>grep</code>, <code>sort</code>, <code>head</code>, <code>tail</code>, and why <code>cat &lt;&lt;EOF</code> beats <code>echo -e</code></li>
 </ul>
-<hr>
-<h2 id="coming-up-next">coming up next&hellip;</h2>
-<p>now that you&rsquo;ve got the basics, we&rsquo;re going deeper in part 2:</p>
-<ul>
-<li><strong>variables &amp; scripting</strong> — making your own reusable tools</li>
-<li><strong>working with remote machines</strong> — SSH, file transfers, remote workflows</li>
-<li><strong>customization</strong> — making the terminal work <em>for you</em> with aliases and dotfiles</li>
-<li><strong>advanced tools</strong> — actually diving into <code>find</code>, <code>sed</code>, and <code>awk</code></li>
-</ul>
 <p>the best part? once you understand how the shell works as a programming language (and it totally is one), you&rsquo;ll stop copying commands and start <em>thinking</em> in terminal.</p>
-<p>until then — play around. combine commands with pipes. make some files. break things. it&rsquo;s the best way to learn.</p>
+<p>until then, play around. combine commands with pipes. make some files. break things. it&rsquo;s the best way to learn.</p>
 
     </div>
 

@@ -20,7 +20,7 @@ look, i'll be honest — i spent way too long just copying and running commands 
 
 the problem? nobody actually explains what a shell *is* before throwing you into it. we all start learning python or java or whatever, and suddenly professors are like "yeah just cd into this directory and run this" and you're sitting there like... what's cd? what's a directory? why does this black window exist?
 
-so i decided to actually figure this out. and guess what? once you understand the basics — like actually understand them — everything clicks. you stop feeling like you're blindly typing magic words and start feeling like you know what you're doing.
+so i decided to actually figure this out. and guess what? once you understand the basics , like actually understand them , everything clicks. you stop feeling like you're blindly typing magic words and start feeling like you know what you're doing.
 
 this is basically what i wish someone had shown me on day one. we're starting from the actual beginning: what is a shell, what's the difference between a terminal and a command prompt, and why should you care. no assuming you already know stuff. no complicated jargon without explanation.
 
@@ -78,7 +78,7 @@ open **powershell as administrator** and run:
 wsl --install
 ```
 
-it'll install WSL and ubuntu in one go. it'll ask you to set a password — and while typing it, you won't be able to see it. that's normal, just keep typing.
+it'll install WSL and ubuntu in one go. it'll ask you to set a password and while typing it, you won't be able to see it. that's normal, just keep typing.
 
 ![WSL install running in PowerShell](/images/blog/wsl-install.png)
 
@@ -95,7 +95,7 @@ if it shows a version string like this, you're ready to go:
 
 ## okay so now you're in. now what?
 
-you'll see a prompt that looks something like `username@computername:~$` — this is just telling you who you are, what machine you're on, and where you are in the file system.
+you'll see a prompt that looks something like `username@computername:~$` this is just telling you who you are, what machine you're on, and where you are in the file system.
 
 the most common shell is called **bash** (which stands for "bourne again shell" — don't ask, it's a unix history thing). when you opened ubuntu, you're already using bash. that prompt you see? bash waiting for you to tell it what to do.
 
@@ -123,7 +123,7 @@ prints your username. simple — but it's showing you that when you type a comma
 
 ### `man` — your best friend
 
-this is probably **the most important command** you need to know. `man` stands for "manual" — help documentation for every command.
+this is probably **the most important command** you need to know. `man` stands for "manual", help documentation for every command.
 ```bash
 man date
 ```
@@ -141,7 +141,7 @@ date --help
 
 ---
 
-### `echo` — make the computer repeat stuff
+### `echo` make the computer repeat stuff
 
 stupidly simple — it just prints whatever you tell it to.
 ```bash
@@ -171,7 +171,7 @@ the output comes back with just one space! the shell splits your command by whit
 pwd
 ```
 
-"print working directory" — tells you your current location. you'll probably see something like `/home/yourusername`.
+"print working directory" - tells you your current location. you'll probably see something like `/home/yourusername`.
 
 want to see what's in this directory?
 ```bash
@@ -227,14 +227,14 @@ echo "text" >> file.txt   # adds text to a file (appends)
 
 ## how does the shell even find these commands?
 
-you've been typing `echo` and `ls` — but where do these programs actually live?
+you've been typing `echo` and `ls`,  but where do these programs actually live?
 
 the shell has a cheat sheet called **`$PATH`**.
 ```bash
 echo $PATH
 ```
 
-you'll see something like `/usr/local/bin:/usr/bin:/bin` — directories separated by colons. when you type a command, the shell hunts through these folders in order until it finds a program with that name.
+you'll see something like `/usr/local/bin:/usr/bin:/bin`, directories separated by colons. when you type a command, the shell hunts through these folders in order until it finds a program with that name.
 
 ![echo $PATH, which ls, and cat file demo](/images/blog/path-cat.png)
 
@@ -337,18 +337,8 @@ here's what we've covered:
 - **the real magic** — piping and redirection
 - **useful tools** — `grep`, `sort`, `head`, `tail`, and why `cat <<EOF` beats `echo -e`
 
----
-
-## coming up next...
-
-now that you've got the basics, we're going deeper in part 2:
-
-- **variables & scripting** — making your own reusable tools
-- **working with remote machines** — SSH, file transfers, remote workflows
-- **customization** — making the terminal work *for you* with aliases and dotfiles
-- **advanced tools** — actually diving into `find`, `sed`, and `awk`
 
 the best part? once you understand how the shell works as a programming language (and it totally is one), you'll stop copying commands and start *thinking* in terminal.
 
-until then — play around. combine commands with pipes. make some files. break things. it's the best way to learn.
+until then, play around. combine commands with pipes. make some files. break things. it's the best way to learn.
 
