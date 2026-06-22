@@ -114,7 +114,7 @@ semesters:
       - write actual code — reading and watching is not enough
       - structures + pointers together is where most people lose marks
 
-      ⭐ **Jenny's Lectures CS IT** — follow her playlist in order, it's the best resource for this syllabus.
+      ⭐ **Jenny's Lectures CS IT**, follow her playlist in order, it's the best resource for this syllabus.
 
       ## general sem 2 advice
       - sem 2 is fairly decent. keep up with academics — the first two sems are genuinely the easiest window to build a strong CGPA, don't waste it. outside of that, do something on the side — clubs, events, a project, gym, whatever interests you. you don't have to do everything, but do something that isn't just studying.
@@ -222,15 +222,100 @@ semesters:
   - name: "Semester 4"
     slug: sem4
     year: "2026"
-    subjects: 0
+    subjects: 5
     icon: "🚧"
     color: "#51cf66"
-    drive_link: ""
+    drive_link: "https://drive.google.com/drive/folders/1CVcK1l011rDeZOkK1U0R77pJ5mHbctJJ?usp=sharing"
     tips: |
-      ## sem 3 tips coming soon
-      - will add tips once done with the semester!
+      ## the honest take
+      sem 4 is where computer science starts feeling more real. operating systems, networks, algorithms and architecture all connect together in ways that make you appreciate how computers actually work under the hood.
+
+      this semester is less about memorisation and more about understanding systems and problem-solving.
+
+      ## operating systems (don't memorise, visualise)
+      probably one of the most important subjects in your degree.
+
+      - understand what actually happens when a program runs
+      - process scheduling, synchronization and deadlocks need concept clarity
+      - draw diagrams for memory management and scheduling algorithms
+      - don't try to mug up definitions without understanding the flow
+
+      ⭐ **Gate Smashers**
+      ⭐ **Neso Academy**
+      ⭐ **Operating Systems: Three Easy Pieces** (amazing reference)
+
+      ## design and analysis of algorithms (DSA gets serious)
+      this subject builds directly on DSA.
+
+      - focus on the intuition behind algorithms first
+      - learn how to analyse time complexity properly
+      - greedy, dynamic programming and divide-and-conquer need practice
+      - solve problems after every topic
+
+      ⭐ **Abdul Bari** is honestly unbeatable here.
+
+      ## computer networks (surprisingly interesting)
+      this is basically how the internet works.
+
+      - understand the OSI and TCP/IP models really well
+      - don't just memorise layers, understand why they exist
+      - protocols make more sense when you relate them to real-world networking
+      - diagrams and flowcharts help a lot
+
+      ⭐ **Gate Smashers**
+      ⭐ **Neso Academy**
+
+      ## microprocessors and computer architecture
+      this subject connects hardware and software together.
+
+      - focus on understanding instruction execution
+      - architecture diagrams are extremely important
+      - practice numerical problems regularly
+      - don't skip processor organization topics
+
+      ⭐ **Neso Academy**
+      ⭐ **Knowledge Gate**
+
+      ## linear algebra (the AI/ML foundation)
+      if you're interested in AI/ML, pay attention here.
+
+      - vectors and matrices show up everywhere later
+      - understand concepts geometrically whenever possible
+      - practice problems consistently
+      - don't leave it for exam week
+
+      ⭐ **3Blue1Brown - Essence of Linear Algebra**
+      ⭐ **Professor Leonard**
+
+      ## general sem 4 advice
+      - operating systems and computer networks are interview favourites
+      - don't study algorithms only for exams — solve problems alongside it
+      - linear algebra is more important than it looks, especially for AIML students
+      - try connecting subjects together instead of studying them in isolation
+      - build at least one project this semester and keep coding consistently
+
     subjects_list:
-      - name: "Work in Progress..."
-        url: "#"
-        drive_url: "#"
-        icon: "🚧"
+      - name: "Operating Systems"
+        url: "/semesters/sem4/#operating-systems"
+        drive_url: "https://drive.google.com/drive/folders/1RAqhOFr5d-ALaR_CkTQvOZ0AnTbEolgy?usp=sharing"
+        icon: "🔗"
+
+      - name: "Linear Algebra"
+        url: "/semesters/sem4/#linear-algebra"
+        drive_url: "https://drive.google.com/drive/folders/1VGU49yPF9qXLKCREPgPX1XrgGsfthNEt?usp=drive_link"
+        icon: "🔗"
+
+      - name: "Microprocessors and Computer Architecture"
+        url: "/semesters/sem4/#microprocessors"
+        drive_url: "https://drive.google.com/drive/folders/1OfaE9-uNLMibfnUHeEEwHbCSgTD7TMd0?usp=drive_link"
+        icon: "🔗"
+
+      - name: "Computer Networks"
+        url: "/semesters/sem4/#computer-networks"
+        drive_url: "https://drive.google.com/drive/folders/1RRSGi-G6_5S_2ObrbPTLmwaQdEJK7Uzd?usp=drive_link"
+        icon: "🔗"
+
+      - name: "Design and Analysis of Algorithms"
+        url: "/semesters/sem4/#daa"
+        drive_url: "https://drive.google.com/drive/folders/1VG4CelWqfIPpptAp2lmI7ZVLAUuxbbyQ?usp=drive_link"
+        icon: "🔗"
