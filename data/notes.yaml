@@ -223,7 +223,7 @@ semesters:
     slug: sem4
     year: "2026"
     subjects: 5
-    icon: "🚧"
+    icon: "⭐"
     color: "#51cf66"
     drive_link: "https://drive.google.com/drive/folders/1CVcK1l011rDeZOkK1U0R77pJ5mHbctJJ?usp=sharing"
     tips: |
