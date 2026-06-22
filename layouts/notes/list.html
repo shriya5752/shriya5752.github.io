@@ -42,9 +42,15 @@
 
       <!-- Semester Footer -->
       <div class="semester-footer">
-        <a href="{{ $semester.drive_link }}" class="folder-link" target="_blank" rel="noopener noreferrer">
-          open {{ $semester.name }} folder →
-        </a>
+        {{ if $semester.drive_link }}
+<a href="{{ $semester.drive_link }}" class="folder-link" target="_blank" rel="noopener noreferrer">
+  open {{ $semester.name }} folder →
+</a>
+{{ else }}
+<button class="folder-link" onclick="document.getElementById('no-notes-modal').style.display='flex'">
+  open {{ $semester.name }} folder →
+</button>
+{{ end }}
         {{ if $semester.tips }}
         <button class="tips-link" onclick="openTips('{{ $semester.slug }}')">
           tips for this sem →

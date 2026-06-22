@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=55456&amp;path=livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Notes by Semester | shriya.dev</title>
     <meta name="description" content="semester-wise notes ">
     
     <style>
-         
         * {
             margin: 0;
             padding: 0;
@@ -60,9 +59,11 @@
 
       
       <div class="semester-footer">
-        <a href="" class="folder-link" target="_blank" rel="noopener noreferrer">
-          open Semester 1 folder →
-        </a>
+        
+<button class="folder-link" onclick="document.getElementById('no-notes-modal').style.display='flex'">
+  open Semester 1 folder →
+</button>
+
         
         <button class="tips-link" onclick="openTips('sem1')">
           tips for this sem →
@@ -163,9 +164,11 @@
 
       
       <div class="semester-footer">
-        <a href="https://drive.google.com/drive/folders/1HW73sLfQITOyceTVGxJDR54js4gIHfBO?usp=sharing" class="folder-link" target="_blank" rel="noopener noreferrer">
-          open Semester 2 folder →
-        </a>
+        
+<a href="https://drive.google.com/drive/folders/1HW73sLfQITOyceTVGxJDR54js4gIHfBO?usp=sharing" class="folder-link" target="_blank" rel="noopener noreferrer">
+  open Semester 2 folder →
+</a>
+
         
         <button class="tips-link" onclick="openTips('sem2')">
           tips for this sem →
@@ -295,9 +298,11 @@
 
       
       <div class="semester-footer">
-        <a href="https://drive.google.com/drive/folders/1UKklGJ5DJ8PYgjz-kbI08-GOJehhMXZ3?usp=sharing" class="folder-link" target="_blank" rel="noopener noreferrer">
-          open Semester 3 folder →
-        </a>
+        
+<a href="https://drive.google.com/drive/folders/1UKklGJ5DJ8PYgjz-kbI08-GOJehhMXZ3?usp=sharing" class="folder-link" target="_blank" rel="noopener noreferrer">
+  open Semester 3 folder →
+</a>
+
         
         <button class="tips-link" onclick="openTips('sem3')">
           tips for this sem →
@@ -420,9 +425,11 @@
 
       
       <div class="semester-footer">
-        <a href="https://drive.google.com/drive/folders/1CVcK1l011rDeZOkK1U0R77pJ5mHbctJJ?usp=sharing" class="folder-link" target="_blank" rel="noopener noreferrer">
-          open Semester 4 folder →
-        </a>
+        
+<a href="https://drive.google.com/drive/folders/1CVcK1l011rDeZOkK1U0R77pJ5mHbctJJ?usp=sharing" class="folder-link" target="_blank" rel="noopener noreferrer">
+  open Semester 4 folder →
+</a>
+
         
         <button class="tips-link" onclick="openTips('sem4')">
           tips for this sem →
@@ -1060,6 +1067,28 @@ document.addEventListener('keydown', (e) => {
 });
 </script>
 
+
     
+    <div id="no-notes-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.35); z-index:9999; align-items:center; justify-content:center;">
+      <div style="background:#fff; border-radius:16px; padding:2.5rem 2rem; max-width:420px; width:90%; text-align:center; box-shadow:0 8px 40px rgba(0,0,0,0.12); position:relative;">
+        <div style="font-size:2.5rem; margin-bottom:0.75rem;">📭</div>
+        <h3 style="font-family:'Playfair Display', serif; color:#5a2d0c; font-size:1.4rem; margin:0 0 0.5rem;">uh oh, no notes here!</h3>
+        <p style="color:#888; font-size:0.95rem; line-height:1.6; margin:0 0 1.5rem;">
+          i haven't uploaded notes for this sem since they were all handwritten, check out the other semesters, they're stocked.
+        </p>
+        <button
+          onclick="document.getElementById('no-notes-modal').style.display='none'"
+          style="background:#7a3b10; color:#fff; border:none; border-radius:999px; padding:0.65rem 1.75rem; font-size:0.9rem; cursor:pointer; font-family:inherit;">
+          got it →
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('no-notes-modal').addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
+    </script>
+
 </body>
 </html>
