@@ -12,7 +12,7 @@ somewhere in google's infrastructure, right now, thousands of people are typing 
 
 it's one of those things that feels obvious until you try to explain how it works. then it gets interesting fast.
 
-i started pulling on this thread after a perfectly ordinary tuesday afternoon where a friend and i typed over each other in a shared doc and nothing broke. that shouldn't be as hard as it is. here's why it is, and how google solved it. i'm trying to test IF AUTO DEPLOYMENT IS WORKING!!! HAHAHA
+i started pulling on this thread after a perfectly ordinary tuesday afternoon where a friend and i typed over each other in a shared doc and nothing broke. that shouldn't be as hard as it is. here's why it is, and how google solved it.
 
 ---
 
