@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loss Functions: The Only Thing Your ML Model Actually Cares About | shriya.dev</title>
+    <meta name="description" content="Complicated-sounding names hiding embarrassingly simple ideas">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="single-wrap">
+
+  <a href="/blog" class="back-link">← back to blog</a>
+
+  <article class="single-article">
+
+    
+    
+    <div class="single-cover" style="background-image: url('/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-b556524b3e.jpeg');"></div>
+    
+
+    
+    <header class="single-header">
+      <div class="single-meta">
+        <time>August 30, 2026</time>
+        <span>📄</span>
+        
+          <span class="single-tag">#substack</span>
+        
+      </div>
+      <h1 class="single-title">Loss Functions: The Only Thing Your ML Model Actually Cares About</h1>
+      
+      <p class="single-desc">Complicated-sounding names hiding embarrassingly simple ideas</p>
+      
+    </header>
+
+    
+    <div class="single-content">
+      <p>While going deep into ML and neural networks, I kept running into this one idea over and over again: <strong>loss functions</strong>. And man, intuition has never been more important than here. You can memorize ten formulas, but if you don’t <em>feel</em> why each one exists, you’ll forget them in a week. So this is me trying to write it down in the simplest, most “explain it to future-me” way possible so that even if I forget everything else, I can read this and go “oh yeah, right” in five minutes.</p>
+<p>Let’s get into it.</p>
+<hr>
+<h2 id="first-what-even-is-a-loss-function">First, what even <em>is</em> a loss function?</h2>
+<p>A loss function is just a number that answers one question: <strong>“How wrong was the model, right now, on this example?”</strong></p>
+<p>That’s it. Big number = very wrong. Small number = pretty close. Zero = perfect. The entire point of training a neural network is: compute this “wrongness number,” then nudge the model’s weights a tiny bit in the direction that makes the number smaller. Do that a million times, and the model gets good.</p>
+<p>The part that actually matters for building intuition is that <strong>“wrong” means different things depending on what you’re trying to do.</strong> Being wrong in a “pick one class out of ten” problem is not the same kind of wrong as being wrong in a “how far apart should these two faces be in embedding space” problem. That’s why there are so many loss functions. Each one is just a different definition of “wrong” tailored to a different kind of task.</p>
+<hr>
+<h2 id="1-cross-entropy-the-bread-and-butter-of-classification">1. Cross-Entropy: the bread and butter of classification</h2>
+<p>This is the one everyone meets first, so let’s start here.</p>
+<p>Imagine you’re guessing which of 10 classes an image belongs to (cat, dog, car, etc). Your model spits out 10 numbers. Cross-entropy loss basically says: <strong>“How confident were you in the</strong> <em><strong>correct</strong></em> <strong>answer, and punish you (logarithmically) for not being confident enough.”</strong></p>
+<p>If the model was 99% sure of the right answer → tiny loss. If the model was 1% sure of the right answer → huge loss.</p>
+<p>The nasty bit is the <strong>log</strong>: getting it slightly wrong isn’t punished much, but being <em>confidently</em> wrong gets punished brutally. That’s on purpose, you want the model to be terrified of confident mistakes.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!8NyP!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe88e554b-6569-4f2a-96ee-9f6f8708b0e6_1708x443.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-b556524b3e.jpeg" alt=""></a></p>
+<p>Now, there’s a fork in the road depending on the <em>type</em> of classification problem, and honestly this fork is the thing I used to mix up the most:</p>
+<ul>
+<li>
+<p><strong>Categorical Cross-Entropy (a.k.a. “Softmax Loss”):</strong> Use this when exactly <strong>one</strong> answer is correct out of many options like say for eg a photo is a cat OR a dog OR a bird, never more than one. Softmax first turns your raw scores into a probability distribution that sums to 1 (like slicing a pizza, the classes are literally competing for slices), and cross-entropy scores how much pizza went to the right slice.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!xazh!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff84aec43-b1e8-4ccc-9421-101424a42649_1631x1180.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-6d63998154.jpeg" alt=""></a></p>
+</li>
+<li>
+<p><strong>Binary Cross-Entropy (a.k.a. “Sigmoid Loss”):</strong> Use this for yes/no problems, or, for <strong>multi-label</strong> problems where several things can be true at once (a photo has a cat AND a ball AND a person in it). Here you don’t do one big pizza-slicing competition. Instead, each label gets its <em>own</em> independent yes/no sigmoid question, and you just sum up the log-loss across all of them.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!Neg9!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F20f1f482-0f35-4321-ab58-8d63ab964826_1601x366.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-534f1b75c5.jpeg" alt=""></a></p>
+<p><strong>The one-liner that fixed this for me:</strong> <em>Softmax asks “which ONE is it?” Sigmoid asks “is THIS one true, independently of the others?”</em></p>
+</li>
+<li>
+<p><strong>Weighted Cross-Entropy:</strong> Same idea, but if your dataset is lopsided (say 950 “no fraud” examples vs 50 “fraud” ones), you multiply the rare class’s loss by a bigger weight so the model can’t just get lazy and always guess the majority class.</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-kl-divergence--how-far-off-is-my-guess-distribution-from-reality">2. KL Divergence : “how far off is my guess-distribution from reality?”</h2>
+<p>Okay, this one sounds scary but it’s actually a pretty intuitive idea once you strip the notation away.</p>
+<p>Say there’s a <strong>true</strong> distribution of something (like, “80% of emails are spam, 20% are not”) and your model produces a <strong>predicted</strong> distribution (”I think it’s 60% spam, 40% not”). KL Divergence is just a number that says <strong>how different these two distributions are.</strong></p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!I4U5!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fb0af93a3-0986-4154-96cf-c22a8f0c5668_1905x836.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-f731b1f405.jpeg" alt=""></a></p>
+<p>Here’s the intuition: cross-entropy = entropy (a fixed baseline “surprise” cost of the true distribution) + KL divergence (the <em>extra</em> surprise cost you pay because your guess wasn’t perfect). So when you’re minimizing cross-entropy during training, you are ,behind the scenes, literally minimizing KL divergence, because the entropy part is a constant you can’t do anything about anyway.</p>
+<p>Two quirks worth remembering:</p>
+<ol>
+<li><strong>It’s not symmetric.</strong> The “distance” from P to Q is not the same as from Q to P. It matters which one you call “the truth.” Kind of like how “how far is the gym from your house” and “how far is your house from the gym” <em>feel</em> symmetric in real life, but here they aren’t mathematically — because you’re weighting the distance by <em>whose</em> probabilities you trust as the ground truth.</li>
+<li><strong>It can blow up to infinity.</strong> If the true distribution says “this thing definitely happens” but your model says “impossible, 0% chance” — that’s an infinite penalty. Makes sense: if reality assigns probability to something you swore was impossible, your model deserves to be infinitely embarrassed.</li>
+</ol>
+<p>That “blows up to infinity” problem is annoying enough in practice that people invented a fix:</p>
+<h3 id="jensen-shannon-js-divergence--the-symmetric-well-behaved-cousin">Jensen-Shannon (JS) Divergence : the symmetric, well-behaved cousin</h3>
+<p>Instead of comparing P directly to Q (and risking asymmetry / infinities), JS divergence says: let’s create an <strong>average distribution M</strong> of the two, and then measure how far <em>both</em> P and Q are from that middle-ground M, and average those two measurements.</p>
+<p>It’s like: instead of asking “how far is your opinion from mine,” you both agree on a neutral halfway point, and measure how far each of you is from that halfway point. Much more fair, always symmetric, and never explodes to infinity. Great for comparing things like two documents’ word-frequency distributions, or clustering similar data points.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!jnu9!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fdc6b6c7f-ad18-4d0d-89ba-0f4a445fced1_1164x667.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-43edae7c08.jpeg" alt=""></a></p>
+<hr>
+<h2 id="3-focal-loss--for-when-your-dataset-is-embarrassingly-lopsided">3. Focal Loss : for when your dataset is embarrassingly lopsided</h2>
+<p>Imagine a fraud detection dataset with <strong>950 normal transactions</strong> and <strong>50 fraudulent ones</strong>. With regular cross-entropy, the model spends most of its time learning from the hundreds of easy, normal examples because they dominate the dataset. As a result, it doesn’t pay enough attention to the rare but important fraud cases.</p>
+<p><strong>Focal Loss fixes this by making the model focus on the mistakes instead of the easy wins.</strong></p>
+<ul>
+<li>If the model is <strong>already confident and correct</strong>, the loss is reduced significantly. The model essentially says, <em>“I already know this.”</em></li>
+<li>If the model is <strong>wrong or uncertain</strong>, the loss remains high, encouraging the model to learn from that example.</li>
+</ul>
+<p>The <strong>γ (gamma)</strong> parameter controls how strongly easy examples are down-weighted:</p>
+<ul>
+<li>
+<p><strong>γ = 0</strong> → Same as regular Cross-Entropy Loss.</p>
+</li>
+<li>
+<p><strong>Higher γ</strong> → The model focuses more on hard, misclassified examples.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!onGA!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F44778c2c-8262-4e2d-b8f2-c882d8feddc0_992x649.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-9c9415f577.jpeg" alt=""></a></p>
+</li>
+</ul>
+<p>An optional <strong>α (alpha)</strong> parameter can also be used to give extra importance to the minority class.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!Loov!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F1afadcc5-a048-4c32-a149-acc291f21738_1092x707.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-4f246c5d8b.jpeg" alt=""></a></p>
+<p>As shown in the graph, <strong>higher values of γ (gamma)</strong> make the loss drop much faster for easy examples (high confidence), while <strong>hard examples continue to contribute a large loss</strong>. In other words, increasing γ makes the model pay progressively more attention to difficult samples.</p>
+<p><strong>In short:</strong> Focal Loss tells the model, <strong>“Stop spending time on examples you’ve already mastered. Focus on the difficult and rare ones.”</strong></p>
+<p>It is widely used in <strong>object detection, medical imaging, and fraud detection</strong>, where important examples are rare but missing them can be costly.</p>
+<hr>
+<h2 id="4-hinge-loss--svms--correct-isnt-good-enough-i-want-confidently-correct">4. Hinge Loss &amp; SVMs — “correct isn’t good enough, I want <em>confidently</em> correct”</h2>
+<p>This one has a genuinely fun mental image attached to it: think of a hinge on a door. A door swings freely one way, but the hinge stops it dead the other way. Hinge loss behaves the same: <strong>it goes to exactly zero once you’re “good enough,” and stays zero no matter how much</strong> <em><strong>more</strong></em> <strong>good you get. But if you’re not good enough, the penalty keeps climbing.</strong></p>
+<p>Concretely, for SVMs: L=max(0, 1−y⋅f(x))</p>
+<p>Three scenarios:</p>
+<ul>
+<li>You’re correctly classified <strong>and</strong> comfortably far from the decision boundary → loss = 0. Nice, done, no more homework.</li>
+<li>You’re correctly classified but <strong>too close for comfort</strong> to the boundary → you still get a small positive penalty. Hinge loss doesn’t just want “correct,” it wants “correct with breathing room.”</li>
+<li>You’re straight-up misclassified → big loss, growing the more wrong you are.</li>
+</ul>
+<p><a href="https://substackcdn.com/image/fetch/$s_!vvsD!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F5a2c09bb-22a2-4357-b1a4-7f6b377739b0_1350x660.jpeg"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-a72bc8bcd2.jpeg" alt=""></a></p>
+<p>This is <em>the</em> key difference from cross-entropy: cross-entropy keeps rewarding you infinitesimally more the more confident you get (there’s no ceiling). Hinge loss says “once you’ve cleared the margin, I genuinely do not care anymore — go help train on a different example.”</p>
+<p>That’s exactly what makes SVMs work: they minimize a mix of (a) keeping the margin as wide as possible, and (b) keeping hinge-loss violations small, balanced by a regularization knob <strong>C</strong>. Wide margin = more confident, generalizable separation between classes.</p>
+<p>There’s also <strong>squared hinge loss</strong>, which is the same idea but squared — giving you a smoother curve that’s a bit friendlier for optimizers to work with.</p>
+<hr>
+<h2 id="5-contrastive-loss--triplet-loss--learn-to-measure-similarity-not-categories">5. Contrastive Loss &amp; Triplet Loss — “learn to measure similarity, not categories”</h2>
+<p>Here’s a shift in mindset: sometimes you don’t want to classify things into buckets at all. You want to learn a <em>space</em> where similar things end up close together and different things end up far apart. Classic example: face recognition. You’re not trying to say “this is person X’s face, class B” — you’re trying to say “these two photos are the same person” without needing a fixed list of every person who will ever exist.</p>
+<h3 id="contrastive-loss">Contrastive Loss</h3>
+<p>You feed the network <strong>pairs</strong> of things, each labeled either “similar” or “dissimilar.”</p>
+<ul>
+<li>If the pair is <strong>similar</strong> → just directly shrink the distance between their embeddings. Push them together, no exceptions.</li>
+<li>If the pair is <strong>dissimilar</strong> → push them apart, but only up to a margin. Once they’re far enough apart, stop pushing — don’t waste effort making already-distant things <em>even more</em> distant.</li>
+</ul>
+<p>It’s basically hinge-loss logic applied to distances instead of classification scores.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!DqXc!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F387cba63-2f4d-45f9-ae36-dc6bcd8b2912_922x547.png"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-6438136ca6.png" alt=""></a></p>
+<h3 id="triplet-loss">Triplet Loss</h3>
+<p>Took me quite some time to understand the difference between this and contrastive losses. Instead of pairs, you use <strong>three</strong> things at once: an <strong>anchor</strong> (some reference example), a <strong>positive</strong> (same identity/class as the anchor), and a <strong>negative</strong> (different identity/class).</p>
+<p>In plain English: <em>“I want the anchor to be closer to its positive match than to its negative match, by at least some safety margin.”</em> It’s a relative comparison, not an absolute “shrink to zero” rule — which is why it tends to organize the embedding space more gracefully. It doesn’t obsessively crush same-class points into a single point; it just makes sure they stay closer than the different-class stuff, with room to breathe.</p>
+<p><a href="https://substackcdn.com/image/fetch/$s_!QXxb!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F3fe4b7cc-8275-4d36-8d82-97204a5f8846_341x341.png"><img src="/images/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about-cff9cf42a5.png" alt=""></a></p>
+<p>If I had to summarize the difference in one line: <strong>contrastive loss judges pairs in isolation (”are you two close enough / far enough?”), while triplet loss judges relative ranking (”are you closer to your friend than to a stranger?”)</strong> — and that relative framing is why triplet loss tends to behave better in practice, especially for things like face recognition.</p>
+<hr>
+<h2 id="6-activation-functions--the-reason-differentiability-even-matters">6. Activation functions — the reason “differentiability” even matters</h2>
+<p>Quick zoom-out: none of these losses are useful unless we can actually compute a <em>gradient</em> through the entire network — loss all the way back to every single weight. That chain of derivatives has to flow through whatever activation functions you used. If an activation function has a gradient of zero (or undefined) almost everywhere, the chain snaps and learning just&hellip; stops.</p>
+<p>Here’s the activation “family tree,” rated on how training-friendly they are:</p>
+<ul>
+<li><strong>Step function</strong> (old-school, output is a hard 0 or 1): basically useless for training. Its derivative is zero everywhere except one undefined point. No gradient = no learning. Historical footnote at this point.</li>
+<li><strong>Linear/identity</strong>: perfectly differentiable, but has zero personality — no non-linearity. Stack ten linear layers and mathematically it collapses into being just <em>one</em> linear layer. You gain nothing from depth.</li>
+<li><strong>Sigmoid</strong>: squashes to (0,1), great for probabilities, smooth gradient — but the gradient vanishes for big positive/negative inputs. In a deep network, tiny gradients multiplied across many layers shrink to basically nothing, and early layers stop learning. This is the infamous “vanishing gradient problem.”</li>
+<li><strong>Tanh</strong>: same idea as sigmoid but squashes to (-1,1) and is zero-centered, which helps a bit, and its gradient is steeper. Still has some vanishing-gradient issues, just less severe.</li>
+<li><strong>ReLU</strong> : the modern default for hidden layers. Dead simple, cheap to compute, and for positive inputs the gradient is a constant 1 — no vanishing. Downside: negative inputs get a gradient of exactly zero, so a neuron can get permanently “stuck” and stop learning (”dying ReLU”).</li>
+</ul>
+<p><strong>Rule of thumb for picking activations:</strong></p>
+<ul>
+<li>
+<p><strong>Hidden layers</strong> → ReLU, basically by default, unless you have a specific reason not to.</p>
+</li>
+<li>
+<p><strong>Output layer</strong> → depends entirely on the task:</p>
+<ul>
+<li>One correct class out of many → <strong>softmax</strong></li>
+<li>Multiple independent correct answers → <strong>sigmoid</strong></li>
+<li>Predicting a continuous number (regression) → <strong>linear</strong> (no squashing at all)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="7-the-magic-simplification-softmax--cross-entropy">7. The magic simplification: softmax + cross-entropy</h2>
+<p>Okay, this is the part that genuinely made me go “whoa” when I first worked through the math, so I want to preserve that feeling here.</p>
+<p>Softmax’s derivative, on its own, is honestly kind of a pain — every output probability depends on <em>every</em> input logit (because they all share the same normalizing denominator), so you end up with a full matrix of cross-dependencies (a Jacobian) instead of a single simple number.</p>
+<p>BUT — when you chain that softmax derivative together with the cross-entropy loss derivative and do the algebra, almost everything cancels out, and you’re left with this absurdly clean result:</p>
+<p>∂L/∂z=p−y</p>
+<p><strong>The gradient is just (predicted probability) minus (true label).</strong> That’s it. No exponentials, no matrices, no mess. If the model predicted 0.9 probability on the correct class, and the true label is 1, the gradient is $0.9 - 1 = -0.1$ — small and gentle, because it’s already close. If it predicted 0.2 on the correct class, the gradient is 0.2 - 1 = -0.8 — a big, aggressive nudge, because it’s way off.</p>
+<p>This is exactly why softmax + cross-entropy is the go-to combo for classification: not just because it’s intuitive (which it is), but because the math turns out to be almost efficient to compute. No neural network library ever actually builds the full softmax Jacobian during training — it just computes <code>prediction - label</code> and moves on.</p>
+<hr>
+<p>If future-me forgets everything else: <strong>every loss function is just a different, purpose-built definition of “how wrong were you,” and the whole game is making sure that definition is both meaningful for your task and differentiable enough for gradient descent to act on.</strong></p>
+<p><a href="https://nerdingoutwithshriya.substack.com/subscribe?">Subscribe now</a></p>
+
+    </div>
+
+  </article>
+
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+  background: linear-gradient(135deg, #F5F1E8, #E8E2D5);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+ 
+.back-link {
+  display: inline-block;
+  margin: 2.5rem 0 0 2rem;
+  color: #8B4513;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.back-link:hover { opacity: 1; }
+
+ 
+.single-wrap {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 2rem 6rem;
+}
+
+ 
+.single-article {
+  margin-top: 2rem;
+}
+
+ 
+.single-cover {
+  width: 100%;
+  height: 480px;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 2.5rem;
+}
+
+ 
+.single-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(139, 69, 19, 0.15);
+}
+
+.single-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+  color: #999;
+}
+
+.single-tag {
+  color: #8B4513;
+  font-style: italic;
+}
+
+.single-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #2c2c2c;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-bottom: -0.02em;
+}
+
+.single-desc {
+  font-size: 1.05rem;
+  color: #888;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+ 
+ 
+ 
+.single-content {
+  font-size: 1.25rem;
+  line-height: 1.85;
+  color: #3a3a3a;
+}
+
+.single-content p {
+  margin-bottom: 1.5rem;
+}
+
+ 
+.single-content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #8B4513;
+  margin: 3rem 0 1rem;
+  line-height: 1.2;
+}
+
+.single-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c2c2c;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.single-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  margin: 2rem 0 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+ 
+.single-content blockquote {
+  border-left: 3px solid #8B4513;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #666;
+  background: rgba(139, 69, 19, 0.04);
+  border-radius: 0 10px 10px 0;
+  line-height: 1.7;
+}
+
+.single-content blockquote p {
+  margin: 0;
+}
+
+ 
+.single-content code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.88em;
+  background: rgba(0,0,0,0.07);
+  padding: 2px 7px;
+  border-radius: 5px;
+  color: #8B4513;
+}
+
+ 
+.single-content pre {
+  background: #1e1a14;
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.single-content pre code {
+  background: transparent;
+  color: #e8e0d0;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  padding: 0;
+  border-radius: 0;
+}
+
+ 
+.single-content img {
+  width: 100%;
+  border-radius: 14px;
+  margin: 2rem 0;
+  display: block;
+}
+
+ 
+.single-content ul,
+.single-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.single-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.single-content ul li::marker {
+  color: #8B4513;
+}
+
+ 
+.single-content hr {
+  border: none;
+  border-top: 1px solid rgba(139, 69, 19, 0.2);
+  margin: 3rem 0;
+}
+
+ 
+.single-content a {
+  color: #8B4513;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity 0.2s;
+}
+.single-content a:hover { opacity: 0.7; }
+
+ 
+.single-content strong {
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+ 
+@media (max-width: 640px) {
+  .single-wrap { padding: 0 1.25rem 4rem; }
+  .back-link { margin: 1.5rem 0 0 1.25rem; }
+  .single-cover { height: 220px; }
+  .single-content { font-size: 1rem; }
+}
+
+
+ 
+.notion-btn {
+  display: inline-block;
+  margin-bottom: 2rem;
+  padding: 0.5rem 1.2rem;
+  border: 1.5px solid #2c2c2c;
+  color: #2c2c2c;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.notion-btn:hover {
+  background: #2c2c2c;
+  color: white;
+}
+</style>
+
+
+
+    
+    <div id="no-notes-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.35); z-index:9999; align-items:center; justify-content:center;">
+      <div style="background:#fff; border-radius:16px; padding:2.5rem 2rem; max-width:420px; width:90%; text-align:center; box-shadow:0 8px 40px rgba(0,0,0,0.12); position:relative;">
+        <div style="font-size:2.5rem; margin-bottom:0.75rem;">📭</div>
+        <h3 style="font-family:'Playfair Display', serif; color:#5a2d0c; font-size:1.4rem; margin:0 0 0.5rem;">uh oh, no notes here!</h3>
+        <p style="color:#888; font-size:0.95rem; line-height:1.6; margin:0 0 1.5rem;">
+          i haven't uploaded notes for this sem since they were all handwritten, check out the other semesters, they're stocked.
+        </p>
+        <button
+          onclick="document.getElementById('no-notes-modal').style.display='none'"
+          style="background:#7a3b10; color:#fff; border:none; border-radius:999px; padding:0.65rem 1.75rem; font-size:0.9rem; cursor:pointer; font-family:inherit;">
+          got it →
+        </button>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('no-notes-modal').addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
+    </script>
+
+</body>
+</html>

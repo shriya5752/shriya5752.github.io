@@ -1,0 +1,43 @@
+name: Sync Substack Posts
+
+on:
+  schedule:
+    # Runs every day at 6:00 AM UTC. Adjust as you like — this is cron syntax:
+    # minute hour day month weekday
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}  # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write  # needed so the action can commit new files back to the repo
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Run Substack sync
+        env:
+          SUBSTACK_FEED_URL: ${{ secrets.SUBSTACK_FEED_URL }}
+        run: python scripts/substack_to_hugo.py
+
+      - name: Commit and push if there are changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/blog static/images/substack
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: sync new Substack post(s)"
+            git push
+          else
+            echo "No new posts to commit."
+          fi

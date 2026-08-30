@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Substack on shriya.dev</title>
+    <link>http://localhost:1313/tags/substack/</link>
+    <description>Recent content in Substack on shriya.dev</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/substack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Loss Functions: The Only Thing Your ML Model Actually Cares About</title>
+      <link>http://localhost:1313/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about/</link>
+      <pubDate>Sun, 30 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/loss-functions-the-only-thing-your-ml-model-actually-cares-about/</guid>
+      <description>&lt;p&gt;While going deep into ML and neural networks, I kept running into this one idea over and over again: &lt;strong&gt;loss functions&lt;/strong&gt;. And man, intuition has never been more important than here. You can memorize ten formulas, but if you don’t &lt;em&gt;feel&lt;/em&gt; why each one exists, you’ll forget them in a week. So this is me trying to write it down in the simplest, most “explain it to future-me” way possible so that even if I forget everything else, I can read this and go “oh yeah, right” in five minutes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Money Isn&#39;t Real (and that&#39;s what makes it powerful)</title>
+      <link>http://localhost:1313/blog/money-isn-t-real-and-that-s-what-makes-it-powerful/</link>
+      <pubDate>Mon, 06 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/money-isn-t-real-and-that-s-what-makes-it-powerful/</guid>
+      <description>&lt;p&gt;imagine you’re stranded on an island with a suitcase containing ₹10 crore in cash.you can’t eat it. you can’t drink it. you can’t build a shelter with it. suddenly, the thing you’ve spent your entire life chasing becomes&amp;hellip; paper.&lt;/p&gt;&#xA;&lt;p&gt;so why does money have value?&lt;/p&gt;&#xA;&lt;p&gt;the answer has almost nothing to do with the paper itself.&lt;/p&gt;&#xA;&lt;p&gt;it has everything to do with one of the most powerful forces humans have ever created: &lt;strong&gt;shared belief&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>why i&#39;m starting this</title>
+      <link>http://localhost:1313/blog/why-i-m-starting-this/</link>
+      <pubDate>Wed, 01 Jul 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/blog/why-i-m-starting-this/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://substackcdn.com/image/fetch/$s_!oVsa!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fa8a4049f-8517-4d45-8fd8-ca8f3c17b784_1059x624.jpeg&#34;&gt;&lt;img src=&#34;http://localhost:1313/images/blog/why-i-m-starting-this-65a38f78d1.jpeg&#34; alt=&#34;&#34;&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;This is me, roughly four, sitting in front of a laptop I definitely could not operate, grinning like I’d already figured it out. I hadn’t figured out anything. I think I just found the game of poker, which in my head I was winning.&lt;/p&gt;&#xA;&lt;p&gt;Funny enough, that photo is a more accurate prediction of my life than what came next. Because for most of my life (more specifically in 9th grade), I actually wanted to be a neurosurgeon.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
