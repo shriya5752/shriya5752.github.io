@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Substack sync
         env:
-          SUBSTACK_FEED_URL: ${{ secrets.SUBSTACK_FEED_URL }}
+          SUBSTACK_FEED_URL: ${{ secrets.SUBSTACK }}
         run: python scripts/substack_to_hugo.py
 
       - name: Commit and push if there are changes
