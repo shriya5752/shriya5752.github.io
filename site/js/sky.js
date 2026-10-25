@@ -61,22 +61,42 @@ export function startSky(canvas, { animated = true } = {}) {
     px(cx + u, cy + 4 * u, 8 * u, Math.ceil(u / 2), c2);
   }
 
-  function sun(cx, cy, rad, t) {
-    for (let y = -rad * 2; y <= rad * 2; y += 2) for (let x = -rad * 2; x <= rad * 2; x += 2) {
-      const d = Math.hypot(x, y);
-      if (d > rad * 1.15 && d < rad * 1.7 && ((x + y) / 2) % 4 === 0) px(cx + x, cy + y, 2, 2, "rgba(255,216,74,.55)");
+  // natural sun: soft bloom, faint beams, and a disc that warms up near the horizon
+  function sun(cx, cy, rad, t, e) {
+    const warm = Math.pow(e, 0.55);                     // 0 at the horizon, 1 overhead
+    const core = mix("#ff7a2e", "#fff3b8", warm);
+    const edge = mix("#ff4f1f", "#ffd24a", warm);
+    const pulse = reduced ? 1 : 1 + Math.sin(t * 0.8) * 0.015;
+
+    ctx.save();
+    ctx.globalCompositeOperation = "lighter";
+    // wide atmospheric glow
+    let g = ctx.createRadialGradient(cx, cy, rad * 0.8, cx, cy, rad * 9);
+    g.addColorStop(0, "rgba(255,200,110,.30)"); g.addColorStop(0.4, "rgba(255,170,90,.10)"); g.addColorStop(1, "rgba(255,160,80,0)");
+    ctx.fillStyle = g; ctx.fillRect(cx - rad * 9, cy - rad * 9, rad * 18, rad * 18);
+    // tight bloom around the disc
+    g = ctx.createRadialGradient(cx, cy, rad * 0.9, cx, cy, rad * 3.2);
+    g.addColorStop(0, "rgba(255,230,150,.55)"); g.addColorStop(1, "rgba(255,210,120,0)");
+    ctx.fillStyle = g; ctx.fillRect(cx - rad * 3.2, cy - rad * 3.2, rad * 6.4, rad * 6.4);
+    // soft sunbeams, turning very slowly
+    const spin = reduced ? 0 : t * 0.03;
+    for (let i = 0; i < 9; i++) {
+      const a = (i / 9) * Math.PI * 2 + spin, w = 0.07 + (i % 3) * 0.025, len = rad * (6 + (i % 4));
+      const bg = ctx.createRadialGradient(cx, cy, rad, cx, cy, len);
+      bg.addColorStop(0, "rgba(255,225,150,.16)"); bg.addColorStop(1, "rgba(255,225,150,0)");
+      ctx.fillStyle = bg;
+      ctx.beginPath(); ctx.moveTo(cx, cy);
+      ctx.lineTo(cx + Math.cos(a - w) * len, cy + Math.sin(a - w) * len);
+      ctx.lineTo(cx + Math.cos(a + w) * len, cy + Math.sin(a + w) * len);
+      ctx.closePath(); ctx.fill();
     }
-    for (let i = 0; i < 12; i++) {
-      const a = (i / 12) * Math.PI * 2 + (reduced ? 0 : t * 0.15), len = i % 2 ? rad * 0.55 : rad * 0.9;
-      for (let k = rad * 1.35; k < rad * 1.35 + len; k += 2) px(cx + Math.cos(a) * k, cy + Math.sin(a) * k, 2, 2, i % 2 ? "#ffb02e" : "#ffd84a");
-    }
-    for (let y = -rad; y <= rad; y++) {
-      const w = Math.floor(Math.sqrt(rad * rad - y * y));
-      px(cx - w, cy + y, w * 2, 1, y > rad * 0.3 ? "#ffb02e" : y > -rad * 0.3 ? "#ffcb3d" : "#ffe27a");
-    }
-    px(cx - rad * 0.38, cy - 1, 2, 3, "#7a3b12"); px(cx + rad * 0.38 - 2, cy - 1, 2, 3, "#7a3b12");
-    px(cx - 3, cy + rad * 0.3, 6, 1, "#7a3b12"); px(cx - 4, cy + rad * 0.3 - 1, 1, 1, "#7a3b12"); px(cx + 3, cy + rad * 0.3 - 1, 1, 1, "#7a3b12");
-    px(cx - rad * 0.62, cy + rad * 0.2, 4, 2, "rgba(255,120,120,.6)"); px(cx + rad * 0.62 - 4, cy + rad * 0.2, 4, 2, "rgba(255,120,120,.6)");
+    ctx.restore();
+
+    // the disc: bright centre fading to a warmer rim
+    const d = ctx.createRadialGradient(cx - rad * 0.2, cy - rad * 0.2, rad * 0.05, cx, cy, rad * pulse);
+    d.addColorStop(0, "#fffef2"); d.addColorStop(0.45, core); d.addColorStop(1, edge);
+    ctx.fillStyle = d;
+    ctx.beginPath(); ctx.arc(cx, cy, rad * pulse, 0, Math.PI * 2); ctx.fill();
   }
 
   function crescent(cx, cy, rad) {
@@ -107,7 +127,8 @@ export function startSky(canvas, { animated = true } = {}) {
     const rad = Math.round(H * 0.085);
     if (hour >= 6 && hour <= 18) {
       const p = (hour - 6) / 12;
-      sun(Math.round(W * (0.1 + 0.8 * p)), Math.round(hz - Math.sin(Math.PI * p) * H * 0.5 - rad * 0.3), rad, t);
+      const el = Math.sin(Math.PI * p);
+      sun(Math.round(W * (0.1 + 0.8 * p)), Math.round(hz - el * H * 0.5 - rad * 0.3), rad, t, el);
     } else {
       const hh = hour < 6 ? hour + 24 : hour, p = clamp((hh - 18) / 12, 0, 1);
       crescent(Math.round(W * (0.1 + 0.8 * p)), Math.round(hz - Math.sin(Math.PI * p) * H * 0.48), Math.round(rad * 0.8));
