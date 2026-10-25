@@ -1,6 +1,6 @@
 import { icon } from "./icons.js";
 import { openWindow, getWindow, closeWindow, focus } from "./wm.js";
-import { THEMES, prefs, applyTheme, applyCrt, savePrefs } from "./theme.js";
+import { THEMES, AUTO, prefs, applyTheme, applyCrt, savePrefs } from "./theme.js";
 
 const LINKS = {
   substack: "https://nerdingoutwithshriya.substack.com",
@@ -176,7 +176,8 @@ function aboutApp(body) {
 
 // ---------- settings ----------
 function settingsApp(body) {
-  const swatches = Object.entries(THEMES).map(([k, t]) => `<button class="swatch${k === prefs.theme ? " on" : ""}" data-t="${k}"><i style="background:linear-gradient(90deg,${t.a},${t.b})"></i>${t.label}</button>`).join("");
+  const auto = `<button class="swatch${prefs.theme === AUTO ? " on" : ""}" data-t="${AUTO}"><i style="background:linear-gradient(90deg,#1d1450,#8b5cf6 40%,#ffd9f0 60%,#7ec8f0)"></i>auto (sky)</button>`;
+  const swatches = auto + Object.entries(THEMES).map(([k, t]) => `<button class="swatch${k === prefs.theme ? " on" : ""}" data-t="${k}"><i style="background:linear-gradient(90deg,${t.a},${t.b})"></i>${t.label}</button>`).join("");
   body.innerHTML = `
     <div class="settings">
       <h3>COLOR THEME</h3><div class="swatches">${swatches}</div>
@@ -229,7 +230,7 @@ function terminalApp(body, win) {
     help() {
       line("commands:", "a");
       [["ls [posts|notes]", "list things"], ["cat <file>", "read about.txt / contact.txt"], ["read <n>", "open post number n"], ["open <app>", "blog, notes, about, settings"],
-        ["theme <name>", Object.keys(THEMES).join(" | ")], ["crt on|off", "toggle scanlines"], ["neofetch", "system info"], ["clear", "clean the screen"], ["matrix", "wake up, shriya"]]
+        ["theme <name>", [AUTO, ...Object.keys(THEMES)].join(" | ")], ["sky <hour|auto>", "set the time of day, e.g. sky 21"], ["crt on|off", "toggle scanlines"], ["neofetch", "system info"], ["clear", "clean the screen"], ["matrix", "wake up, shriya"]]
         .forEach(([c, d]) => line("  " + c.padEnd(18) + d, "d"));
     },
     ls(a) {
@@ -269,8 +270,16 @@ function terminalApp(body, win) {
       line("type 'help' to poke around, or double-click the icons.", "d");
     },
     theme(a) {
-      if (!a[0]) return line("themes: " + Object.keys(THEMES).join(", ") + "   (current: " + prefs.theme + ")");
+      if (!a[0]) return line("themes: " + [AUTO, ...Object.keys(THEMES)].join(", ") + "   (current: " + prefs.theme + ")");
       if (applyTheme(a[0])) line("theme -> " + a[0], "d"); else line("unknown theme: " + a[0], "e");
+    },
+    sky(a) {
+      const v = a[0];
+      if (v === "auto") { document.dispatchEvent(new CustomEvent("skyhour", { detail: null })); return line("sky follows your clock again", "d"); }
+      const h = parseFloat(v);
+      if (!(h >= 0 && h < 24)) return line("usage: sky <0-23>  or  sky auto", "e");
+      document.dispatchEvent(new CustomEvent("skyhour", { detail: h }));
+      line(`sky set to ${String(Math.floor(h)).padStart(2, "0")}:00. 'sky auto' to go back.`, "d");
     },
     crt(a) {
       if (a[0] !== "on" && a[0] !== "off") return line("usage: crt on|off", "e");
@@ -331,7 +340,7 @@ function terminalApp(body, win) {
     else if (e.key === "Tab") {
       e.preventDefault();
       const parts = input.value.split(/\s+/);
-      const pool = parts.length < 2 ? Object.keys(cmds) : parts[0] === "open" ? Object.keys(APPS) : parts[0] === "theme" ? Object.keys(THEMES) : [];
+      const pool = parts.length < 2 ? Object.keys(cmds) : parts[0] === "open" ? Object.keys(APPS) : parts[0] === "theme" ? [AUTO, ...Object.keys(THEMES)] : [];
       const hit = pool.filter((c) => c.startsWith(parts[parts.length - 1]));
       if (hit.length === 1) { parts[parts.length - 1] = hit[0]; input.value = parts.join(" ") + " "; }
     } else if (e.key === "l" && e.ctrlKey) { e.preventDefault(); cmds.clear(); }

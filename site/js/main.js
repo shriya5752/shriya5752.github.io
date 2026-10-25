@@ -2,15 +2,17 @@ import { icon } from "./icons.js";
 import { isMobile } from "./wm.js";
 import { APPS, openApp, load } from "./apps.js";
 import { startCharacter } from "./character.js";
-import { prefs, applyTheme, applyCrt, startWallpaper } from "./theme.js";
+import { startSky } from "./sky.js";
+import { prefs, applyTheme, applyCrt, refreshTheme, savePrefs } from "./theme.js";
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const $ = (s) => document.querySelector(s);
 
 applyTheme(prefs.theme);
 applyCrt(prefs.crt);
-const wall = startWallpaper();
-document.addEventListener("wallpaper", (e) => wall.setAnimated(e.detail));
+const sky = startSky(document.getElementById("wall"), { animated: prefs.wallpaper });
+document.addEventListener("wallpaper", (e) => { prefs.wallpaper = e.detail; savePrefs(); sky.setAnimated(e.detail); });
+document.addEventListener("skyhour", (e) => { sky.setHour(e.detail); refreshTheme(); });
 
 startCharacter(openApp);
 
