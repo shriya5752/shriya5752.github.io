@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>shriya.os lab</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/lab.css">
+</head>
+<body>
+  <div id="stage">
+    <canvas id="sky" aria-hidden="true"></canvas>
+    <div class="labtag">lab &mdash; experiments only, nothing here is live</div>
+
+    <section class="win active mock" aria-label="theme preview">
+      <header class="bar"><span class="ttl">about_me.txt</span><div class="ctl"><button>_</button><button>&#9633;</button><button class="cls">&times;</button></div></header>
+      <div class="body"><div class="prose" style="padding:12px 14px">
+        <p><b id="mockLabel">night</b> &middot; the windows follow the sky. at night they go violet, in daylight they turn pastel.</p>
+      </div></div>
+    </section>
+
+    <div id="hero"></div>
+
+    <div class="controls">
+      <div class="row" id="variants">
+        <button data-v="day" class="on">A &middot; day cycle</button>
+        <button data-v="planet">B &middot; ringed planet</button>
+        <button data-v="city">C &middot; moon &amp; skyline</button>
+      </div>
+      <div class="row" id="timeRow">
+        <span>time</span>
+        <input id="hour" type="range" min="0" max="23.9" step="0.1" aria-label="hour of day">
+        <output id="hourOut">--:--</output>
+        <button id="now">now</button>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="js/lab.js"></script>
+</body>
+</html>

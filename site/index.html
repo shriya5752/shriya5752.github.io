@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>shriya.os</title>
+  <meta name="description" content="Shriya's corner of the internet: a tiny retro operating system with notes, a blog and a terminal.">
+  <meta name="theme-color" content="#140b2e">
+  <meta property="og:title" content="shriya.os">
+  <meta property="og:description" content="organized chaos, documented. notes, blog and a terminal, all inside a tiny retro OS.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shriya5752.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%23140b2e'/%3E%3Crect x='1' y='1' width='6' height='5' fill='%238b5cf6'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%2306b6d4'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%2306b6d4'/%3E%3Crect x='5' y='4' width='1' height='1' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preload" href="fonts/VT323.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body class="crt-on">
+  <div id="screen">
+    <canvas id="wall" aria-hidden="true"></canvas>
+    <main id="desktop">
+      <nav id="icons" aria-label="Desktop"></nav>
+      <aside class="sticky" aria-label="note"><b>NOTE TO SELF</b>never wish to be defined easily.</aside>
+      <div id="windows"></div>
+    </main>
+    <div id="menu" role="menu" aria-label="Start menu"></div>
+    <footer id="taskbar">
+      <button id="start" aria-haspopup="true" aria-expanded="false">&#9670; START</button>
+      <div id="tasks" role="tablist" aria-label="Open windows"></div>
+      <div id="tray"><span class="dot" title="online"></span><span id="clock">--:--</span></div>
+    </footer>
+  </div>
+  <div class="crt" aria-hidden="true"></div>
+  <div id="boot" hidden></div>
+  <div id="off" aria-live="polite"></div>
+  <noscript>
+    <p style="position:fixed;inset:0;z-index:99999;background:#140b2e;color:#ece6ff;font:20px monospace;padding:40px">
+      shriya.os needs JavaScript to boot. In the meantime:
+      <a href="https://nerdingoutwithshriya.substack.com" style="color:#06b6d4">read the newsletter</a> &middot;
+      <a href="https://github.com/shriya5752" style="color:#06b6d4">github</a>
+    </p>
+  </noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
