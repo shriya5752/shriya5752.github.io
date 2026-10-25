@@ -29,3 +29,6 @@ try {
 
 // lets the stylesheet switch big animations off with one class
 document.documentElement.classList.toggle("calm", reduced());
+// The one-time door animation of the intro still plays unless the visitor chose "calm" on this site.
+// (It only runs when they tap, lasts about a second, and idle motion stays calm.)
+document.documentElement.classList.toggle("intro-ok", motionPref() !== "calm");
