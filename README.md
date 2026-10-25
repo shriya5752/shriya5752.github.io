@@ -1,4 +1,4 @@
-# Shriya's site
+# Personal Portfolio
 
 A tiny pastel desktop you can poke around in: a blog, semester notes, an about window, a doodle board and a mascot.
 It is **plain files** (HTML, CSS, JavaScript). No Hugo, no framework, nothing to install to run it, so there is nothing that can break at build time.
