@@ -325,7 +325,7 @@ function terminalApp(body, win) {
     about() { line("opening about...", "d"); openApp("about"); },
     whoami() {
       line("shriya", "a");
-      line("cs student / writer / professional note-taker");
+      line("cs student / currently figuring out what makes things tick / love creating");
       line("type 'help' to poke around, or double-click the icons.", "d");
     },
     theme(a) {

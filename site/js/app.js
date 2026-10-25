@@ -95,4 +95,16 @@ document.addEventListener("wallpaper", (e) => { prefs.wallpaper = e.detail; save
 // the mascot starts talking once the doors have opened
 document.addEventListener("skyhour", (e) => { setSkyHour(e.detail); refreshTheme(); });
 
-startIntro({ oncePerSession: true }).then(() => startCharacter(openApp));
+// a link like /#/blog/some-post (or #/notes/sem3, #/about) opens that window; otherwise the terminal greets you
+function openFromLink() {
+  const [, app, arg] = location.hash.split("/");
+  if (["blog", "notes", "about", "contact"].includes(app)) { openApp(app, arg ? { slug: arg } : undefined); return true; }
+  return false;
+}
+addEventListener("hashchange", openFromLink);
+
+startIntro({ oncePerSession: true }).then(() => {
+  startCharacter(openApp);
+  // the terminal appears as soon as the doors open; close it with the x and look around
+  if (!openFromLink() && !isMobile()) openApp("terminal");
+});

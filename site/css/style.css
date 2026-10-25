@@ -233,8 +233,8 @@ body.crt-on .crt { display: block; }
 .settings { padding: 18px 22px; }
 .settings h3 { font-family: var(--pixel); font-size: 11px; color: var(--b); margin: 18px 0 10px; font-weight: 400; }
 .settings h3:first-child { margin-top: 0; }
-.swatches { display: flex; flex-wrap: wrap; gap: 10px; }
-.swatch { width: 96px; padding: 6px; text-align: center; background: var(--win2); border: 3px solid var(--line); }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 10px; }
+.swatch { width: auto; min-width: 0; padding: 6px 8px; text-align: center; line-height: 1; overflow-wrap: anywhere; background: var(--win2); border: 3px solid var(--line); }
 .swatch i { display: block; height: 28px; margin-bottom: 4px; border: 2px solid #000; }
 .swatch.on { border-color: var(--b); box-shadow: 0 0 0 2px var(--a); }
 .switch { display: flex; align-items: center; gap: 10px; margin: 8px 0; font-size: 23px; cursor: pointer; }
