@@ -49,7 +49,7 @@ export function traceApp(body) {
   };
   cv.addEventListener("pointerdown", (e) => {
     if (e.button > 0) return;
-    cv.setPointerCapture(e.pointerId); drawing = true; last = pos(e); stroke(last, { x: last.x + 0.01, y: last.y });
+    try { cv.setPointerCapture(e.pointerId); } catch { /* pointer already gone: dragging still works */ } drawing = true; last = pos(e); stroke(last, { x: last.x + 0.01, y: last.y });
   });
   cv.addEventListener("pointermove", (e) => { if (!drawing) return; const p = pos(e); stroke(last, p); last = p; });
   const end = () => { if (!drawing) return; drawing = false; store.set(DRAW_KEY, cv.toDataURL()); document.dispatchEvent(new Event("trace-saved")); };
@@ -95,7 +95,7 @@ export function traceApp(body) {
       d.addEventListener("pointerdown", (e) => {
         if (e.target.closest(".tx")) return;
         const r = notesEl.getBoundingClientRect(), sx = e.clientX, sy = e.clientY, ox = n.x, oy = n.y;
-        d.setPointerCapture(e.pointerId); d.style.zIndex = 5;
+        try { d.setPointerCapture(e.pointerId); } catch { /* pointer already gone: dragging still works */ } d.style.zIndex = 5;
         const move = (ev) => {
           n.x = clamp(ox + (ev.clientX - sx) / r.width, 0, 0.9); n.y = clamp(oy + (ev.clientY - sy) / r.height, 0, 0.9);
           d.style.left = n.x * 100 + "%"; d.style.top = n.y * 100 + "%";

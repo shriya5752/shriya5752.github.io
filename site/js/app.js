@@ -3,7 +3,7 @@ import { icon } from "./icons.js";
 import { isMobile } from "./wm.js";
 import { openApp } from "./apps.js";
 import { startCharacter } from "./character.js";
-import { applyTheme, refreshTheme, setSkyHour, prefs, applyCrt, savePrefs } from "./theme.js";
+import { applyTheme, prefs, applyCrt, savePrefs } from "./theme.js";
 import { startTrail } from "./fx.js";
 import { startIntro } from "./intro.js";
 
@@ -37,7 +37,7 @@ document.querySelectorAll(".tile").forEach((t) => {
     t.classList.add("sel");
     const sx = e.clientX, sy = e.clientY, ox = dx, oy = dy;
     let moved = 0;
-    t.setPointerCapture(e.pointerId);
+    try { t.setPointerCapture(e.pointerId); } catch { /* pointer already gone: dragging still works */ }
     const move = (ev) => {
       moved = Math.max(moved, Math.hypot(ev.clientX - sx, ev.clientY - sy));
       if (moved > 5) { t.classList.add("drag"); dx = ox + ev.clientX - sx; dy = oy + ev.clientY - sy; t.style.transform = `translate(${dx}px,${dy}px)`; t.style.zIndex = 5; }
@@ -93,8 +93,6 @@ still(prefs.wallpaper);
 document.addEventListener("wallpaper", (e) => { prefs.wallpaper = e.detail; savePrefs(); still(e.detail); });
 
 // the mascot starts talking once the doors have opened
-document.addEventListener("skyhour", (e) => { setSkyHour(e.detail); refreshTheme(); });
-
 // a link like /#/blog/some-post (or #/notes/sem3, #/about) opens that window; otherwise the terminal greets you
 function openFromLink() {
   const [, app, arg] = location.hash.split("/");

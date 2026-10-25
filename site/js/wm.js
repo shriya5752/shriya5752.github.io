@@ -121,7 +121,7 @@ function enableDrag(win) {
     const area = layer.getBoundingClientRect();
     const sx = e.clientX, sy = e.clientY;
     const ox = win.el.offsetLeft, oy = win.el.offsetTop;
-    bar.setPointerCapture(e.pointerId);
+    try { bar.setPointerCapture(e.pointerId); } catch { /* pointer already gone: dragging still works */ }
     const move = (ev) => {
       win.el.style.left = clamp(ox + ev.clientX - sx, 120 - win.el.offsetWidth, area.width - 120) + "px";
       win.el.style.top = clamp(oy + ev.clientY - sy, 0, area.height - 34) + "px";
@@ -139,7 +139,7 @@ function enableResize(win) {
     if (isMobile() || e.button > 0) return;
     e.preventDefault();
     const sx = e.clientX, sy = e.clientY, ow = win.el.offsetWidth, oh = win.el.offsetHeight;
-    grip.setPointerCapture(e.pointerId);
+    try { grip.setPointerCapture(e.pointerId); } catch { /* pointer already gone: dragging still works */ }
     const move = (ev) => {
       win.el.style.width = Math.max(280, ow + ev.clientX - sx) + "px";
       win.el.style.height = Math.max(180, oh + ev.clientY - sy) + "px";

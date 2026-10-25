@@ -1,9 +1,7 @@
 // Themes and saved preferences. The "auto" theme follows the time of day: violet at night, dream (peach) by day.
-let hourOverride = null; // set by the terminal's `sky <hour>` command, for previewing
 const currentHour = () => { const d = new Date(); return d.getHours() + d.getMinutes() / 60; };
 const nightness = (h) => (h < 5 ? 1 : h < 7 ? 1 - (h - 5) / 2 : h < 19 ? 0 : h < 21 ? (h - 19) / 2 : 1);
-export const setSkyHour = (h) => { hourOverride = h; };
-const skyHour = () => (hourOverride === null ? currentHour() : hourOverride);
+const skyHour = () => currentHour();
 
 export const AUTO = "auto";
 export const THEMES = {

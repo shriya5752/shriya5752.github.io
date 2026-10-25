@@ -223,7 +223,7 @@ function contactApp(body) {
 
 // ---------- settings ----------
 function settingsApp(body) {
-  const auto = `<button class="swatch${prefs.theme === AUTO ? " on" : ""}" data-t="${AUTO}"><i style="background:linear-gradient(90deg,#1d1450,#8b5cf6 40%,#ffd9f0 60%,#7ec8f0)"></i>auto (sky)</button>`;
+  const auto = `<button class="swatch${prefs.theme === AUTO ? " on" : ""}" data-t="${AUTO}"><i style="background:linear-gradient(90deg,#1d1450,#8b5cf6 40%,#ffd9f0 60%,#7ec8f0)"></i>auto (day/night)</button>`;
   const swatches = auto + Object.entries(THEMES).map(([k, t]) => `<button class="swatch${k === prefs.theme ? " on" : ""}" data-t="${k}"><i style="background:linear-gradient(90deg,${t.a},${t.b})"></i>${t.label}</button>`).join("");
   body.innerHTML = `
     <div class="settings">
@@ -288,8 +288,8 @@ function terminalApp(body, win) {
   const cmds = {
     help() {
       line("commands:", "a");
-      [["ls [posts|notes]", "list things"], ["cat <file>", "read about.txt / contact.txt"], ["read <n>", "open post number n"], ["open <app>", "blog, notes, about, settings"],
-        ["theme <name>", [AUTO, ...Object.keys(THEMES)].join(" | ")], ["sky <hour|auto>", "set the time of day, e.g. sky 21"], ["crt on|off", "toggle scanlines"], ["neofetch", "system info"], ["clear", "clean the screen"], ["matrix", "wake up, shriya"]]
+      [["ls [posts|notes]", "list things"], ["cat <file>", "read about.txt / contact.txt"], ["read <n>", "open post number n"], ["open <app>", "blog, notes, about, contact, trace, settings"],
+        ["theme <name>", [AUTO, ...Object.keys(THEMES)].join(" | ")], ["crt on|off", "toggle scanlines"], ["neofetch", "system info"], ["clear", "clean the screen"], ["matrix", "wake up, shriya"]]
         .forEach(([c, d]) => line("  " + c.padEnd(18) + d, "d"));
     },
     ls(a) {
@@ -331,14 +331,6 @@ function terminalApp(body, win) {
     theme(a) {
       if (!a[0]) return line("themes: " + [AUTO, ...Object.keys(THEMES)].join(", ") + "   (current: " + prefs.theme + ")");
       if (applyTheme(a[0])) line("theme -> " + a[0], "d"); else line("unknown theme: " + a[0], "e");
-    },
-    sky(a) {
-      const v = a[0];
-      if (v === "auto") { document.dispatchEvent(new CustomEvent("skyhour", { detail: null })); return line("sky follows your clock again", "d"); }
-      const h = parseFloat(v);
-      if (!(h >= 0 && h < 24)) return line("usage: sky <0-23>  or  sky auto", "e");
-      document.dispatchEvent(new CustomEvent("skyhour", { detail: h }));
-      line(`sky set to ${String(Math.floor(h)).padStart(2, "0")}:00. 'sky auto' to go back.`, "d");
     },
     crt(a) {
       if (a[0] !== "on" && a[0] !== "off") return line("usage: crt on|off", "e");
