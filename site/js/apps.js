@@ -289,8 +289,9 @@ function terminalApp(body, win) {
     help() {
       line("commands:", "a");
       [["ls [posts|notes]", "list things"], ["cat <file>", "read about.txt / contact.txt"], ["read <n>", "open post number n"], ["open <app>", "blog, notes, about, contact, trace, settings"],
-        ["theme <name>", [AUTO, ...Object.keys(THEMES)].join(" | ")], ["crt on|off", "toggle scanlines"], ["neofetch", "system info"], ["clear", "clean the screen"], ["matrix", "wake up, shriya"]]
+        ["theme <name>", [AUTO, ...Object.keys(THEMES)].join(" | ")], ["crt on|off", "toggle scanlines"], ["neofetch", "system info"], ["clear", "clean the screen"]]
         .forEach(([c, d]) => line("  " + c.padEnd(18) + d, "d"));
+      line("psst: not every command is listed here. try the ones you shouldn't.", "a");
     },
     ls(a) {
       if (a[0] === "posts") return cmds.posts();
@@ -385,7 +386,7 @@ function terminalApp(body, win) {
   }
 
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") { const v = input.value; input.value = ""; run(v); }
+    if (e.key === "Enter") { const v = input.value; input.value = ""; term.dataset.used = "1"; run(v); }
     else if (e.key === "ArrowUp") { e.preventDefault(); if (hi > 0) input.value = history[--hi]; }
     else if (e.key === "ArrowDown") { e.preventDefault(); hi = Math.min(history.length, hi + 1); input.value = history[hi] || ""; }
     else if (e.key === "Tab") {
@@ -407,7 +408,7 @@ function terminalApp(body, win) {
     if (!document.body.contains(term)) return clearInterval(typer);
     if (reduced) i = greet.length; else i++;
     input.value = greet.slice(0, i);
-    if (i >= greet.length) { clearInterval(typer); setTimeout(() => { if (input.value === greet) { input.value = ""; run(greet).then(() => { line(); line("try: ls posts  |  read 1  |  theme amber  |  neofetch", "d"); }); } }, 250); }
+    if (i >= greet.length) { clearInterval(typer); setTimeout(() => { if (input.value === greet) { input.value = ""; run(greet).then(() => { line(); line("try: ls posts  |  read 1  |  theme amber  |  neofetch", "d"); line("...and a few things you probably shouldn't type. (there are secrets in here)", "d"); }); } }, 250); }
   }, 90);
   term.addEventListener("keydown", () => { clearInterval(typer); }, { once: true });
   setTimeout(() => input.focus({ preventScroll: true }), 50);

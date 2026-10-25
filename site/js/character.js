@@ -4,11 +4,12 @@ import { reduced as isReduced } from "./motion.js";
 
 const IDLE = [
   "hi! i'm shriya.",
-  "overthinking, but make it cute.",
   "never wish to be defined easily.",
   "psst... try the terminal.",
   "the notes are free. take them.",
   "typing something very important...",
+  "do NOT type sudo in the terminal.",
+  "the terminal has secrets. just saying.",
 ];
 const OPENED = {
   blog: "ooh, my blog!",
@@ -64,5 +65,14 @@ export function startCharacter(openApp) {
   document.addEventListener("app-open", (e) => { if (OPENED[e.detail]) speak(OPENED[e.detail], 2800); });
 
   setTimeout(() => speak(IDLE[0], 4200), reduced ? 300 : 1800);
+
+  // nudge visitors toward the hidden terminal commands if they haven't typed anything yet
+  const untouched = () => { const t = document.querySelector(".term"); return !!t && !t.dataset.used; };
+  const NUDGES = [
+    "psst... type matrix in the terminal. trust me.",
+    "whatever you do, don't type sudo in the terminal.",
+    "i dare you: sudo rm -rf /",
+  ];
+  NUDGES.forEach((text, i) => setTimeout(() => { if (untouched()) speak(text, 5200); }, 14000 + i * 16000));
   return { speak };
 }
