@@ -57,6 +57,10 @@ The site is published from the **`site/`** folder. After `update.bat`, save your
 2. On vercel.com choose **Add New > Project**, import the repo, and press **Deploy**. Leave every setting alone: `vercel.json` already tells Vercel to publish `site/` and run no build.
 3. From then on, every push to `main` updates the live site in about 20 seconds.
 
+### On Netlify
+
+Already connected? `netlify.toml` tells Netlify to publish `site/` with no build, so nothing else to set up.
+
 ### On GitHub Pages instead
 
 Repo **Settings > Pages > Source: GitHub Actions**. The included workflow publishes `site/` on every push.
