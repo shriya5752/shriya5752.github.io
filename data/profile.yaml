@@ -1,0 +1,29 @@
+# Your personal details. Edit the words, save, then run update.bat (see README.md).
+# Keep the indentation and the dashes exactly as they are, and keep text inside the quotes.
+
+name: "Shriya Mohanty"
+email: "shriyamoh1362@gmail.com"
+
+# Buttons shown in the About and Say hi windows. Delete a line to hide that button.
+links:
+  newsletter: "https://nerdingoutwithshriya.substack.com"
+  github: "https://github.com/shriya5752"
+  linkedin: "https://www.linkedin.com/in/shriya-moh/"
+  medium: "https://medium.com/@shriyamoh1362"
+  youtube: "https://youtube.com/@shriya_moh"
+
+about:
+  title: "hello, i'm shriya"
+  role: "cs student"
+  motto: "organized chaos, documented"
+  into: "systems, ml, terminals, writing"
+  status: "taking things apart"
+  paragraphs:
+    - "most of my time goes into overthinking. with the time i have left, i like to tinker: take things apart, build small weird projects, and figure out what makes them tick."
+    - "i was always interested in tech, but lately creativity is what makes it feel alive. i try new things all the time, which means a permanent, mildly delightful identity crisis."
+    - "working on something interesting? i'd love to hear about it."
+  quote: "learning never exhausts the mind. - leonardo da vinci"
+
+contact:
+  title: "say hi :)"
+  text: "working on something interesting, or just want to chat? email is the best way to reach me. i read everything."

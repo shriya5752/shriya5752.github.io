@@ -1,4 +1,7 @@
-public/
-resources/
-__pycache__/
+site/__pycache__/
+*.pyc
 .claude/
+.DS_Store
+Thumbs.db
+.vercel
+node_modules/

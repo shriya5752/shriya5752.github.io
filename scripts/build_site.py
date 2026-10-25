@@ -2,8 +2,8 @@
 """
 build_site.py
 
-Turns the markdown posts in content/blog and the semester notes in
-data/notes.yaml into plain JSON under site/data/, and copies images into
+Turns the markdown posts in content/blog, the semester notes in
+data/notes.yaml and your profile text into plain JSON under site/data/, and copies images into
 site/images. The site itself (site/) is static HTML/CSS/JS with no build
 framework, so this is the only build step.
 
@@ -38,7 +38,7 @@ def render(md_text: str) -> str:
 def build_ml_overview() -> None:
     """The ML map post embeds a big interactive widget. Ship it as its own
     page and iframe it, instead of inlining 33 KB of CSS into the reader."""
-    src = ROOT / "layouts" / "shortcodes" / "ml-overview.html"
+    src = ROOT / "content" / "embeds" / "ml-overview.html"
     if not src.exists():
         return
     body = src.read_text(encoding="utf-8")
@@ -131,9 +131,16 @@ def main() -> None:
         json.dumps(notes, ensure_ascii=False), encoding="utf-8"
     )
 
+    profile_src = ROOT / "data" / "profile.yaml"
+    if profile_src.exists():
+        profile = yaml.safe_load(profile_src.read_text(encoding="utf-8")) or {}
+        (SITE / "data" / "profile.json").write_text(
+            json.dumps(profile, ensure_ascii=False), encoding="utf-8"
+        )
+
     if IMAGES_SRC.exists():
         shutil.copytree(IMAGES_SRC, SITE / "images", dirs_exist_ok=True)
-    pdf = ROOT / "notes" / "afll.pdf"
+    pdf = ROOT / "content" / "files" / "afll.pdf"
     if pdf.exists():
         (SITE / "files").mkdir(exist_ok=True)
         shutil.copy2(pdf, SITE / "files" / "afll.pdf")

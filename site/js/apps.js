@@ -4,13 +4,20 @@ import { traceApp } from "./trace.js";
 import { openWindow, getWindow, closeWindow, focus } from "./wm.js";
 import { THEMES, AUTO, prefs, applyTheme, applyCrt, savePrefs } from "./theme.js";
 
-const LINKS = {
-  substack: "https://nerdingoutwithshriya.substack.com",
-  medium: "https://medium.com/@shriyamoh1362",
-  linkedin: "https://www.linkedin.com/in/shriya-moh/",
-  youtube: "https://youtube.com/@shriya_moh",
-  github: "https://github.com/shriya5752",
-  email: "mailto:shriyamoh1362@gmail.com",
+// Fallback text, used only if data/profile.json can't be loaded. Edit data/profile.yaml instead of this.
+const DEFAULT_PROFILE = {
+  email: "shriyamoh1362@gmail.com",
+  links: {
+    newsletter: "https://nerdingoutwithshriya.substack.com",
+    github: "https://github.com/shriya5752",
+    linkedin: "https://www.linkedin.com/in/shriya-moh/",
+  },
+  about: {
+    title: "hello, i'm shriya", role: "cs student", motto: "organized chaos, documented", into: "systems, ml, terminals, writing", status: "taking things apart",
+    paragraphs: ["most of my time goes into overthinking. with the time i have left, i like to tinker.", "working on something interesting? i'd love to hear about it."],
+    quote: "",
+  },
+  contact: { title: "say hi :)", text: "email is the best way to reach me. i read everything." },
 };
 
 // ---------- helpers ----------
@@ -20,6 +27,9 @@ export const load = (name) =>
     if (!r.ok) throw new Error(name + " " + r.status);
     return r.json();
   }));
+
+// profile text (from data/profile.yaml); falls back to the defaults above so the windows never come up empty
+const loadProfile = () => load("profile").then((p) => ({ ...DEFAULT_PROFILE, ...p, about: { ...DEFAULT_PROFILE.about, ...(p.about || {}) }, contact: { ...DEFAULT_PROFILE.contact, ...(p.contact || {}) } })).catch(() => DEFAULT_PROFILE);
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const setRoute = (p) => { try { history.replaceState(null, "", p ? "#" + p : location.pathname + location.search); } catch { /* ignore */ } };
@@ -144,67 +154,71 @@ function notesApp(body, win, args) {
 const icon_inline = (name) => icon(name).replace("<svg ", '<svg width="20" height="20" style="vertical-align:-4px" ');
 
 // ---------- about ----------
+const LINK_LABELS = { newsletter: "newsletter", github: "github", linkedin: "linkedin", medium: "medium", youtube: "youtube" };
+const linkButtons = (links, only) => Object.entries(links || {})
+  .filter(([k, v]) => v && LINK_LABELS[k] && (!only || only.includes(k)))
+  .map(([k, v]) => `<a class="btn" href="${esc(v)}">${LINK_LABELS[k]}</a>`).join("");
+
 function aboutApp(body) {
-  body.innerHTML = `
-    <div class="about">
-      <div class="hero">
-        <div class="face">${icon("face")}</div>
-        <div>
-          <h1>hello, i'm shriya</h1>
-          <div class="sys">
-            <div><b>role</b> cs student</div>
-            <div><b>motto</b> organized chaos, documented</div>
-            <div><b>into</b> systems, ml, terminals, writing</div>
-            <div><b>status</b> <span style="color:#4ade80">&#9679;</span> taking things apart</div>
+  const paint = (p) => {
+    const a = p.about;
+    body.innerHTML = `
+      <div class="about">
+        <div class="hero">
+          <div class="face">${icon("face")}</div>
+          <div>
+            <h1>${esc(a.title)}</h1>
+            <div class="sys">
+              <div><b>role</b> ${esc(a.role)}</div>
+              <div><b>motto</b> ${esc(a.motto)}</div>
+              <div><b>into</b> ${esc(a.into)}</div>
+              <div><b>status</b> <span style="color:#4ade80">&#9679;</span> ${esc(a.status)}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="prose">
-        <p>most of my time goes into overthinking. with the time i have left, i like to tinker: take things apart, build small weird projects, and figure out what makes them tick.</p>
-        <p>i was always interested in tech, but lately creativity is what makes it feel alive. i try new things all the time, which means a permanent, mildly delightful identity crisis.</p>
-        <p>working on something interesting? i'd love to hear about it.</p>
-      </div>
-      <div class="links">
-        <a class="btn" href="${LINKS.email}">${icon_inline("mail")} email me</a>
-        <a class="btn" href="${LINKS.substack}">newsletter</a>
-        <a class="btn" href="${LINKS.github}">github</a>
-        <a class="btn" href="${LINKS.linkedin}">linkedin</a>
-        <a class="btn" href="${LINKS.medium}">medium</a>
-        <a class="btn" href="${LINKS.youtube}">youtube</a>
-      </div>
-      <div class="quote">"learning never exhausts the mind." - leonardo da vinci</div>
-    </div>`;
-  externalLinks(body);
+        <div class="prose">${(a.paragraphs || []).map((t) => `<p>${esc(t)}</p>`).join("")}</div>
+        <div class="links">
+          <a class="btn" href="mailto:${esc(p.email)}">${icon_inline("mail")} email me</a>
+          ${linkButtons(p.links)}
+        </div>
+        ${a.quote ? `<div class="quote">"${esc(a.quote)}"</div>` : ""}
+      </div>`;
+    externalLinks(body);
+  };
+  paint(DEFAULT_PROFILE);
+  loadProfile().then(paint);
   setRoute("/about");
 }
 
 // ---------- say hi ----------
-const MAIL = "shriyamoh1362@gmail.com";
 function contactApp(body) {
-  body.innerHTML = `
-    <div class="about">
-      <h1 style="margin-bottom:12px">say hi :)</h1>
-      <div class="prose"><p>working on something interesting, or just want to chat? email is the best way to reach me. i read everything.</p></div>
-      <div class="mailbox"><code id="mailaddr">${MAIL}</code><button class="btn" id="copyMail">copy</button><span id="copied" aria-live="polite"></span></div>
-      <div class="links">
-        <a class="btn" href="https://mail.google.com/mail/?view=cm&to=${MAIL}">${icon_inline("mail")} write in gmail</a>
-        <a class="btn" href="mailto:${MAIL}">open mail app</a>
-        <a class="btn" href="${LINKS.linkedin}">linkedin</a>
-        <a class="btn" href="${LINKS.github}">github</a>
-        <a class="btn" href="${LINKS.substack}">newsletter</a>
-      </div>
-    </div>`;
-  externalLinks(body);
-  const done = body.querySelector("#copied");
-  body.querySelector("#copyMail").onclick = async () => {
-    try { await navigator.clipboard.writeText(MAIL); done.textContent = "copied!"; }
-    catch {
-      const r = document.createRange(); r.selectNodeContents(body.querySelector("#mailaddr"));
-      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-      done.textContent = "press ctrl+c";
-    }
-    setTimeout(() => { done.textContent = ""; }, 2000);
+  const paint = (p) => {
+    const MAIL = p.email;
+    body.innerHTML = `
+      <div class="about">
+        <h1 style="margin-bottom:12px">${esc(p.contact.title)}</h1>
+        <div class="prose"><p>${esc(p.contact.text)}</p></div>
+        <div class="mailbox"><code id="mailaddr">${esc(MAIL)}</code><button class="btn" id="copyMail">copy</button><span id="copied" aria-live="polite"></span></div>
+        <div class="links">
+          <a class="btn" href="https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(MAIL)}">${icon_inline("mail")} write in gmail</a>
+          <a class="btn" href="mailto:${esc(MAIL)}">open mail app</a>
+          ${linkButtons(p.links, ["linkedin", "github", "newsletter"])}
+        </div>
+      </div>`;
+    externalLinks(body);
+    const done = body.querySelector("#copied");
+    body.querySelector("#copyMail").onclick = async () => {
+      try { await navigator.clipboard.writeText(MAIL); done.textContent = "copied!"; }
+      catch {
+        const r = document.createRange(); r.selectNodeContents(body.querySelector("#mailaddr"));
+        const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+        done.textContent = "press ctrl+c";
+      }
+      setTimeout(() => { done.textContent = ""; }, 2000);
+    };
   };
+  paint(DEFAULT_PROFILE);
+  loadProfile().then(paint);
 }
 
 // ---------- settings ----------

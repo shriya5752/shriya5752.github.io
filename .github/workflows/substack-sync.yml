@@ -27,14 +27,19 @@ jobs:
 
       - name: Run Substack sync
         env:
-          SUBSTACK_FEED_URL: ${{ secrets.SUBSTACK_FEED_URL }}
-        run: python scripts/substack_to_hugo.py
+          SUBSTACK_FEED_URL: ${{ secrets.SUBSTACK_FEED_URL || 'https://nerdingoutwithshriya.substack.com/feed' }}
+        run: python scripts/substack_sync.py
+
+      - name: Rebuild site content
+        run: |
+          pip install markdown pyyaml
+          python scripts/build_site.py
 
       - name: Commit and push if there are changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add content/blog static/images
+          git add content/blog static/images site/data site/images site/embeds site/files
           if ! git diff --cached --quiet; then
             git commit -m "chore: sync new Substack post(s)"
             git push

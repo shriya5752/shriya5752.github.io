@@ -278,7 +278,7 @@ EOF
 
 you write your content *exactly as you want it to appear*. no escaping, no quotes, nothing.
 
-![heredoc cat <<EOF demo](/images/blog/heredoc.png)
+![heredoc cat <<EOF demo](/images/blog/herodoc.png)
 
 the `<<EOF` part is called a **here document**. here's what's happening:
 
