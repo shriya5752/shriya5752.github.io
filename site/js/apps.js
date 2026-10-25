@@ -386,7 +386,7 @@ function terminalApp(body, win) {
   }
 
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") { const v = input.value; input.value = ""; term.dataset.used = "1"; run(v); }
+    if (e.key === "Enter") { const v = input.value; input.value = ""; term.dataset.used = "1"; document.dispatchEvent(new CustomEvent("term-command", { detail: v.trim().split(/\s+/)[0] })); run(v); }
     else if (e.key === "ArrowUp") { e.preventDefault(); if (hi > 0) input.value = history[--hi]; }
     else if (e.key === "ArrowDown") { e.preventDefault(); hi = Math.min(history.length, hi + 1); input.value = history[hi] || ""; }
     else if (e.key === "Tab") {

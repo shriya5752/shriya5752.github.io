@@ -15,7 +15,6 @@ const OPENED = {
   blog: "ooh, my blog!",
   notes: "semester notes! you'll thank me.",
   about: "that's me. hi again.",
-  terminal: "a person of culture, i see.",
   settings: "go on, redecorate.",
 };
 
@@ -64,15 +63,50 @@ export function startCharacter(openApp) {
   el.addEventListener("dblclick", () => openApp("about"));
   document.addEventListener("app-open", (e) => { if (OPENED[e.detail]) speak(OPENED[e.detail], 2800); });
 
-  setTimeout(() => speak(IDLE[0], 4200), reduced ? 300 : 1800);
+  // greet quickly, then tease the terminal's secrets a few seconds later
+  setTimeout(() => speak(IDLE[0], 2600), 700);
 
-  // nudge visitors toward the hidden terminal commands if they haven't typed anything yet
-  const untouched = () => { const t = document.querySelector(".term"); return !!t && !t.dataset.used; };
-  const NUDGES = [
-    "psst... type matrix in the terminal. trust me.",
-    "whatever you do, don't type sudo in the terminal.",
-    "i dare you: sudo rm -rf /",
-  ];
-  NUDGES.forEach((text, i) => setTimeout(() => { if (untouched()) speak(text, 5200); }, 14000 + i * 16000));
+  const SECRETS = ["matrix", "sudo", "rm"];
+  const found = new Set();
+  const TEASE = {
+    matrix: "psst... type matrix in the terminal. trust me.",
+    sudo: "whatever you do, don't type sudo in the terminal.",
+    rm: "i dare you: sudo rm -rf /",
+  };
+  const REACT = {
+    matrix: "you found it. wake up, shriya.",
+    sudo: "i told you not to. (nobody was hurt)",
+    rm: "...why would you do that. it's fine, it's a static site.",
+    theme: "ooh, redecorating.",
+    neofetch: "that's my whole system. impressive, right?",
+  };
+  let lastTease = -1, lastSpoke = 0, hintTimer = 0;
+  const say_ = (text) => { lastSpoke = Date.now(); speak(text, 4800); };
+
+  // the next secret she hasn't revealed yet, cycling so she never repeats herself
+  function tease() {
+    for (let k = 1; k <= SECRETS.length; k++) {
+      const s = SECRETS[(lastTease + k) % SECRETS.length];
+      if (!found.has(s)) { lastTease = SECRETS.indexOf(s); return TEASE[s]; }
+    }
+    return null; // they found them all
+  }
+
+  // first hint about 3 seconds after the terminal opens
+  setTimeout(() => { if (document.querySelector(".term") && !found.size) { const t = tease(); if (t) say_(t); } }, 3500);
+
+  // react ~3 seconds after the visitor runs a command
+  document.addEventListener("term-command", (e) => {
+    const cmd = String(e.detail || "").toLowerCase();
+    if (SECRETS.includes(cmd)) found.add(cmd);
+    clearTimeout(hintTimer);
+    hintTimer = setTimeout(() => {
+      if (!document.querySelector(".term")) return; // terminal was closed
+      if (REACT[cmd]) return say_(REACT[cmd]);
+      if (Date.now() - lastSpoke < 6000) return;    // don't talk over herself
+      const t = tease();
+      if (t) say_(t);
+    }, 3000);
+  });
   return { speak };
 }
