@@ -1,4 +1,6 @@
 import { icon } from "./icons.js";
+import { reduced as isReduced, motionPref, systemReduces } from "./motion.js";
+import { traceApp } from "./trace.js";
 import { openWindow, getWindow, closeWindow, focus } from "./wm.js";
 import { THEMES, AUTO, prefs, applyTheme, applyCrt, savePrefs } from "./theme.js";
 
@@ -35,6 +37,8 @@ export const APPS = {
   notes: { title: "notes - my computer", icon: "folder", label: "notes", w: 800, h: 520, render: notesApp },
   about: { title: "about_me.txt", icon: "face", label: "about me", w: 640, h: 500, render: aboutApp },
   settings: { title: "control panel", icon: "monitor", label: "settings", w: 520, h: 430, render: settingsApp },
+  trace: { title: "leave_a_trace.exe", icon: "pencil", label: "leave a trace", w: 780, h: 580, render: traceApp },
+  contact: { title: "say_hi.txt", icon: "mail", label: "say hi", w: 540, h: 400, render: contactApp },
 };
 
 export function openApp(id, args) {
@@ -174,6 +178,35 @@ function aboutApp(body) {
   setRoute("/about");
 }
 
+// ---------- say hi ----------
+const MAIL = "shriyamoh1362@gmail.com";
+function contactApp(body) {
+  body.innerHTML = `
+    <div class="about">
+      <h1 style="margin-bottom:12px">say hi :)</h1>
+      <div class="prose"><p>working on something interesting, or just want to chat? email is the best way to reach me. i read everything.</p></div>
+      <div class="mailbox"><code id="mailaddr">${MAIL}</code><button class="btn" id="copyMail">copy</button><span id="copied" aria-live="polite"></span></div>
+      <div class="links">
+        <a class="btn" href="https://mail.google.com/mail/?view=cm&to=${MAIL}">${icon_inline("mail")} write in gmail</a>
+        <a class="btn" href="mailto:${MAIL}">open mail app</a>
+        <a class="btn" href="${LINKS.linkedin}">linkedin</a>
+        <a class="btn" href="${LINKS.github}">github</a>
+        <a class="btn" href="${LINKS.substack}">newsletter</a>
+      </div>
+    </div>`;
+  externalLinks(body);
+  const done = body.querySelector("#copied");
+  body.querySelector("#copyMail").onclick = async () => {
+    try { await navigator.clipboard.writeText(MAIL); done.textContent = "copied!"; }
+    catch {
+      const r = document.createRange(); r.selectNodeContents(body.querySelector("#mailaddr"));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      done.textContent = "press ctrl+c";
+    }
+    setTimeout(() => { done.textContent = ""; }, 2000);
+  };
+}
+
 // ---------- settings ----------
 function settingsApp(body) {
   const auto = `<button class="swatch${prefs.theme === AUTO ? " on" : ""}" data-t="${AUTO}"><i style="background:linear-gradient(90deg,#1d1450,#8b5cf6 40%,#ffd9f0 60%,#7ec8f0)"></i>auto (sky)</button>`;
@@ -185,6 +218,15 @@ function settingsApp(body) {
       <label class="switch"><input type="checkbox" id="s-crt" ${prefs.crt ? "checked" : ""}> crt scanlines</label>
       <label class="switch"><input type="checkbox" id="s-trail" ${prefs.trail ? "checked" : ""}> cursor sparkles</label>
       <label class="switch"><input type="checkbox" id="s-wall" ${prefs.wallpaper ? "checked" : ""}> animated wallpaper</label>
+      <h3>MOTION</h3>
+      <label class="switch motion">animations
+        <select id="s-motion" aria-label="animations">
+          <option value="auto">follow my system</option>
+          <option value="full">always on</option>
+          <option value="calm">calm (off)</option>
+        </select>
+      </label>
+      <div class="mhint">your system currently asks websites for <b>${systemReduces() ? "reduced motion" : "full motion"}</b>. "always on" overrides that for this site.</div>
       <h3>TIP</h3><div style="color:var(--dim);font-size:22px;line-height:1.1">everything here also works from the terminal: try <b style="color:var(--b)">theme amber</b> or <b style="color:var(--b)">crt off</b></div>
     </div>`;
   body.querySelector(".swatches").onclick = (e) => {
@@ -192,6 +234,9 @@ function settingsApp(body) {
     applyTheme(b.dataset.t);
     body.querySelectorAll(".swatch").forEach((s) => s.classList.toggle("on", s === b));
   };
+  const sel = body.querySelector("#s-motion");
+  sel.value = motionPref();
+  sel.onchange = () => { prefs.motion = sel.value; savePrefs(); setTimeout(() => location.reload(), 150); };
   body.querySelector("#s-crt").onchange = (e) => applyCrt(e.target.checked);
   body.querySelector("#s-trail").onchange = (e) => { prefs.trail = e.target.checked; savePrefs(); };
   body.querySelector("#s-wall").onchange = (e) => document.dispatchEvent(new CustomEvent("wallpaper", { detail: e.target.checked }));
@@ -348,7 +393,7 @@ function terminalApp(body, win) {
   term.addEventListener("pointerup", () => { if (!getSelection().toString()) input.focus({ preventScroll: true }); });
 
   // greeting: type "whoami" for the visitor
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduced = isReduced();
   line("shriya.os terminal [v1.0]  -  type 'help' for commands", "d");
   const greet = "whoami";
   let i = 0;

@@ -1,11 +1,13 @@
 import { icon } from "./icons.js";
+import { reduced as isReduced } from "./motion.js";
 import { isMobile } from "./wm.js";
 import { APPS, openApp, load } from "./apps.js";
 import { startCharacter } from "./character.js";
 import { startSky } from "./sky.js";
+import { startTrail } from "./fx.js";
 import { prefs, applyTheme, applyCrt, refreshTheme, savePrefs } from "./theme.js";
 
-const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduced = isReduced();
 const $ = (s) => document.querySelector(s);
 
 applyTheme(prefs.theme);
@@ -32,7 +34,7 @@ $("#desktop").addEventListener("pointerdown", (e) => { if (!e.target.closest(".i
 const menu = $("#menu");
 const start = $("#start");
 menu.innerHTML = `<div class="brand">shriya.os</div>` +
-  ORDER.map((id) => `<button data-app="${id}">${icon(APPS[id].icon)}${APPS[id].label}</button>`).join("") +
+  [...ORDER, "trace"].map((id) => `<button data-app="${id}">${icon(APPS[id].icon)}${APPS[id].label}</button>`).join("") +
   `<hr><button data-act="mail">${icon("mail")}mail me</button><button data-act="off">${icon("power")}shut down...</button>`;
 function toggleMenu(force) {
   const open = force ?? !menu.classList.contains("open");
@@ -44,7 +46,7 @@ menu.addEventListener("click", (e) => {
   const b = e.target.closest("button"); if (!b) return;
   toggleMenu(false);
   if (b.dataset.app) openApp(b.dataset.app);
-  else if (b.dataset.act === "mail") location.href = "mailto:shriyamoh1362@gmail.com";
+  else if (b.dataset.act === "mail") openApp("contact");
   else if (b.dataset.act === "off") shutdown();
 });
 document.addEventListener("pointerdown", (e) => { if (!e.target.closest("#menu, #start")) toggleMenu(false); });
@@ -54,22 +56,7 @@ document.addEventListener("keydown", (e) => { if (e.key === "Escape") toggleMenu
 function tick() { $("#clock").textContent = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }); }
 tick(); setInterval(tick, 10000);
 
-// ---------- cursor sparkles ----------
-if (!reduced && matchMedia("(pointer: fine)").matches) {
-  let last = 0;
-  addEventListener("pointermove", (e) => {
-    if (!prefs.trail) return;
-    const now = performance.now();
-    if (now - last < 45) return;
-    last = now;
-    const s = document.createElement("i");
-    s.className = "spark";
-    s.style.left = e.clientX + (Math.random() * 10 - 5) + "px";
-    s.style.top = e.clientY + (Math.random() * 10 - 5) + "px";
-    document.body.appendChild(s);
-    setTimeout(() => s.remove(), 700);
-  }, { passive: true });
-}
+startTrail();
 
 // ---------- shutdown / reboot ----------
 function shutdown() {

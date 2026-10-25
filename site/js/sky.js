@@ -1,6 +1,7 @@
 // Wallpaper: a pixel sky that follows the real time of day.
 // A smiling sun crosses the sky by day, a crescent moon takes over at night.
-const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+import { reduced as isReduced } from "./motion.js";
+const reduced = isReduced();
 const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
 const lerp = (a, b, t) => a + (b - a) * t;
 
