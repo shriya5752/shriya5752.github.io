@@ -27,7 +27,7 @@ jobs:
 
       - name: Run Substack sync
         env:
-          SUBSTACK_FEED_URL: ${{ secrets.SUBSTACK_FEED_URL || 'https://nerdingoutwithshriya.substack.com/feed' }}
+          SUBSTACK_FEED_URL: ${{ secrets.SUBSTACK || secrets.SUBSTACK_FEED_URL || 'https://nerdingoutwithshriya.substack.com/feed' }}
         run: python scripts/substack_sync.py
 
       - name: Rebuild site content
